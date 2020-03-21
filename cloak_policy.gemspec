@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.version     = CloakPolicy::VERSION
   spec.authors     = ["fred schoeneman"]
   spec.email       = ["fred.schoeneman@gmail.com"]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of CloakPolicy."
-  spec.description = "TODO: Description of CloakPolicy."
+  spec.homepage    = ""
+  spec.summary     = ""
+  spec.description = ""
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -27,5 +27,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.2", ">= 6.0.2.2"
 
-  spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency "pg"
+  # spec.add_development_dependency "handsome_fencer-test"
 end
