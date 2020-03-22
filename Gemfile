@@ -8,6 +8,11 @@ gemspec
 
 gem "handsome_fencer-test", path: "../../../../opensource/gems/handsome_fencer-test"
 
+# group :development, :test do 
+    
+#   gem "guard"
+#   gem "guard-livereload"
+# end
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
