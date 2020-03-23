@@ -1,9 +1,0 @@
-executive:
-  icon: rss
-  name: Executive
-  type: Profile
-
-public_figure:
-  icon: rss
-  name: Public Figure
-  type: Profile
