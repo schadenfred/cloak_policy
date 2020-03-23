@@ -1,0 +1,34 @@
+= form_for @platform do |f|
+  - if @platform.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@platform.errors.count, "error")} prohibited this platform from being saved:"
+      %ul
+        - @platform.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :fqdn
+    = f.text_field :fqdn
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :icon
+    = f.text_field :icon
+  .field
+    = f.label :platform_type
+    = f.text_field :platform_type
+  .field
+    = f.label :they_say
+    = f.text_field :they_say
+  .field
+    = f.label :we_say
+    = f.text_field :we_say
+  .field
+    = f.label :recommendable
+    = f.check_box :recommendable
+  .actions
+    = f.submit 'Save'

@@ -1,4 +1,5 @@
 CloakPolicy::Engine.routes.draw do
+  resources :platforms
   resources :feedbacks, only: [:create, :index, :destroy]
 
     resources :profiles

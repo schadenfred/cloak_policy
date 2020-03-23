@@ -1,12 +1,12 @@
-# frozen_string_literal: true
+# # frozen_string_literal: true
 
-require "test_helper"
+# require "test_helper"
 
-describe PreferencesRecommendation do
-  Given(:subject) { PreferencesRecommendation.new }
+# describe PreferencesRecommendation do
+#   Given(:subject) { PreferencesRecommendation.new }
 
-  specify "associations" do
-    must belong_to(:recommendation)
-    must belong_to(:preference)
-  end
-end
+#   specify "associations" do
+#     must belong_to(:recommendation)
+#     must belong_to(:preference)
+#   end
+# end

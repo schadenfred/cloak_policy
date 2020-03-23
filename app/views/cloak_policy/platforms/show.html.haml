@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @platform.name
+%p
+  %b Fqdn:
+  = @platform.fqdn
+%p
+  %b Description:
+  = @platform.description
+%p
+  %b Icon:
+  = @platform.icon
+%p
+  %b Platform type:
+  = @platform.platform_type
+%p
+  %b They say:
+  = @platform.they_say
+%p
+  %b We say:
+  = @platform.we_say
+%p
+  %b Recommendable:
+  = @platform.recommendable
+
+= link_to 'Edit', edit_platform_path(@platform)
+\|
+= link_to 'Back', platforms_path

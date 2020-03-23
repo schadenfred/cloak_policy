@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fqdn: MyString
+  description: MyString
+  icon: MyString
+  platform_type: MyString
+  they_say: MyString
+  we_say: MyString
+  recommendable: false
+
+two:
+  name: MyString
+  fqdn: MyString
+  description: MyString
+  icon: MyString
+  platform_type: MyString
+  they_say: MyString
+  we_say: MyString
+  recommendable: false

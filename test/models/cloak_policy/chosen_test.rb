@@ -1,101 +1,101 @@
-require 'test_helper'
+# require 'test_helper'
 
-describe Chosen do
+# describe Chosen do
 
-  Given(:subject) { Chosen.new }
+#   Given(:subject) { Chosen.new }
 
-  describe "db" do
+#   describe "db" do
 
-    specify "columns" do
+#     specify "columns" do
 
-      must have_db_column(:advice)
-      must have_db_column(:choice_id).of_type(:integer)
-      must have_db_column(:recommendation_id).of_type(:integer)
-      must have_db_column(:recommendable).of_type(:boolean)
-      must have_db_column(:setting_id).of_type(:integer)
-    end
-  end
+#       must have_db_column(:advice)
+#       must have_db_column(:choice_id).of_type(:integer)
+#       must have_db_column(:recommendation_id).of_type(:integer)
+#       must have_db_column(:recommendable).of_type(:boolean)
+#       must have_db_column(:setting_id).of_type(:integer)
+#     end
+#   end
 
-  specify "associations" do
+#   specify "associations" do
 
-    must belong_to :choice
-    must belong_to :recommendation
-    must belong_to :setting
-  end
+#     must belong_to :choice
+#     must belong_to :recommendation
+#     must belong_to :setting
+#   end
 
-  Given(:choice)         { choices(:one) }
-  Given(:chosen)         { chosens(:one) }
-  Given(:setting)        { settings(:one) }
-  Given(:recommendation) { recommendations(:kardashian) }
+#   Given(:choice)         { choices(:one) }
+#   Given(:chosen)         { chosens(:one) }
+#   Given(:setting)        { settings(:one) }
+#   Given(:recommendation) { recommendations(:kardashian) }
 
-  describe "must be destroyed if reccommendation is destroyed" do
+#   describe "must be destroyed if reccommendation is destroyed" do
 
-    Given(:count) { recommendation.chosens.count }
+#     Given(:count) { recommendation.chosens.count }
 
-    Then { assert_difference('Chosen.count', -count) { recommendation.destroy }}
-  end
+#     Then { assert_difference('Chosen.count', -count) { recommendation.destroy }}
+#   end
 
-  describe "platform" do
+#   describe "platform" do
 
-    Then { assert_equal chosen.platform, chosen.setting.platform}
-  end
+#     Then { assert_equal chosen.platform, chosen.setting.platform}
+#   end
 
-  describe "position" do
+#   describe "position" do
 
-    Given(:expected) { chosen.choice.setting.row_order_rank }
+#     Given(:expected) { chosen.choice.setting.row_order_rank }
 
-    Then { assert_equal chosen.position, expected }
-  end
+#     Then { assert_equal chosen.position, expected }
+#   end
 
-  describe "validations" do
+#   describe "validations" do
 
-    specify "presence" do
+#     specify "presence" do
 
-      must validate_presence_of(:choice)
-      must validate_presence_of(:recommendation)
-      must validate_presence_of(:setting)
-    end
+#       must validate_presence_of(:choice)
+#       must validate_presence_of(:recommendation)
+#       must validate_presence_of(:setting)
+#     end
 
-    specify "uniqueness" do
+#     specify "uniqueness" do
 
-      must validate_uniqueness_of(:choice_id).scoped_to(:recommendation_id)
-    end
-  end
+#       must validate_uniqueness_of(:choice_id).scoped_to(:recommendation_id)
+#     end
+#   end
 
-  describe ":impact" do
+#   describe ":impact" do
 
-    Given(:one) { chosens(:one) }
-    Given(:two) { chosens(:four) }
-    Given(:three) { chosens(:five) }
-    Given(:vector) { vectors(:privacy) }
+#     Given(:one) { chosens(:one) }
+#     Given(:two) { chosens(:four) }
+#     Given(:three) { chosens(:five) }
+#     Given(:vector) { vectors(:privacy) }
 
-    Given(:points) { {
-      "recommendations_platforms(:one)" => 1000,
-      "one.choice.setting" => 80,
-      "one.choice" => 70,
-      "two.choice" => 100,
-      "three.choice" => 50 } }
+#     Given(:points) { {
+#       "recommendations_platforms(:one)" => 1000,
+#       "one.choice.setting" => 80,
+#       "one.choice" => 70,
+#       "two.choice" => 100,
+#       "three.choice" => 50 } }
 
-    Given do
-      Score.destroy_all
-      points.each do |k, v|
-        score = eval(k).scores.where(vector_id: vector.id).first_or_initialize
-        score.update(points:  v)
-      end
-    end
+#     Given do
+#       Score.destroy_all
+#       points.each do |k, v|
+#         score = eval(k).scores.where(vector_id: vector.id).first_or_initialize
+#         score.update(points:  v)
+#       end
+#     end
 
-    describe ":siblings" do
+#     describe ":siblings" do
 
-      Then {
-        refute_includes one.siblings, one.choice
-        assert_includes one.siblings, two.choice
-        assert_includes one.siblings, three.choice }
-    end
+#       Then {
+#         refute_includes one.siblings, one.choice
+#         assert_includes one.siblings, two.choice
+#         assert_includes one.siblings, three.choice }
+#     end
 
-    describe ".delta_for(choice, vector)score" do
+#     describe ".delta_for(choice, vector)score" do
 
-      Then { assert_equal chosen.points_for(vector), 560 }
-      And { assert_equal one.delta_for(two.choice, vector), "Reduces your #{vector.name.downcase} by 240 points." }
-    end
-  end
-end
+#       Then { assert_equal chosen.points_for(vector), 560 }
+#       And { assert_equal one.delta_for(two.choice, vector), "Reduces your #{vector.name.downcase} by 240 points." }
+#     end
+#   end
+# end
