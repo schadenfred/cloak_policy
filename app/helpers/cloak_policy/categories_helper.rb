@@ -1,4 +1,4 @@
 module CloakPolicy
-  module SettingsHelper
+  module CategoriesHelper
   end
 end

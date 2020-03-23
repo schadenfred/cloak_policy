@@ -4,6 +4,7 @@ PATH
     cloak_policy (0.1.0)
       haml-rails
       rails (~> 6.0.2, >= 6.0.2.2)
+      ranked-model
       sass-rails
 
 GEM
@@ -205,6 +206,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
+    ranked-model (0.4.6)
+      activerecord (>= 4.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)

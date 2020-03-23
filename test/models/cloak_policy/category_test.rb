@@ -1,4 +1,5 @@
 require 'test_helper'
+module CloakPolicy
 
 describe Category do
 
@@ -21,4 +22,5 @@ describe Category do
 
     must belong_to(:parent).optional
   end
+end
 end
