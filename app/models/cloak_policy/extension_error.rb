@@ -1,0 +1,2 @@
+class ExtensionError < ApplicationRecord
+end

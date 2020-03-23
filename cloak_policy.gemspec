@@ -30,5 +30,31 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sass-rails"
 
   spec.add_development_dependency "pg"
+  spec.add_development_dependency "minitest"
+  # spec.add_development_dependency "minitest-rails-capybara"
+  spec.add_development_dependency "minitest-given"
+  spec.add_development_dependency "launchy"
+  spec.add_development_dependency "guard"
+  spec.add_development_dependency "guard-minitest"
+  spec.add_development_dependency "guard-livereload"
+  spec.add_development_dependency "rack-livereload"
+  # spec.add_development_dependency "database_cleaner"
+  spec.add_development_dependency "byebug"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "better_errors"
+  spec.add_development_dependency "binding_of_caller"
+  spec.add_development_dependency "apparition"
+  spec.add_development_dependency "capybara" 
+  spec.add_development_dependency "selenium-webdriver"
+  spec.add_development_dependency "shoulda-context", "2.0.0.rc2"
+  spec.add_development_dependency "shoulda-matchers", '~> 4.0'
+  # gem 'shoulda-matchers', '~> 4.0'"
+  spec.add_development_dependency "minitest-matchers_vaccine"
+
+   
+
+
+
+
   # spec.add_development_dependency "handsome_fencer-test"
 end

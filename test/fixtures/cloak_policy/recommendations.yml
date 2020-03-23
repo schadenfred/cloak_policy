@@ -1,0 +1,11 @@
+kardashian:
+  name: "kardashian"
+  description: "Yesus recommends"
+  housable: true
+
+job_hunter:
+  name: "job hunter"
+
+snowden:
+  name: "Snowden"
+

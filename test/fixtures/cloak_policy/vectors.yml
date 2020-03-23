@@ -1,0 +1,13 @@
+privacy:
+  name: Privacy
+  type: Vector
+
+location:
+  name: location
+  type: Vector
+  parent: privacy
+
+geolocation:
+  name: geolocation
+  type: Vector
+  parent: location

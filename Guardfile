@@ -3,7 +3,7 @@
 
 ## Uncomment and set this to only include directories you want to watch
 # directories %w(app lib config test spec features) \
-#  .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
+#  .select{|d| Dir.exist?(d) ? d : UI.warning("Directory #{d} does not exist")}
 
 ## Note: if you are using the `directories` clause above and you are not
 ## watching the project directory ('.'), then you will want to move
@@ -37,8 +37,6 @@ guard 'livereload' do
   watch(%r{public/.+\.(#{compiled_exts * '|'})})
 
   extensions.each do |ext, type|
-    watch("app/javascript/app.vue")
-    watch("app/javascript/packs/application.js")
     watch(%r{
           (?:app|vendor)
           (?:/assets/\w+/(?<path>[^.]+) # path+base without extension
@@ -53,16 +51,15 @@ guard 'livereload' do
   # file needing a full reload of the page anyway
   watch(%r{app/views/.+\.(#{rails_view_exts * '|'})$})
   watch(%r{app/helpers/.+\.rb})
-  watch(%r{app/serializers/.+\.rb})
-  watch(%r{app/models/.+\.rb})
   watch(%r{config/locales/.+\.yml})
 end
 
-guard "minitest", all_on_start: false, spring: "bin/rails test" do
+guard :minitest do
   # with Minitest::Unit
+  watch(%r{^test/(.*)\/?(.*)_test\.rb$})
   # watch(%r{^test/(.*)\/?test_(.*)\.rb$})
   # watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
-  # watch(%r{^test/test_helper\.rb$})      { 'test' }
+  watch(%r{^test/test_helper\.rb$})      { 'test' }
 
   # with Minitest::Spec
   # watch(%r{^spec/(.*)_spec\.rb$})
@@ -70,20 +67,13 @@ guard "minitest", all_on_start: false, spring: "bin/rails test" do
   # watch(%r{^spec/spec_helper\.rb$}) { 'spec' }
 
   # Rails 4
-
-  watch(%r{^app/(.+)\.rb$})                               { |m| "test/#{m[1]}_test.rb" }
-  watch(%r{^app/serializers/(.+)_serializer\.rb$})        { |m| "test/controllers/#{m[1]}s_controller_test.rb" }
-  watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/integration/#{m[1]}_test.rb" }
-  watch(%r{^app/views/(.+)_mailer/.+})                    { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
-  watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
-  watch(%r{^test/.+_test\.rb$})
+  # watch(%r{^app/(.+)\.rb$})                               { |m| "test/#{m[1]}_test.rb" }
+  # watch(%r{^app/controllers/application_controller\.rb$}) { 'test/controllers' }
+  # watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/integration/#{m[1]}_test.rb" }
+  # watch(%r{^app/views/(.+)_mailer/.+})                    { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
+  # watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
+  # watch(%r{^test/.+_test\.rb$})
   # watch(%r{^test/test_helper\.rb$}) { 'test' }
-  # watch(%r{^app/views/(.+)\.haml$}) { 'test/system/configurator_test.rb' }
-
-#temporary
-  watch(%r{^app/controllers/configurator_controller.rb$})  { |m| "test/system/configurator_test.rb" }
-  watch(%r{^app/mailers/notification_mailer.rb$})  { |m| "test/system/invitations_test.rb" }
-  watch(%r{^app/views/notification_mailer/invite_message.text.haml$})  { |m| "test/system/invitations_test.rb" }
 
   # Rails < 4
   # watch(%r{^app/controllers/(.*)\.rb$}) { |m| "test/functional/#{m[1]}_test.rb" }

@@ -1,0 +1,27 @@
+one:
+  choice: one
+  setting: one
+  recommendation: kardashian
+  recommendable: true
+
+two:
+  choice: four
+  setting: two
+  recommendation: kardashian
+  recommendable: true
+
+three:
+  choice: seven
+  setting: three
+  recommendation: kardashian
+  recommendable: true
+
+four:
+  choice: two
+  setting: one
+  recommendation: kardashian
+
+five:
+  choice: three
+  setting: one
+  recommendation: kardashian

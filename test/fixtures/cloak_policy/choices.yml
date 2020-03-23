@@ -1,0 +1,58 @@
+default: &default
+  edit_url: MyString
+
+one:
+  name: "Friends"
+  setting: one
+  recommendable: true
+  <<: *default
+
+two:
+  name: "Public"
+  setting: one
+  edit_url: MyString
+  recommendable: true
+  <<: *default
+
+three:
+  name: "Only me"
+  setting: one
+  edit_url: MyString
+  recommendable: true
+  <<: *default
+
+four:
+  name: "Yes"
+  setting: two
+  edit_url: MyString
+  recommendable: true
+  <<: *default
+
+five:
+  name: "No"
+  setting: two
+  edit_url: MyString
+  recommendable: true
+  <<: *default
+
+six:
+  name: "yes"
+  setting: three
+  edit_url: MyString
+  recommendable: true
+  <<: *default
+
+seven:
+  name: "no"
+  setting: three
+  edit_url: MyString
+  recommendable: true
+  <<: *default
+
+boolean_choice:
+  name: "yes"
+  setting: three
+  value: "1"
+  edit_url: MyString
+  recommendable: true
+  <<: *default

@@ -1,0 +1,9 @@
+one:
+  fqdn: example.com
+  platform_id: 1
+  domainable: one
+  domainable_type: Account
+
+two:
+  fqdn: MyString
+  platform_id: 1

@@ -1,0 +1,11 @@
+business:
+  name: Business
+  icon: rss
+  type: UseCase
+  profile: executive
+
+funnybiz:
+  name: funnybiz
+  icon: rss
+  type: UseCase
+  profile: executive

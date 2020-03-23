@@ -1,0 +1,20 @@
+facebook:
+  name: facebook
+  icon: facebook
+  platform_type: platform
+  domain: "facebook.com"
+  recommendable: true
+
+twitter:
+  name: twitter
+  icon: "twitter"
+  recommendable: true
+
+google:
+  name: google
+  icon: "google"
+  recommendable: true
+
+gmail:
+  name: gmail
+  recommendable: false

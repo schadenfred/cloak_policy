@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  icon: MyString
+  name: Location
+  parent_type: MyString
+  parent_id: 1
+  type: Category
+
+two:
+  description: MyString
+  icon: MyString
+  name: Sharing
+  parent_type: MyString
+  parent_id: 1
+  type: Category

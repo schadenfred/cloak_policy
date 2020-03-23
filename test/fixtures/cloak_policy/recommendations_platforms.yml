@@ -1,0 +1,19 @@
+one:
+  recommendation: kardashian
+  platform: facebook
+
+two:
+  recommendation: kardashian
+  platform: google
+
+three:
+  recommendation: kardashian
+  platform: twitter
+
+four:
+  recommendation: job_hunter
+  platform: facebook
+
+five:
+  recommendation: "snowden"
+  platform: facebook

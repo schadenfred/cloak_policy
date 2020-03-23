@@ -1,21 +1,33 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+default: &default
+  recommendable: true
+
 
 one:
-  name: MyString
-  platform_id: 1
-  row_order: 1
-  page: MyString
-  edit_url: MyString
-  they_say: MyString
-  we_say: MyString
-  recommendable: false
+  name: "Who can see muh puppies?"
+  platform: facebook
+  edit_url: '/page=section'
+  fqurl: "https://www.facebook.com/settings?tab=privacy&section=composer&view"
+  recommendable: true
+  row_order: 0
+  page: "/settings?tab=followers"
+  <<: *default
 
 two:
-  name: MyString
-  platform_id: 1
+  name: "Who can see muh kittehs?"
+  platform: facebook
+  recommendable: true
   row_order: 1
-  page: MyString
-  edit_url: MyString
-  they_say: MyString
-  we_say: MyString
-  recommendable: false
+  <<: *default
+
+three:
+  name: "Photo tagging"
+  platform: twitter
+  recommendable: true
+  row_order: 2
+  <<: *default
+
+four:
+  name: "lat-long"
+  platform: twitter
+  recommendable: true
+  <<: *default
