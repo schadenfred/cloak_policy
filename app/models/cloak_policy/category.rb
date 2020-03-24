@@ -4,12 +4,12 @@ module CloakPolicy
     include RankedModel
     ranks :row_order
 
-    belongs_to :parent, class_name: "Category", optional: true
+    belongs_to :parent, class_name: "CloakPolicy::Category", optional: true
 
     has_many :settings
 
     scope :sorted, -> { order( row_order: :asc) }
-    scope :for_settings, -> { where(type: "Category") }
+    scope :for_settings, -> { where(type: "CloakPolicy::Category") }
 
 
     validates :name, presence: true

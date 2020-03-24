@@ -29,31 +29,20 @@ module CloakPolicy
     end
 
     Given(:facebook) { platforms(:facebook) }
-    # Given(:facebook) { splatforms(:facebook) }
-    # Given(:facebook) { @platforms['facebook'] }
-    # Given(:facebook) { @platforms['facebook'] }
-    # Given(:facebook) { platforms(:facebook) }
-
-    # Given(:kardashian) { recommendations(:kardashian) }
 
     describe "weights_for(vector)" do
+Given { skip }
       Then { assert_equal facebook.weights_for("privacy"), [20, 20] }
     end
 
-    describe "choices_for(recommendation)" do
-      # Then {
-      #   assert_includes facebook.choices_for(kardashian), choices(:four)
-      #   assert_includes facebook.choices_for(kardashian), choices(:one)
-      #   assert_not_includes facebook.choices_for(kardashian), choices(:seven)
-      # }
-    end
 
     describe "chart-data" do
-      # Given(:setting) { settings(:one) }
-      # Given(:data) { facebook.chart_data("privacy") }
+Given { skip }
+      Given(:setting) { settings(:one) }
+      Given(:data) { facebook.chart_data("privacy") }
 
-      # Then { assert_includes data[:labels], setting.name}
-      # And  { assert_equal data[:points][0], setting.points_for(:privacy)}
+      Then { assert_includes data[:labels], setting.name}
+      And  { assert_equal data[:points][0], setting.points_for(:privacy)}
       # And  { assert_equal data.size, 2 }
     end
   end

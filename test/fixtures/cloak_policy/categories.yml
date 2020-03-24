@@ -7,8 +7,6 @@ one:
   name: Location
   parent_type: MyString
   parent_id: 1
-  type: Category
-
 
 two:
   description: MyString
@@ -16,4 +14,3 @@ two:
   name: Sharing
   parent_type: MyString
   parent_id: 1
-  type: Category

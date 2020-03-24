@@ -20,7 +20,7 @@ module CloakPolicy
     describe "scopes" do
 
       describe ":top_level" do
-        Then { byebug
+        Then {
           assert Vector.top_level.include? vector }
 
         # And  { refute Vector.top_level.include? subvector }

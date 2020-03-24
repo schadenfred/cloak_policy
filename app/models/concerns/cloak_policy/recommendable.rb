@@ -1,7 +1,6 @@
 require 'active_support/concern'
-module CloakPolicy
 
-module Recommendable
+module CloakPolicy::Recommendable
 
   extend ActiveSupport::Concern
 
@@ -10,44 +9,42 @@ module Recommendable
 
     def recommendables
       case self.class.to_s
-      when 'Recommendation'
-        platforms.where(recommendable: true)
-      when 'Platform'
+      when 'CloakPolicy::Platform'
         settings.where(recommendable: true)
-      when 'Setting'
+      when 'CloakPolicy::Setting'
         choices.where(recommendable: true)
       end
     end
 
     def recommendable?
       case self.class.to_s
-      when 'Choice'
+      when 'CloakPolicy::Choice'
         self.setting.recommendable? && self["recommendable"]
-      when 'Setting'
+      when 'CloakPolicy::Setting'
         self.platform.recommendable && self["recommendable"]
-      when 'Platform'
+      when 'CloakPolicy::Platform'
         self["recommendable"]
-      when 'Chosen'
+      when 'CloakPolicy::Chosen'
         self.choice.recommendable? && self["recommendable"]
       end
     end
 
     def parent_recommendable?
       case self.class.to_s
-      when 'Choice'
+      when 'CloakPolicy::Choice'
         self.setting.recommendable?
-      when 'Setting'
+      when 'CloakPolicy::Setting'
         self.platform.recommendable?
       end
     end
 
     def sloppy?(record=nil)
       case self.class.to_s
-      when 'Platform'
+      when 'CloakPolicy::Platform'
         platform_clean = self.settings.size.eql?(self.recommendables.size) ? true : false
         settings_clean = (self.settings.any? { |item| item.sloppy? }) ? false : true
         (platform_clean && settings_clean) ? false : true
-      when 'Setting'
+      when 'CloakPolicy::Setting'
         choices_clean = self.choices.size.eql?(self.recommendables.size) ? true : false
         setting_recommendable = self.recommendable? ? true : false
         (choices_clean && setting_recommendable) ? false : true
@@ -62,5 +59,4 @@ module Recommendable
   def deactivate!
     update_attribute(:recommendable, false)
   end
-end
 end

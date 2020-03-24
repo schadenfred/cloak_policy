@@ -6,6 +6,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # development dependencies will be added by default to the :development group.
 gemspec
 
+gem 'rb-readline'
+group  :development do
+
+  gem 'guard'
+  # gem 'guard-livereload'
+  gem 'guard-minitest'
+end
+
 group :test do
   gem 'minitest-rails'
 end

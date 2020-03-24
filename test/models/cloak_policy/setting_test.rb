@@ -7,6 +7,7 @@ module CloakPolicy
     Given(:subject) { Setting.new }
 
     describe "db" do
+
       specify "columns" do
         must have_db_column(:edit_url)
         must have_db_column(:name)
@@ -53,8 +54,7 @@ module CloakPolicy
         settings(:one).update_attribute   :row_order_position, 0
         settings(:two).update_attribute   :row_order_position, 1
         settings(:three).update_attribute :platform_id, settings(:one).platform_id
-        settings(:three).update_attribute :row_order_position, 2
-      }
+        settings(:three).update_attribute :row_order_position, 2 }
 
       When  { settings(:two).update_attribute :row_order_position, 0 }
 
@@ -65,5 +65,4 @@ module CloakPolicy
       }
     end
   end
-
 end

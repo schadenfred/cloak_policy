@@ -43,7 +43,7 @@ seven:
 
 eight:
   scorable: facebook
-  scorable_type: Org
+  scorable_type: Platform
   <<: *default
 
 nine:
