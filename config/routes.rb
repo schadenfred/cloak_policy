@@ -1,5 +1,8 @@
 CloakPolicy::Engine.routes.draw do
-  resources :platforms
+  resources :settings
+  resources :preferences_use_cases
+  resources :chosens
+  resources :choices
   resources :feedbacks, only: [:create, :index, :destroy]
 
     resources :profiles
@@ -8,13 +11,11 @@ CloakPolicy::Engine.routes.draw do
     resources :vectors
     resources :extension_errors,          only: :index
 
-    resources :chosens
-    resources :scores
+      resources :scores
     resources :users
 
     resources :recommendations, :platforms, :settings do
-      resources :scores
-    end
+        end
     resources :categories do
       member do
         patch :move

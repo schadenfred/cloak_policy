@@ -1,0 +1,29 @@
+%h1 Listing scores
+
+%table
+  %thead
+    %tr
+      %th Scorable type
+      %th Scorable
+      %th Vector
+      %th Impact
+      %th Points
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scores.each do |score|
+      %tr
+        %td= score.scorable_type
+        %td= score.scorable_id
+        %td= score.vector_id
+        %td= score.impact
+        %td= score.points
+        %td= link_to 'Show', score
+        %td= link_to 'Edit', edit_score_path(score)
+        %td= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Score', new_score_path

@@ -1,29 +1,28 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
-# require "test_helper"
+require "test_helper"
 
-# describe UseCase do
-#   Given(:subject) { UseCase.new }
+module CloakPolicy
 
-#   describe "associations" do
-#     specify "belongs_to" do
-#       must belong_to :profile
-#     end
+  describe UseCase do
+    Given(:subject) { UseCase.new }
 
-#     specify "has_one" do
-#       must have_one(:default_recommendation).through(:recommendations_use_case)
-#       must have_one :recommendations_use_case
-#     end
+    describe "associations" do
 
-#     specify "has_many" do
-#       must have_many :preferences_use_cases
-#       must have_many :preferences
-#     end
-#   end
+      specify "belongs_to" do
+        must belong_to :profile
+      end
 
-#   describe "default_recommendation" do
-#     Given(:use_case) { use_cases(:business) }
-#     Given(:recommendation) { recommendations(:kardashian) }
-#     Then { assert_equal use_case.default_recommendation, recommendation }
-#   end
-# end
+      specify "has_many" do
+        must have_many :preferences_use_cases
+        must have_many :preferences
+      end
+    end
+
+    describe "default_recommendation" do
+      Given(:use_case) { use_cases(:business) }
+      # Given(:recommendation) { recommendations(:kardashian) }
+      # Then { assert_equal use_case.default_recommendation, recommendation }
+    end
+  end
+end

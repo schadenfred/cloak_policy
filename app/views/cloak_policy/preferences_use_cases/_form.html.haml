@@ -1,0 +1,16 @@
+= form_for @preferences_use_case do |f|
+  - if @preferences_use_case.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@preferences_use_case.errors.count, "error")} prohibited this preferences_use_case from being saved:"
+      %ul
+        - @preferences_use_case.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :use_case_id
+    = f.number_field :use_case_id
+  .field
+    = f.label :preferece_id
+    = f.number_field :preferece_id
+  .actions
+    = f.submit 'Save'

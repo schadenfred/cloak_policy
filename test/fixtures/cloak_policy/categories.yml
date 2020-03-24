@@ -1,21 +1,15 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   description: MyString
   icon: MyString
-  name: MyString
+  name: Location
   parent_type: MyString
   parent_id: 1
-  row_order: 1
-  category_type: MyString
-  type: 
 
 two:
   description: MyString
   icon: MyString
-  name: MyString
+  name: Sharing
   parent_type: MyString
   parent_id: 1
-  row_order: 1
-  category_type: MyString
-  type: 

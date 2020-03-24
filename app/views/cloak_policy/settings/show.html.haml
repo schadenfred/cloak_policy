@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @setting.name
+%p
+  %b Edit url:
+  = @setting.edit_url
+%p
+  %b Platform:
+  = @setting.platform_id
+%p
+  %b Row order:
+  = @setting.row_order
+%p
+  %b Recommendable:
+  = @setting.recommendable
+%p
+  %b They say:
+  = @setting.they_say
+%p
+  %b We say:
+  = @setting.we_say
+
+= link_to 'Edit', edit_setting_path(@setting)
+\|
+= link_to 'Back', settings_path

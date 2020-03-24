@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Scorable type:
+  = @score.scorable_type
+%p
+  %b Scorable:
+  = @score.scorable_id
+%p
+  %b Vector:
+  = @score.vector_id
+%p
+  %b Impact:
+  = @score.impact
+%p
+  %b Points:
+  = @score.points
+
+= link_to 'Edit', edit_score_path(@score)
+\|
+= link_to 'Back', scores_path

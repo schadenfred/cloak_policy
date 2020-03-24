@@ -1,34 +1,26 @@
-# Configure Rails Environment
-ENV["RAILS_ENV"] = "test"
-
+ENV["RAILS_ENV"] ||= "test"
+# require_relative "../config/environment"
 require_relative "../test/dummy/config/environment"
-# ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
-ActiveRecord::Migrator.migrations_paths << File.expand_path('../db/migrate', __dir__)
+
 require "rails/test_help"
+require "minitest/rails"
 require "minitest/given"
 
-require "capybara/rails"
-require 'capybara/apparition'
-require 'capybara/dsl'
-
 require 'support/shoulda'
+require "byebug"
 
 
-# Filter out the backtrace from minitest while preserving the one from other libraries.
-Minitest.backtrace_filter = Minitest::BacktraceFilter.new
-class ActiveSupport::TestCase 
-  # Rails.application.routes.default_url_options[:host] = 'localhost:3000' 
-  Rails.application.configure do
-    
-    routes.default_url_options[:host] = 'localhost:3000'
-  end
+
+# Consider setting MT_NO_EXPECTATIONS to not add expectations to Object.
+# ENV["MT_NO_EXPECTATIONS"] = true
+
+class ActiveSupport::TestCase
+  # Run tests in parallel with specified workers
+  # parallelize(workers: :number_of_processors)
+  self.fixture_path = File.expand_path("fixtures", __dir__)
+
+  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+  fixtures :all
+
+  # Add more helper methods to be used by all tests here...
 end
-
-# Load fixtures from the engine
-if ActiveSupport::TestCase.respond_to?(:fixture_path=)
-  ActiveSupport::TestCase.fixture_path = File.expand_path("fixtures", __dir__)
-  ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
-  ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
-  ActiveSupport::TestCase.fixtures :all
-end
-

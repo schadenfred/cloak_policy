@@ -1,21 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+facebook:
+  name: facebook
+  icon: facebook
+  platform_type: platform
+  recommendable: true
 
-one:
-  name: MyString
-  fqdn: MyString
-  description: MyString
-  icon: MyString
-  platform_type: MyString
-  they_say: MyString
-  we_say: MyString
-  recommendable: false
+twitter:
+  name: twitter
+  icon: "twitter"
+  recommendable: true
 
-two:
-  name: MyString
-  fqdn: MyString
-  description: MyString
-  icon: MyString
-  platform_type: MyString
-  they_say: MyString
-  we_say: MyString
+google:
+  name: google
+  icon: "google"
+  recommendable: true
+
+gmail:
+  name: gmail
   recommendable: false

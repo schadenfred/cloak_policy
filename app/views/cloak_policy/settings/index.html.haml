@@ -1,0 +1,33 @@
+%h1 Listing settings
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Edit url
+      %th Platform
+      %th Row order
+      %th Recommendable
+      %th They say
+      %th We say
+      %th
+      %th
+      %th
+
+  %tbody
+    - @settings.each do |setting|
+      %tr
+        %td= setting.name
+        %td= setting.edit_url
+        %td= setting.platform_id
+        %td= setting.row_order
+        %td= setting.recommendable
+        %td= setting.they_say
+        %td= setting.we_say
+        %td= link_to 'Show', setting
+        %td= link_to 'Edit', edit_setting_path(setting)
+        %td= link_to 'Destroy', setting, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Setting', new_setting_path

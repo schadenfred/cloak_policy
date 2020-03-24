@@ -12,5 +12,7 @@ class CreateCloakPolicyCategories < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :cloak_policy_categories, [:parent_id, :parent_type]
   end
 end

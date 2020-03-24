@@ -1,0 +1,31 @@
+%h1 Listing choices
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Setting
+      %th We say
+      %th They say
+      %th Recommendable
+      %th Development recommendation
+      %th
+      %th
+      %th
+
+  %tbody
+    - @choices.each do |choice|
+      %tr
+        %td= choice.name
+        %td= choice.setting_id
+        %td= choice.we_say
+        %td= choice.they_say
+        %td= choice.recommendable
+        %td= choice.development_recommendation_id
+        %td= link_to 'Show', choice
+        %td= link_to 'Edit', edit_choice_path(choice)
+        %td= link_to 'Destroy', choice, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Choice', new_choice_path

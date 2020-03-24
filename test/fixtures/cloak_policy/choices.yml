@@ -1,0 +1,49 @@
+default: &default
+  recommendable: true
+
+one:
+  name: "Friends"
+  setting: one
+  <<: *default
+
+two:
+  name: "Public"
+  setting: one
+  <<: *default
+
+three:
+  name: "Only me"
+  setting: one
+  recommendable: true
+  <<: *default
+
+four:
+  name: "Yes"
+  setting: two
+  recommendable: true
+  <<: *default
+
+five:
+  name: "No"
+  setting: two
+  recommendable: true
+  <<: *default
+
+six:
+  name: "yes"
+  setting: three
+  recommendable: true
+  <<: *default
+
+seven:
+  name: "no"
+  setting: three
+  recommendable: true
+  <<: *default
+
+boolean_choice:
+  name: "yes"
+  setting: three
+  value: "1"
+  recommendable: true
+  <<: *default

@@ -161,6 +161,9 @@ GEM
       minitest (> 4.3)
     minitest-matchers_vaccine (1.0.4)
       minitest (~> 5.0)
+    minitest-rails (6.0.1)
+      minitest (~> 5.10)
+      railties (~> 6.0.0)
     multi_json (1.14.1)
     nenv (0.3.0)
     nio4r (2.5.2)
@@ -271,6 +274,7 @@ DEPENDENCIES
   minitest
   minitest-given
   minitest-matchers_vaccine
+  minitest-rails
   pg
   pry
   rack-livereload

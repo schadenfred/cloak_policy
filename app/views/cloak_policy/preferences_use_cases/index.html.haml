@@ -1,0 +1,23 @@
+%h1 Listing preferences_use_cases
+
+%table
+  %thead
+    %tr
+      %th Use case
+      %th Preferece
+      %th
+      %th
+      %th
+
+  %tbody
+    - @preferences_use_cases.each do |preferences_use_case|
+      %tr
+        %td= preferences_use_case.use_case_id
+        %td= preferences_use_case.preferece_id
+        %td= link_to 'Show', preferences_use_case
+        %td= link_to 'Edit', edit_preferences_use_case_path(preferences_use_case)
+        %td= link_to 'Destroy', preferences_use_case, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Preferences use case', new_preferences_use_case_path
