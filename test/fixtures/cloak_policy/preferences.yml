@@ -1,3 +1,6 @@
+_fixture:
+  model_class: CloakPolicy::Preference
+
 posts_frequently:
   name: Posts Frequently
   icon: credit card

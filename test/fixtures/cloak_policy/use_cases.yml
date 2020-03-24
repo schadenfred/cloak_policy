@@ -1,3 +1,6 @@
+_fixture:
+  model_class: CloakPolicy::UseCase
+
 business:
   name: Business
   icon: rss

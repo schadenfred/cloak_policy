@@ -1,13 +1,16 @@
+_fixture:
+  model_class: CloakPolicy::Vector
+
 privacy:
   name: Privacy
-  # type: Vector
+  type: Vector
 
 location:
   name: location
   type: Vector
-  # parent: privacy
+  parent: privacy
 
 geolocation:
   name: geolocation
-  # type: Vector
+  type: Vector
   parent: location

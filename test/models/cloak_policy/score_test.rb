@@ -29,8 +29,8 @@ module CloakPolicy
     describe "Scoring a setting must create scores for each of its choices" do
 
       Given { Score.destroy_all }
-      Given(:action) { cloak_policy_settings(:one).scores.create(vector: cloak_policy_vectors(:privacy)) }
-      Given(:count) { cloak_policy_settings(:one).choices.count + 1 }
+      Given(:action) { settings(:one).scores.create(vector: vectors(:privacy)) }
+      Given(:count) { settings(:one).choices.count + 1 }
 
       # Then { assert_difference(['Score.count'], count ) { action } }
     end

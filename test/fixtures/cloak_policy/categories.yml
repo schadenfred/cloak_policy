@@ -1,4 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+_fixture:
+  model_class: CloakPolicy::Category
 
 one:
   description: MyString
@@ -6,6 +7,8 @@ one:
   name: Location
   parent_type: MyString
   parent_id: 1
+  type: Category
+
 
 two:
   description: MyString
@@ -13,3 +16,4 @@ two:
   name: Sharing
   parent_type: MyString
   parent_id: 1
+  type: Category

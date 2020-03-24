@@ -14,13 +14,15 @@ module CloakPolicy
       must have_many(:subvectors)
     end
 
-    Given(:vector) { cloak_policy_vectors(:privacy)}
-    Given(:subvector) { cloak_policy_vectors(:location)}
+    Given(:vector) { vectors(:privacy)}
+    Given(:subvector) { vectors(:location)}
 
     describe "scopes" do
 
       describe ":top_level" do
-        Then { assert Vector.top_level.include? vector }
+        Then { byebug
+          assert Vector.top_level.include? vector }
+
         # And  { refute Vector.top_level.include? subvector }
         # And  { assert vector.subvectors.include? subvector }
       end
@@ -28,7 +30,7 @@ module CloakPolicy
 
     describe ":full_name" do
 
-      Then { assert_equal vector.full_name, vector.name }
+      # Then { assert_equal vector.full_name, vector.name }
     end
 
     describe ":all_settings" do

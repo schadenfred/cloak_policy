@@ -1,3 +1,6 @@
+_fixture:
+  model_class: CloakPolicy::Chosen
+
 one:
   choice: one
   setting: one

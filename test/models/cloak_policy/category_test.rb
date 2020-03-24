@@ -4,6 +4,11 @@ module CloakPolicy
 
   describe Category do
 
+    Given(:platform) { platforms(:facebook) }
+    describe "sanity" do
+      Then { assert_equal platform.name, 'facebook'}
+    end
+
     Given(:subject) { Category.new }
 
     describe "db" do

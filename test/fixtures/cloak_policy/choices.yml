@@ -1,3 +1,6 @@
+_fixture:
+  model_class: CloakPolicy::Choice
+
 default: &default
   recommendable: true
 

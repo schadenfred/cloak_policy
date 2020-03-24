@@ -28,9 +28,9 @@ module CloakPolicy
       must have_many :settings
     end
 
-    Given(:facebook) { cloak_policy_platforms(:facebook) }
+    Given(:facebook) { platforms(:facebook) }
     # Given(:facebook) { splatforms(:facebook) }
-    # Given(:facebook) { @cloak_policy_platforms['facebook'] }
+    # Given(:facebook) { @platforms['facebook'] }
     # Given(:facebook) { @platforms['facebook'] }
     # Given(:facebook) { platforms(:facebook) }
 

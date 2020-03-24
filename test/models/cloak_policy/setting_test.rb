@@ -28,9 +28,9 @@ module CloakPolicy
       must validate_uniqueness_of(:name).case_insensitive.scoped_to(:platform_id)
     end
 
-    Given(:platform) { cloak_policy_platforms(:facebook) }
-    Given(:setting) { cloak_policy_settings(:one) }
-    Given(:choice) { cloak_policy_choices(:one) }
+    Given(:platform) { platforms(:facebook) }
+    Given(:setting) { settings(:one) }
+    Given(:choice) { choices(:one) }
     Given { platform.activate! }
     Given { setting.activate! }
     Given { choice.activate! }
@@ -50,18 +50,18 @@ module CloakPolicy
 
     describe "row_order_rank" do
       Given {
-        cloak_policy_settings(:one).update_attribute   :row_order_position, 0
-        cloak_policy_settings(:two).update_attribute   :row_order_position, 1
-        cloak_policy_settings(:three).update_attribute :platform_id, cloak_policy_settings(:one).platform_id
-        cloak_policy_settings(:three).update_attribute :row_order_position, 2
+        settings(:one).update_attribute   :row_order_position, 0
+        settings(:two).update_attribute   :row_order_position, 1
+        settings(:three).update_attribute :platform_id, settings(:one).platform_id
+        settings(:three).update_attribute :row_order_position, 2
       }
 
-      When  { cloak_policy_settings(:two).update_attribute :row_order_position, 0 }
+      When  { settings(:two).update_attribute :row_order_position, 0 }
 
       Then {
-        assert_equal cloak_policy_settings(:one).row_order_rank, 1
-        assert_equal cloak_policy_settings(:two).row_order_rank, 0
-        assert_equal cloak_policy_settings(:three).row_order_rank, 2
+        assert_equal settings(:one).row_order_rank, 1
+        assert_equal settings(:two).row_order_rank, 0
+        assert_equal settings(:three).row_order_rank, 2
       }
     end
   end

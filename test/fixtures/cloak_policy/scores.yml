@@ -1,3 +1,6 @@
+_fixture:
+  model_class: CloakPolicy::Score
+
 default: &default
   vector: privacy
   points: 20
