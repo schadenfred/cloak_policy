@@ -14,11 +14,11 @@
                 %span Configuration
               %ul.sub-menu
                 %li{class: (current_page?(controller: "profiles") ? "active" : "") }
-                  = link_to(admin_profiles_path, class: "active" ) do
+                  = link_to profiles_path, class: "active"  do
                     = material_icon("folder-outline")
                     Profiles
                 %li{class: (current_page?(controller: "preferences") ? "active" : "") }
-                  = link_to(admin_preferences_path, class: "active" ) do
+                  = link_to preferences_path, class: "active" do
                     = material_icon("album")
                     Preferences
                 %li.parent{ class: ('open' if controller_name.eql?('vectors') )}
@@ -27,7 +27,7 @@
                     %span Vectors
                   %ul.sub-menu
                     %li
-                      = link_to admin_vectors_path do
+                      = link_to vectors_path do
                         = material_icon('album')
                         'Vectors'
                     %li
@@ -36,24 +36,24 @@
                         'New vector'
 
             %li{class: (current_page?(controller: "recommendations") ? "active" : "") }
-              = link_to(admin_recommendations_path, class: "active" ) do
+              = link_to(recommendations_path, class: "active" ) do
                 = material_icon("album")
                 Recommendations
             %li{class: (current_page?(controller: "extension_errors") ? "active" : "") }
-              = link_to(admin_extension_errors_path, class: "active" ) do
+              = link_to(extension_errors_path, class: "active" ) do
                 = material_icon("album")
                 Extension Errors
             %li{class: (current_page?(controller: "feedbacks") ? "active" : "") }
-              = link_to(admin_feedbacks_path, class: "active" ) do
+              = link_to(feedbacks_path, class: "active" ) do
                 = material_icon("album")
                 Uninstall feedback
             %li.parent{ class: ('open' if controller_name.eql?('platforms') )}
-              = link_to admin_platforms_path do
+              = link_to platforms_path do
                 = material_icon("share")
                 %span Platforms
               %ul.sub-menu
 
-                - Platform.all.each do |svc|
+                - CloakPolicy::Platform.all.each do |svc|
                   %li.parent{ class: ('open' if svc.id.to_s.eql?(params[:id]))}
                     = link_to [:admin, svc] do
                       = material_icon(svc.icon, '', icon_color(svc))
@@ -64,17 +64,17 @@
                           = material_icon('edit')
                           attributes
                       %li
-                        = link_to admin_platform_path(svc) do
+                        = link_to platform_path(svc) do
                           = material_icon('edit')
                           settings
                       %li.parent{ class: 'open'}
-                        = link_to admin_platform_scores_path(svc) do
+                        = link_to platform_scores_path(svc) do
                           = material_icon('swap-vertical')
                           scoring
                         %ul.sub-menu
                           - Vector.all.each do |v|
                             %li
-                              = link_to admin_platform_score_path(platform_id: svc.id, id: v.id) do
+                              = link_to platform_score_path(platform_id: svc.id, id: v.id) do
                                 = material_icon(v.icon)
                                 = v.name
             %li.parent{ class: ('open' if controller_name.eql?('scores') )}
@@ -89,7 +89,7 @@
                   %ul.sub-menu
 
 
-                    - Platform.all.each do |svc|
+                    - CloakPolicy::Platform.all.each do |svc|
                       %li.parent{ class: ('open' if svc.id.to_s.eql?(params[:platform_id]))}
                         = link_to [:admin, svc] do
                           = material_icon(svc.icon)
@@ -97,11 +97,11 @@
                         %ul.sub-menu
                           - Vector.all.each do |v|
                             %li
-                              = link_to admin_platform_score_path(platform_id: svc.id, id: v.id) do
+                              = link_to platform_score_path(platform_id: svc.id, id: v.id) do
                                 = material_icon(v.icon)
                                 = v.name
                 %li{class: (current_page?(controller: "preferences") ? "active" : "") }
-                  = link_to(admin_preferences_path, class: "active" ) do
+                  = link_to(preferences_path, class: "active" ) do
                     = material_icon("album")
                     Preferences
 

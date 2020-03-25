@@ -27,9 +27,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.2", ">= 6.0.2.2"
   spec.add_dependency "haml-rails"
+  spec.add_dependency "bootstrap"
   spec.add_dependency "sass-rails"
   spec.add_dependency "ranked-model"
   spec.add_dependency "simple_form"
+  spec.add_dependency "jquery-rails"
+  spec.add_dependency "jquery-ui-rails"
 
   spec.add_development_dependency "pg"
   spec.add_development_dependency "minitest"

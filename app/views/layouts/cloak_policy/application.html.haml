@@ -1,9 +1,18 @@
 !!!
-%html
+%html{:lang => "en"}
   %head
-    %title Cloak policy
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag    "cloak_policy/application", media: "all"
-  %body
-    = yield
+    = render 'head'
+  %body{'data-environment' => Rails.env}
+    .be-wrapper
+      = render 'navbar'
+      .be-fixed-sidebar
+        = render 'sidebar'
+
+      .be-content
+
+        .main-content.container-fluid
+          = render 'messages'
+          .row
+            .col-md-12
+              .card
+                = yield
