@@ -3,5 +3,7 @@
 = csp_meta_tag
 = render 'meta_tags'
 -# = favicon_link_tag "cloak_policy/extension_icons/48.png"
-= stylesheet_link_tag    'cloak_policy/application', media: 'all', 'data-turbolinks-track': 'reload'
-= javascript_include_tag 'cloak_policy/application', 'data-turbolinks-track': 'reload'
+-# = stylesheet_link_tag    'cloak_policy/application', media: 'all', 'data-turbolinks-track': 'reload'
+-# = javascript_include_tag 'cloak_policy/application', 'data-turbolinks-track': 'reload'
+= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
