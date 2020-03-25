@@ -18,7 +18,7 @@ module CloakPolicy
   class << self
     def webpacker
       @webpacker ||= ::Webpacker::Instance.new(
-        root_path: ROOT_PATH,
+        root_path: Rails.root,
         config_path: ROOT_PATH.join("config/webpacker.yml")
       )
     end

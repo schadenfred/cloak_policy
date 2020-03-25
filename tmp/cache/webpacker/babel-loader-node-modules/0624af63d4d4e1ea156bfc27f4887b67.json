@@ -1,0 +1,1 @@
+{"ast":null,"code":"import 'src/application.scss';","map":{"version":3,"sources":["/home/schadenfred/work/clients/recall/engines/cloak_policy/app/javascript/packs/application.js"],"names":[],"mappings":"AAAA,OAAO,sBAAP","sourcesContent":["import 'src/application.scss'\n"]},"metadata":{},"sourceType":"module"}
