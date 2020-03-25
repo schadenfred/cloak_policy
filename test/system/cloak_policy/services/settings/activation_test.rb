@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
   Given { javascript }
-  Given { sign_in_admin }
+  Given { sign_in }
 
   describe "activation" do
     Given(:sone)    { settings(:one) }
@@ -17,12 +17,12 @@ class PlatformsTest < ApplicationSystemTestCase
     describe "settings" do
       describe "#deactivate" do
         Given { assert sone.recommendable }
-        Given { click_link href: deactivate_admin_setting_path(sone) }
-        Then { assert page.has_link?(href: activate_admin_setting_path(sone)) }
+        Given { click_link href: deactivate_setting_path(sone) }
+        Then { assert page.has_link?(href: activate_setting_path(sone)) }
 
         describe "#activate" do
-          Given { click_link href: activate_admin_setting_path(sone) }
-          Then { assert page.has_link?(href: deactivate_admin_setting_path(sone)) }
+          Given { click_link href: activate_setting_path(sone) }
+          Then { assert page.has_link?(href: deactivate_setting_path(sone)) }
         end
       end
     end
@@ -35,20 +35,20 @@ class PlatformsTest < ApplicationSystemTestCase
         Given { assert choice1.recommendable }
         Given do
           within "#choice-#{choice1.id}" do
-            click_link href: deactivate_admin_choice_path(choice1)
+            click_link href: deactivate_choice_path(choice1)
           end
         end
 
-        Then {assert page.has_link?(href: activate_admin_choice_path(choice1))}
+        Then {assert page.has_link?(href: activate_choice_path(choice1))}
 
         describe "#activate" do
           Given do
             within "#choice-#{choice1.id}" do
-              click_link href: activate_admin_choice_path(choice1)
+              click_link href: activate_choice_path(choice1)
             end
           end
 
-          Then { assert page.has_link?(href: deactivate_admin_choice_path(choice1)) }
+          Then { assert page.has_link?(href: deactivate_choice_path(choice1)) }
         end
       end
     end

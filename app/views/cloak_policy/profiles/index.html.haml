@@ -16,8 +16,8 @@
           %td{scope: 'col'}= material_icon(profile.icon)
           %td{scope: 'col-3'}= link_to profile.name, admin_profile_path(profile)
           %td{scope: 'col'}= profile.description
-          %td{scope: 'col'}= link_to 'Edit', edit_admin_profile_path(profile)
+          %td{scope: 'col'}= link_to 'Edit', edit_profile_path(profile)
           %td{scope: 'col'}= link_to 'Destroy', admin_profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' }
-  = link_to 'New profile', new_admin_profile_path
+  = link_to 'New profile', new_profile_path
   .card-footer
-    = help_for('configuration.help.profiles')
+    -# = help_for('configuration.help.profiles')

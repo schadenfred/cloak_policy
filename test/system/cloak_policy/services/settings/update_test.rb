@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
   Given { javascript }
-  Given { sign_in_admin }
+  Given { sign_in }
   Given(:platform) { platforms(:facebook) }
   Given { visit admin_platform_path(platform) }
 
@@ -12,7 +12,7 @@ class PlatformsTest < ApplicationSystemTestCase
     describe "setting" do
       Given do
         within "#setting-#{settings(:one).id}" do
-          click_link href: edit_admin_setting_path(settings(:one).id)
+          click_link href: edit_setting_path(settings(:one).id)
         end
         within "#setting-#{settings(:one).id}" do
           fill_in "Name", with: "some new name"
@@ -26,7 +26,7 @@ class PlatformsTest < ApplicationSystemTestCase
     describe "choice" do
       Given do
         within "#choice-#{choices(:one).id}" do
-          click_link href: edit_admin_choice_path(choices(:one).id)
+          click_link href: edit_choice_path(choices(:one).id)
         end
 
         within "#setting-choices-#{choices(:one).setting.id}" do

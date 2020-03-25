@@ -13,5 +13,5 @@
       = image_tag('extension_icons/16.png', size: '10')
       Recall description
   = render setting.choices
-  = link_to new_admin_choice_path(setting_id: setting.id), remote: true do
+  = link_to new_choice_path(setting_id: setting.id), remote: true do
     new choice

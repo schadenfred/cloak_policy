@@ -6,7 +6,7 @@ class UseCasesTest < ApplicationSystemTestCase
   Given(:use_case) { use_cases(:business) }
   Given(:preference) { preferences(:posts_frequently) }
 
-  Given { sign_in_admin }
+  Given { sign_in }
   Given { visit admin_profile_path(profile.id) }
 
   describe "profile use cases" do
@@ -33,7 +33,7 @@ class UseCasesTest < ApplicationSystemTestCase
 
       describe "form must indicate profile" do
 
-        Then { assert page.has_current_path? edit_admin_use_case_path(use_case) }
+        Then { assert page.has_current_path? edit_use_case_path(use_case) }
         And  { assert page.has_content?("Profile: #{profile.name}") }
       end
 
@@ -43,7 +43,7 @@ class UseCasesTest < ApplicationSystemTestCase
         Given { click_button 'Update Use case' }
 
         Then { assert_equal use_case.reload.name, "New name"}
-        And { assert page.has_current_path? edit_admin_use_case_path(use_case) }
+        And { assert page.has_current_path? edit_use_case_path(use_case) }
       end
     end
 
@@ -57,7 +57,7 @@ class UseCasesTest < ApplicationSystemTestCase
         Given { click_button 'Update Preferences' }
 
         Then { assert_includes use_case.preferences, preference }
-        And { assert page.has_current_path? edit_admin_use_case_path(use_case)  }
+        And { assert page.has_current_path? edit_use_case_path(use_case)  }
       end
     end
 

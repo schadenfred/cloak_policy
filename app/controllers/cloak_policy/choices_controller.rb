@@ -1,62 +1,94 @@
-require_dependency "cloak_policy/application_controller"
-
 module CloakPolicy
-  class ChoicesController < ApplicationController
-    before_action :set_choice, only: [:show, :edit, :update, :destroy]
+  class ChoicesController < ApplicationControllerr
+    before_action :set_choice, only: [:show, :edit, :update, :destroy, :activate, :deactivate]
 
-    # GET /choices
-    def index
-      @choices = Choice.all
+    def activate
+      respond_to do |format|
+        if @choice.activate!
+          format.html { redirect_back fallback_location: root_path, notice: 'choice activated.' }
+          format.js { render 'update', locals: { choice: @choice }}
+
+        else
+          format.html { render :new }
+          format.json { render json: @choice.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
-    # GET /choices/1
+    def deactivate
+      respond_to do |format|
+        if @choice.deactivate!
+          format.html { redirect_back fallback_location: root_path, notice: 'choice deactivated.' }
+          format.js { render 'update', locals: { choice: @choice }}
+        else
+          format.html { render :new }
+          format.json { render json: @choice.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     def show
+      respond_to do |f|
+        f.js { render 'settings/show', locals: { setting: @choice.setting }}
+      end
     end
 
-    # GET /choices/new
     def new
-      @choice = Choice.new
+      @setting = Setting.find(params["setting_id"])
+      @choice = @setting.choices.build
+      respond_to do |f|
+        f.js { render 'new', locals: { choice: @choice }}
+      end
     end
 
-    # GET /choices/1/edit
     def edit
+      respond_to do |f|
+        f.js { render 'edit', locals: { choice: @choice }}
+      end
     end
 
-    # POST /choices
     def create
       @choice = Choice.new(choice_params)
+      respond_to do |format|
+        if @choice.save
+          format.html { redirect_to @choice, notice: 'Choice was successfully created.' }
+          format.js { render 'create', locals: { choice: @choice }}
 
-      if @choice.save
-        redirect_to @choice, notice: 'Choice was successfully created.'
-      else
-        render :new
+          format.json { render :show, status: :created, location: @choice }
+        else
+          format.html { render :new }
+          format.json { render json: @choice.errors, status: :unprocessable_entity }
+        end
       end
     end
 
-    # PATCH/PUT /choices/1
     def update
-      if @choice.update(choice_params)
-        redirect_to @choice, notice: 'Choice was successfully updated.'
-      else
-        render :edit
+      respond_to do |format|
+        if @choice.update(choice_params)
+          format.js { render 'update', locals: { choice: @choice }}
+        else
+          format.html { render :edit }
+          format.json { render json: @choice.errors, status: :unprocessable_entity }
+        end
       end
     end
 
-    # DELETE /choices/1
     def destroy
       @choice.destroy
-      redirect_to choices_url, notice: 'Choice was successfully destroyed.'
+      respond_to do |format|
+        format.html { redirect_back fallback_location: recommendations_path, notice: 'Choice destroyed.'  }
+        format.json { head :no_content }
+      end
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
+
       def set_choice
         @choice = Choice.find(params[:id])
       end
 
-      # Only allow a trusted parameter "white list" through.
       def choice_params
-        params.require(:choice).permit(:name, :setting_id, :we_say, :they_say, :recommendable, :development_recommendation_id)
+        params.require(:choice).permit(:name, :value, :setting_id, :description, :dom_locator, :edit_url, :we_say, :they_say, :fqurl)
       end
   end
 end

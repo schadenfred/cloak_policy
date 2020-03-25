@@ -16,7 +16,7 @@
             %td= material_icon(preference.icon)
             %td= link_to preference.name, [:admin, preference]
             %td= preference.description
-            %td= link_to 'Edit', edit_admin_preference_path(preference)
+            %td= link_to 'Edit', edit_preference_path(preference)
             %td= link_to 'Destroy', [:admin, preference], method: :delete, data: { confirm: 'Are you sure?' }
 
-    = link_to 'New preference', new_admin_preference_path
+    = link_to 'New preference', new_preference_path

@@ -13,13 +13,13 @@
         %li.nav-item
           = link_to_platform platform
     %li.nav-item
-      = link_to new_admin_setting_path(platform_id: @platform.id), class: 'nav-link', remote: true do
+      = link_to new_setting_path(platform_id: @platform.id), class: 'nav-link', remote: true do
         New setting
 #platformsContent.tab-content
 
   .tab-pane.active{id: "all-settings", "aria-labelledby" => "#all-settings-tab", :role => "tabpanel"}
     .card-body
       .settings.list-group{data: { model: 'setting',
-        "update-url" => update_row_order_admin_settings_path}}
+        "update-url" => update_row_order_settings_path}}
         #newSetting
         = render @platform.settings.rank(:row_order)

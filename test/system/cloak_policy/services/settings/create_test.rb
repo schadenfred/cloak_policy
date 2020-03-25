@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
   Given { javascript }
-  Given { sign_in_admin }
+  Given { sign_in }
   Given(:platform) { platforms(:facebook) }
   Given { visit admin_platform_path(platform) }
 

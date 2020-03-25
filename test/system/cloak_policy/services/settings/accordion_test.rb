@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
   Given { javascript }
-  Given { sign_in_admin }
+  Given { sign_in }
 
   Given(:sone)    { settings(:one) }
   Given(:stwo)    { settings(:two) }
@@ -24,7 +24,7 @@ class PlatformsTest < ApplicationSystemTestCase
 
     describe "first setting must be expanded" do
       Then do
-        assert page.has_link?(href: deactivate_admin_setting_path(sone))
+        assert page.has_link?(href: deactivate_setting_path(sone))
         assert_selector "#setting-#{sone.id}"
         within "#setting-#{sone.id}" do
           assert_link('deactivate')

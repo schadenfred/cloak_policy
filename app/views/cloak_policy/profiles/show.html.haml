@@ -24,10 +24,10 @@
             - @profile.use_cases.each do |use_case|
               %tr
                 %td= material_icon(use_case.icon)
-                %td= link_to use_case.name, edit_admin_use_case_path(use_case)
+                %td= link_to use_case.name, edit_use_case_path(use_case)
 
                 %td= use_case.description
-                %td= link_to 'Edit', edit_admin_use_case_path(use_case)
+                %td= link_to 'Edit', edit_use_case_path(use_case)
                 %td= link_to 'Destroy', admin_use_case_url(use_case), method: :delete, data: { confirm: 'Are you sure?' }
     .card
       .card-header.card-header-divider

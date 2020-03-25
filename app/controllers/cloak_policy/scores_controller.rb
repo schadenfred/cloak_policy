@@ -1,62 +1,72 @@
-require_dependency "cloak_policy/application_controller"
-
 module CloakPolicy
-  class ScoresController < ApplicationController
-    before_action :set_score, only: [:show, :edit, :update, :destroy]
+  class ScoresController < ApplicationControllerr
 
-    # GET /scores
-    def index
-      @scores = Score.all
-    end
+    before_action :set_score, only: [:update, :destroy]
+    before_action :set_scorable, only: [:index, :adjust, :show]
 
-    # GET /scores/1
     def show
+      @vector = Vector.find(params[:id])
     end
 
-    # GET /scores/new
-    def new
-      @score = Score.new
+    def index
+      @vectors = Vector.all
     end
 
-    # GET /scores/1/edit
-    def edit
-    end
-
-    # POST /scores
     def create
-      @score = Score.new(score_params)
-
-      if @score.save
-        redirect_to @score, notice: 'Score was successfully created.'
-      else
-        render :new
+      scorable_type = score_params[:scorable_type]
+      scorable_id = score_params[:scorable_id]
+      vector_id = score_params[:vector_id]
+      @scorable = score_params[:scorable_type].constantize.find(scorable_id)
+      @score = @scorable.scores.new(points: 100, vector_id: vector_id)
+      respond_to do |format|
+        if @score.save
+          format.js { redirect_back fallback_location: root_path, notice: 'scored!' }
+        else
+          format.js { redirect_back fallback_location: root_path, notice: 'failed to create score' }
+        end
       end
     end
 
-    # PATCH/PUT /scores/1
     def update
-      if @score.update(score_params)
-        redirect_to @score, notice: 'Score was successfully updated.'
-      else
-        render :edit
+      @score = Score.find(params[:id])
+      respond_to do |format|
+        if @score.update(points: score_params[:points])
+          format.js { redirect_back fallback_location: root_path, notice: 'score updated.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
 
-    # DELETE /scores/1
     def destroy
       @score.destroy
-      redirect_to scores_url, notice: 'Score was successfully destroyed.'
+      respond_to do |format|
+        format.html { redirect_back fallback_location: root_path, notice: 'score updated.' }
+      end
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_score
-        @score = Score.find(params[:id])
+
+    def set_scorable
+      case
+      when params[:recommendation_id]
+        @scorable = Recommendation.find(params[:recommendation_id])
+      when params[:platform_id]
+        @platform = Platform.find(params[:platform_id])
+      when params[:setting_id]
+        @scorable = Setting.find(params[:setting_id])
+      when params[:preference_id]
+        @scorable = Preference.find(params[:preference_id])
       end
 
-      # Only allow a trusted parameter "white list" through.
-      def score_params
-        params.require(:score).permit(:scorable_type, :scorable_id, :vector_id, :impact, :points)
-      end
+    end
+
+    def set_score
+      @score = Score.find(params[:id])
+    end
+
+    def score_params
+      params.require(:score).permit(:points, :impact, :scorable_type, :scorable_id, :vector_id)
+    end
   end
 end

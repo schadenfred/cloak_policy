@@ -5,9 +5,9 @@
   .col-7
     = vector.description
     .row
-    = link_to "New subvector", new_admin_vector_path(id: vector.id)
+    = link_to "New subvector", new_vector_path(id: vector.id)
     %br
-  .col-1= link_to 'Edit', edit_admin_vector_path(vector)
+  .col-1= link_to 'Edit', edit_vector_path(vector)
   .col-1= link_to 'Destroy', [:admin, vector], method: :delete, data: { confirm: 'Are you sure?'}
 %br
 

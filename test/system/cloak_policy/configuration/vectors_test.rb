@@ -3,7 +3,7 @@ require "application_system_test_case"
 class VectorsTest < ApplicationSystemTestCase
 
   Given(:vector) { vectors(:privacy) }
-  Given { sign_in_admin }
+  Given { sign_in }
   Given { visit admin_vectors_path }
 
   describe "/vectors" do
@@ -26,7 +26,7 @@ class VectorsTest < ApplicationSystemTestCase
 
   describe "edit vector" do
 
-    Given { visit edit_admin_vector_path(vector.id)  }
+    Given { visit edit_vector_path(vector.id)  }
 
     Then { assert page.has_field?('Name') }
     And  { assert page.has_field?('Icon') }

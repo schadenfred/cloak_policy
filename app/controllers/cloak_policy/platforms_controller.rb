@@ -1,62 +1,65 @@
-require_dependency "cloak_policy/application_controller"
-
 module CloakPolicy
-  class PlatformsController < ApplicationController
+  class PlatformsController < ApplicationControllerr
     before_action :set_platform, only: [:show, :edit, :update, :destroy]
 
-    # GET /platforms
     def index
       @platforms = Platform.all
     end
 
-    # GET /platforms/1
-    def show
+    def scoring
+      @platforms = Platform.all
+      @vector = Vector.new
     end
 
-    # GET /platforms/new
+    def show
+      @platforms = Platform.all
+    end
+
     def new
       @platform = Platform.new
     end
 
-    # GET /platforms/1/edit
     def edit
     end
 
-    # POST /platforms
     def create
       @platform = Platform.new(platform_params)
-
-      if @platform.save
-        redirect_to @platform, notice: 'Platform was successfully created.'
-      else
-        render :new
+      respond_to do |format|
+        if @platform.save
+          format.html { redirect_to platforms_url, notice: 'Platform was successfully created.' }
+        else
+          format.json { render json: @platform.errors, status: :unprocessable_entity }
+        end
       end
     end
 
-    # PATCH/PUT /platforms/1
     def update
-      if @platform.update(platform_params)
-        redirect_to @platform, notice: 'Platform was successfully updated.'
-      else
-        render :edit
+      respond_to do |format|
+        if @platform.update(platform_params)
+          format.html { redirect_to platforms_url, notice: 'Platform was successfully created.' }
+        else
+          format.json { render json: @platform.errors, status: :unprocessable_entity }
+        end
       end
     end
 
-    # DELETE /platforms/1
     def destroy
       @platform.destroy
-      redirect_to platforms_url, notice: 'Platform was successfully destroyed.'
+      respond_to do |format|
+        format.html { redirect_to platforms_url, notice: 'Platform was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
       def set_platform
         @platform = Platform.find(params[:id])
       end
 
-      # Only allow a trusted parameter "white list" through.
       def platform_params
-        params.require(:platform).permit(:name, :fqdn, :description, :icon, :platform_type, :they_say, :we_say, :recommendable)
+        params.require(:platform).permit(:description, :icon, :fqdn, :domain, :platform_type, :name, :description, :platform_score, settings_attributes: [
+        :id, :name, :fqurl, :they_say, :we_say, :page, :_destroy])
+
       end
   end
 end

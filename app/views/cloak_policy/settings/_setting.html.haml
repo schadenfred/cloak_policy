@@ -25,7 +25,7 @@
               .col
                 = eval(activation_link_for(setting))
               .col
-                = link_to edit_admin_setting_path(setting), remote: true do
+                = link_to edit_setting_path(setting), remote: true do
                   = material_icon("edit")
               .col
                 = link_to [:admin, setting], method: :delete, data: { confirm: 'Are you sure?' } do

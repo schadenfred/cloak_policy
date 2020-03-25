@@ -3,7 +3,7 @@ require "application_system_test_case"
 class PreferencesTest < ApplicationSystemTestCase
 
   Given(:preference) { preferences(:posts_frequently) }
-  Given { sign_in_admin }
+  Given { sign_in }
   Given { visit admin_preferences_path }
 
   describe "/admin/preferences" do
@@ -15,7 +15,7 @@ class PreferencesTest < ApplicationSystemTestCase
 
     describe "preference names must links to edit" do
 
-      Then  { assert page.has_link?('Edit', href: edit_admin_preference_path(preference)) }
+      Then  { assert page.has_link?('Edit', href: edit_preference_path(preference)) }
     end
 
     describe "must have link to new preference" do
@@ -26,7 +26,7 @@ class PreferencesTest < ApplicationSystemTestCase
 
   describe "edit preference" do
 
-    Given { click_link('Edit', href: edit_admin_preference_path(preference) ) }
+    Given { click_link('Edit', href: edit_preference_path(preference) ) }
 
     Then { assert page.has_field?('Name') }
     And  { assert page.has_field?('Icon') }

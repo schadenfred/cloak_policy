@@ -3,7 +3,7 @@
 # class ProfilesControllerTest < ActionDispatch::IntegrationTest
 
 #   Given(:profile) { profiles(:executive) }
-#   Given { sign_in_admin }
+#   Given { sign_in }
 
 #   describe "PATCH update" do
 
