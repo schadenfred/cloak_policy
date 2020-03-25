@@ -1,6 +1,8 @@
 require "application_system_test_case"
 
 class UseCasesTest < ApplicationSystemTestCase
+  Given { skip }
+
 
   Given(:profile) { profiles(:executive) }
   Given(:use_case) { use_cases(:business) }

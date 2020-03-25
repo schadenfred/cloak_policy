@@ -1,6 +1,8 @@
 require 'test_helper'
 include CloakPolicy::ActivationHelper
 class ActivationHelperTest < ActiveSupport::TestCase
+  Given { skip }
+
 
 
   Given(:platform) { platforms(:facebook) }

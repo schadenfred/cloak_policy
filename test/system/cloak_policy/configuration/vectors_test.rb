@@ -1,6 +1,8 @@
 require "application_system_test_case"
 
 class VectorsTest < ApplicationSystemTestCase
+  Given { skip }
+
 
   Given(:vector) { vectors(:privacy) }
   Given { sign_in }

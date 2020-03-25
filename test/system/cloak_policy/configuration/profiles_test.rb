@@ -1,6 +1,8 @@
 require "application_system_test_case"
 
 class ProfilesTest < ApplicationSystemTestCase
+  Given { skip }
+
 
   Given(:profile) { profiles(:executive) }
 

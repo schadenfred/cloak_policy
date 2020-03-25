@@ -1,6 +1,7 @@
 require "application_system_test_case"
 
 class PreferencesTest < ApplicationSystemTestCase
+  Given { skip }
 
   Given(:preference) { preferences(:posts_frequently) }
   Given { sign_in }
