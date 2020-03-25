@@ -33,6 +33,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "simple_form"
   spec.add_dependency "jquery-rails"
   spec.add_dependency "jquery-ui-rails"
+  spec.add_dependency "chart-js-rails"
+  spec.add_dependency "turbolinks"
 
   spec.add_development_dependency "pg"
   spec.add_development_dependency "minitest"
