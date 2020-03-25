@@ -29,7 +29,7 @@ module CloakPolicy
       describe "#{scorable}:points_for(:vector)" do
 
         describe "default must be 0" do
-# Given { byebug }
+Given { skip }
           Then { assert_equal record.points_for(:privacy), 20 }
           And  { assert_equal record.points_for(vector), 20 }
           And  { assert_equal chosen.points_for(:privacy), 1 }
