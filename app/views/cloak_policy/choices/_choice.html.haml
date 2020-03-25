@@ -1,0 +1,20 @@
+.div{ id: "choice-#{choice.id}" }
+  %dl.row
+    %dd.col-sm-3
+      .badge= choice.name
+    %dd.col-sm-3
+      = choice.they_say
+    %dd.col-sm-3
+      = choice.we_say
+    %dd.col-sm-2
+      .row
+        .col
+          = eval(activation_link_for(choice))
+        .col
+          = link_to edit_admin_choice_path(choice), remote: true do
+            = material_icon("edit")
+        .col
+          = link_to [:admin, choice], method: :delete, data: { confirm: 'Are you sure?' } do
+            = material_icon("delete")
+
+

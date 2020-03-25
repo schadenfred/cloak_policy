@@ -1,0 +1,89 @@
+.card-header
+  %h3= @scorable.name
+  %ul.nav.nav-tabs{:role => "tablist"}
+    - @scorable.recommendations_platforms.each do |rs|
+      %li.nav-item
+        = link_to material_icon(rs.platform.icon, '2x'), @scorable, class: 'nav-link'
+
+    - Vector.all.each do |vector|
+      %li.nav-item
+        = link_to scorable_score_path(@scorable, vector.id), class: 'nav-link' do
+          = material_icon(vector.icon)
+          .badge= vector.name
+.card-body
+  .card-title
+  .card-text
+    .row
+      .col-5
+        .row
+          .col
+            Platform
+          .col-3
+            = @vector.name + " points"
+        %hr
+        - @scorable.recommendations_platforms.each do |rs|
+          %br
+          .row
+            .col-7
+              = rs.platform.name
+              = material_icon(rs.platform.icon)
+            .col-3
+              = form_with model: rs.scores.where(vector_id: @vector.id).first do |form|
+                = form.number_field :points
+        .row
+          .col-12
+            %br
+            .card.text-white.bg-dark.mb-3
+              .card-body
+                = markdown(File.read('lib/help/rs.txt'))
+      .col-7
+        .card
+          .card-body
+            %canvas{ id: "polar-#{@vector.name}", :height => "400", :width => "400"}
+
+
+:javascript
+  var ctx = document.getElementById("polar-#{@vector.name}").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'polarArea',
+      data: {
+          labels: #{ raw(@scorable.platforms.pluck(:name)) },
+          datasets: [{
+              label: 'Privacy Weight',
+              data: #{ raw(@scorable.scores_for(@vector.name)) },
+
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+
+                  'rgba(255, 159, 64, 1)'
+              ]
+          }]
+      },
+      options: {
+        legend: {
+          display: true
+        }
+      }
+  });

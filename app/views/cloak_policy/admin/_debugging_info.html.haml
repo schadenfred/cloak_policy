@@ -1,0 +1,15 @@
+.col
+  - if @user
+    .row
+    email:
+    = @user.email
+    .row
+    id:
+    = @user.id
+    .row
+    extension-id
+    = Extension::ID
+    .row
+    confirmed_at
+    = @user.confirmed_at
+    .row

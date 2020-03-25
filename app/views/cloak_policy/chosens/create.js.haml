@@ -1,0 +1,6 @@
+var $setting = $('#settingEdit-#{setting.id}');
+var $header = $('#accordion-setting-#{setting.id}').find('.card .card-header');
+
+$setting.replaceWith("#{j render partial: "recommendations/setting", locals: {recommendation: recommendation, setting: setting}}");
+$header.removeClass( 'card-full-primary');
+$header.addClass( 'card-full-success');

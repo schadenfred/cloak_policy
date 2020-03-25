@@ -1,0 +1,7 @@
+
+= form_with model: @use_case, url: admin_use_case_path, method: :patch do |f|
+  .form-group
+    = f.fields_for :recommendations_use_case_attributes, @use_case.recommendations_use_case do |ruf|
+      = ruf.collection_select(:recommendation_id, Recommendation.where(housable: true), :id, :name, { prompt: "Choose default", include_blank: true}, {:class => 'form-control', id: 'defaultRecommendation'} )
+  .form-submit
+    = f.submit 'Select Default Recommendation', class: 'btn btn-primary', id: 'submitDefaultRecommendation'

@@ -1,0 +1,8 @@
+- if @chosen.errors.none?
+  alertbox = $('.alert-info.choice-alert');
+  t = 500;
+- else
+  alertbox = $('.alert-danger.choice-alert');
+  alertbox.html('Errors: #{@chosen.errors.full_messages.join(', ')}.');
+  t = 2000;
+alertbox.fadeIn().delay(t).fadeOut('slow');

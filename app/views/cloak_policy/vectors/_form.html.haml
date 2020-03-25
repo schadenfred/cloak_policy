@@ -1,0 +1,12 @@
+= simple_form_for([:admin, vector]) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  .card-title
+    Attributes
+  .card-text
+    = f.input :name
+    = f.input :icon
+    = f.input :description, as: :text, input_html: { rows: 4 }
+    = f.collection_select :parent_id, Vector.all, :id, :name, {include_blank: "top level"}, { class: 'form-control' }
+    %br
+    = f.button :submit, class: "btn btn-primary btn-lg"

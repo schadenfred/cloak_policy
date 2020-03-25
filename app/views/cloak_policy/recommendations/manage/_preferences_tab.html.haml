@@ -1,0 +1,28 @@
+.tab-pane{id: "preferences", "aria-labelledby" => "preferences-tab", :role => "tabpanel"}
+  .card-deck
+    -# .card
+    -#   .card-header
+    -#     Profile
+    -#   .card-body
+    -#     = recommendation.profile.name
+    -# .card
+    -#   .card-header
+    -#     Use Case
+    -#   .card-body
+    -#     = recommendation.use_case.name
+    .card
+      .card-header
+        %h3 Preferences
+      -# .card-body
+        - Preference.all.each do |preference|
+          = form_with scope: :categories_categorizable, url: categories_categorizables_path, method: :post, remote: true, data: { recommendation_id: recommendation.id, preference_id: preference.id} do |form|
+            - checked = recommendation.preferences.include?(preference) ? true : false
+            .form-group
+              .form-check
+                .custom-control.custom-checkbox.custom-control-inline
+
+                  = form.check_box preference.name, checked: checked, class: 'custom-control-input', data: { remote: true, method: :post, url: categories_categorizables_url(recommendation: { preference_id: preference.id, recommendation_id: recommendation.id} )}
+                  = form.label preference.name, class: 'custom-control-label custom-control-color' do
+                    = material_icon(preference.icon, 'lg')
+                    = preference.name
+

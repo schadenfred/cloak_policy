@@ -7,17 +7,23 @@
   %b Setting:
   = @choice.setting_id
 %p
+  %b Description:
+  = @choice.description
+%p
+  %b Dom locator:
+  = @choice.dom_locator
+%p
+  %b Edit url:
+  = @choice.edit_url
+%p
   %b We say:
   = @choice.we_say
 %p
   %b They say:
   = @choice.they_say
 %p
-  %b Recommendable:
-  = @choice.recommendable
-%p
-  %b Development recommendation:
-  = @choice.development_recommendation_id
+  %b Fqurl:
+  = @choice.fqurl
 
 = link_to 'Edit', edit_choice_path(@choice)
 \|

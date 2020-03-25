@@ -1,0 +1,5 @@
+.div{ id: "setting-#{@setting.id}" }
+  = render partial: 'admin/settings/accordion', locals: { setting: @setting, index: 0 }
+
+  = render 'admin/settings/form', setting: @setting
+

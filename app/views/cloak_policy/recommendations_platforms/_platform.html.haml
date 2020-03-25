@@ -1,0 +1,14 @@
+.tab-pane{ id: platform.name, "aria-labelledby" => "#{platform.name}-tab", :role => "tabpanel"}
+  .card-body
+    - platform.settings.each_with_index do |setting, i|
+      .card
+        .accordion.accordion-color{id: "accordion-setting-#{setting.id}"}
+          .card
+            .card-header{ class: "show #{setting_status(@recommendation, setting)}", id: "headingSetting-#{setting.id}" }
+              %button.btn{"aria-controls" => "collapseSetting-#{setting.id}", "aria-expanded" => (i.eql?(0).to_s), "data-target" => "#collapseSetting-#{setting.id}", "data-toggle" => "collapse"}
+                = material_icon(platform.icon)
+                = setting.name
+            .collapse{class: ( 'show' if i.eql?(0)), id: "collapseSetting-#{setting.id}", "aria-labelledby" => "headingSetting-#{setting.id}", "data-parent" => "#accordion-setting-#{setting.id}"}
+              .card-body
+                %br
+                = render partial: 'setting', locals: { recommendation: @recommendation, setting: setting }

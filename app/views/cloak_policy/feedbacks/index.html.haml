@@ -1,0 +1,17 @@
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th When
+        %th content
+        %th reasons
+
+    %tbody
+      - @feedbacks.each do |feedback|
+        %tr
+          %td= feedback.content
+          %td= feedback.reasons
+          %td= link_to 'Show', feedback
+          %td= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' }
+
+

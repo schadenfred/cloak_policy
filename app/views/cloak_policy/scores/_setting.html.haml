@@ -1,0 +1,94 @@
+.card-header.card-header-divider
+  %ul.nav.nav-tabs
+    - Vector.all.each do |vector|
+      %li.nav-item
+        = link_to admin_setting_score_path(setting_id: @scorable.id, id: vector.id), class: "nav-link #{(' active' if (vector.id == @vector.id))}" do
+          = material_icon(vector.icon)
+          = vector.name
+.card-body
+  .row
+    .col-6
+      .row
+        .card.col-12
+          .card-header.card-header-divider
+            = link_to admin_platform_score_path(platform_id: @scorable.platform.id, id:  @vector.id) do
+              = material_icon(@scorable.platform.icon)
+              = @scorable.name
+          .card-body
+            .row
+              .col-3
+                Choice
+              .col-7
+                Impact
+              .col-2
+                weight
+            - @scorable.choices.each do |choice|
+              %br
+              .row
+                .col-3
+                  .badge.badge-info= choice.name
+                .col-7
+                  = form_with model: choice.scores.where(vector_id: @vector.id).first, url: [:admin, choice.scores.where(vector_id: @vector.id).first] do |form|
+                    = form.text_field :impact, class: 'form-control'
+                .col-2
+                  = form_with model: choice.scores.where(vector_id: @vector.id).first, url: [:admin, choice.scores.where(vector_id: @vector.id).first] do |form|
+                    = form.number_field :points, class: 'form-control'
+                    = form.hidden_field :score_id, value: choice.try(:scores).where(vector_id: @vector.id).first.try(:id)
+
+    .col-6
+      .card
+        .card-header
+        .card-body
+
+          #barChart
+            %canvas{ id: "scoreChart", data: { "chart-type" => "bar", "label" => 'Vector weights',  labels: @scorable.choices.pluck(:name), scores: @scorable.indices_for(@vector.name) }, :height => "300", :width => "400"}
+
+:javascript
+  var ctx = document.getElementById("bar-#{@scorable.id}").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: #{ raw(@scorable.choices.pluck(:name)) },
+          datasets: [{
+              label: "#{@vector.name} Index",
+              data: #{ raw(@scorable.indices_for(@vector.name)) },
+
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+
+                  'rgba(255, 159, 64, 1)'
+              ]
+          }]
+      },
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+      }
+  });

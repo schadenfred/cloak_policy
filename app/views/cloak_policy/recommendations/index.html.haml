@@ -1,0 +1,18 @@
+.card-header
+  %ul#recommendations.nav.nav-tabs{role: 'tablist'}
+    %li.nav-item
+      %a.nav-link.active{ id: "house-tab", "aria-controls" => "houseRecommendations", "aria-selected" => "true", "data-toggle" => "tab", :href => "#houseRecommendations", :role => "tab"}
+        House
+    %li.nav-item
+      %a.nav-link{ id: "all-tab", "aria-controls" => "allRecommendations", "aria-selected" => "false", "data-toggle" => "tab", :href => "#allRecommendations", :role => "tab"}
+        All
+    %li.nav-item
+      %a.nav-link{ id: "custom-tab", "aria-controls" => "customRecommendations", "aria-selected" => "false", "data-toggle" => "tab", :href => "#customRecommendations", :role => "tab"}
+        Custom
+#recommendationsContent.tab-content
+  .tab-pane.active{ id: 'houseRecommendations', "aria-labelledby" => "#house-tab", :role => "tabpanel"}
+    = render 'recommendations', recommendations: @house_recommendations
+  .tab-pane{ id: 'allRecommendations', "aria-labelledby" => "#all-tab", :role => "tabpanel"}
+    = render 'recommendations',  recommendations: @recommendations
+  .tab-pane{ id: 'customRecommendations', "aria-labelledby" => "#custom-tab", :role => "tabpanel"}
+    = render 'recommendations', recommendations: @custom_recommendations

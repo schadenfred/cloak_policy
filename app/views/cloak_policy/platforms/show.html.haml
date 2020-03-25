@@ -1,30 +1,25 @@
-%p#notice= notice
 
-%p
-  %b Name:
-  = @platform.name
-%p
-  %b Fqdn:
-  = @platform.fqdn
-%p
-  %b Description:
-  = @platform.description
-%p
-  %b Icon:
-  = @platform.icon
-%p
-  %b Platform type:
-  = @platform.platform_type
-%p
-  %b They say:
-  = @platform.they_say
-%p
-  %b We say:
-  = @platform.we_say
-%p
-  %b Recommendable:
-  = @platform.recommendable
+.card-body
+  %ul#platforms.nav.nav-tabs{:role => "tablist"}
+    - @platforms.each do |platform|
+      - if platform.eql?(@platform)
+        - %w(all).each do |selector|
+          %li.nav-item
+            %a.nav-link{ class: ('active' if selector.eql?('all')), id: "#{selector}-settings-tab", "aria-selected" => "false", "data-toggle" => "tab", :href => "##{selector}-settings", :role => "tab"}
+              = material_icon(@platform.icon)
+              = selector
 
-= link_to 'Edit', edit_platform_path(@platform)
-\|
-= link_to 'Back', platforms_path
+      - else
+        %li.nav-item
+          = link_to_platform platform
+    %li.nav-item
+      = link_to new_admin_setting_path(platform_id: @platform.id), class: 'nav-link', remote: true do
+        New setting
+#platformsContent.tab-content
+
+  .tab-pane.active{id: "all-settings", "aria-labelledby" => "#all-settings-tab", :role => "tabpanel"}
+    .card-body
+      .settings.list-group{data: { model: 'setting',
+        "update-url" => update_row_order_admin_settings_path}}
+        #newSetting
+        = render @platform.settings.rank(:row_order)

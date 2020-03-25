@@ -1,0 +1,12 @@
+%li.nav-item.dropdown
+  %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    = material_icon("apps")
+  %ul.dropdown-menu.be-connections
+    %li
+      .list
+        .content
+          - Platform.all.each do |platform|
+            .col
+              = link_to [:admin, platform], class: 'connection-item' do
+                = material_icon(platform.icon, "3x")
+                %span= platform.name

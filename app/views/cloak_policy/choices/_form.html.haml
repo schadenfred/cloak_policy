@@ -1,28 +1,29 @@
-= form_for @choice do |f|
-  - if @choice.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@choice.errors.count, "error")} prohibited this choice from being saved:"
-      %ul
-        - @choice.errors.full_messages.each do |message|
-          %li= message
+= form_with model: choice, url: [:admin, choice], setting_id: choice.setting.id do |f|
+  = f.hidden_field :setting_id, value: choice.setting.id
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :setting_id
-    = f.number_field :setting_id
-  .field
-    = f.label :we_say
-    = f.text_field :we_say
-  .field
-    = f.label :they_say
-    = f.text_field :they_say
-  .field
-    = f.label :recommendable
-    = f.check_box :recommendable
-  .field
-    = f.label :development_recommendation_id
-    = f.number_field :development_recommendation_id
-  .actions
-    = f.submit 'Save'
+  .row
+    .col-sm-4.form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .col-sm-4.form-group
+      = f.label :they_say
+      = f.text_area :they_say, class: 'form-control'
+    .col-sm-4.form-group
+      = f.label :we_say
+      = f.text_area :we_say, class: 'form-control'
+  .row
+    .col-sm-4.form-group
+      = f.label :value
+      = f.text_field :value, class: 'form-control'
+  .row
+    .col-sm-4.form-group
+      .row
+        .col
+          = f.submit class: "btn btn-primary"
+        .col.text-right
+          = link_to 'cancel', [:admin, choice.setting], remote: true
+      .row
+
+
+
+

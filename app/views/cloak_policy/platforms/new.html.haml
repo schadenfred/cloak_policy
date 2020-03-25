@@ -1,5 +1,6 @@
-%h1 New platform
+- content_for :call_to_action do
+  New Platform
 
-= render 'form'
+= render 'form', platform: @platform
 
 = link_to 'Back', platforms_path

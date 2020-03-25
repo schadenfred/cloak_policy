@@ -1,0 +1,32 @@
+- content_for :call_to_action do
+  |
+  = @platform.name
+.card-header
+  = @recommendation.name.capitalize
+  .card-subtitle= @recommendation.description
+.card-body
+  %ul#platforms.nav.nav-tabs{:role => "tablist"}
+
+    - @recommendation.recommendables.each do |rs|
+      - active = (rs.name.eql? @platform.name) ? ' active' : ''
+      %li.nav-item
+
+        = link_to material_icon(rs.icon, '2x'), admin_recommendation_platform_path(recommendation_id: @recommendation.id, id: rs.id), class: "nav-link#{active}"
+    %li.nav-item
+      = link_to 'Manage', [:admin, @recommendation], class: 'nav-link'
+
+  #platformsContent.tab-content
+
+    .card-body
+      - @platform.recommendables.rank(:row_order).each_with_index do |setting, i|
+        .card
+          .accordion.accordion-color{id: "accordion-setting-#{setting.id}"}
+            .card
+              .card-header{ class: "show #{setting_status(@recommendation, setting)}", id: "headingSetting-#{setting.id}" }
+                %button.btn{"aria-controls" => "collapseSetting-#{setting.id}", "aria-expanded" => (i.eql?(0).to_s), "data-target" => "#collapseSetting-#{setting.id}", "data-toggle" => "collapse"}
+                  = material_icon(@platform.icon)
+                  = setting.name
+              .collapse{class: ( 'show' if i.eql?(0)), id: "collapseSetting-#{setting.id}", "aria-labelledby" => "headingSetting-#{setting.id}", "data-parent" => "#accordion-setting-#{setting.id}"}
+                .card-body
+                  %br
+                  = render 'setting', recommendation: @recommendation, setting: setting

@@ -1,0 +1,21 @@
+var extensionId = '<%= Extension::ID %>';
+var recommendation = <%= @recommendation.to_json.html_safe %>;
+var setting = <%= @setting.to_json.html_safe %>;
+recommendation.settings = [setting];
+try {
+  chrome.runtime.sendMessage(extensionId, {
+    message: 'custom-recommendation-selected',
+    recommendation: recommendation,
+    interactiveMode: true,
+    apiUrl: window.location.origin + "/"
+  }, function(response) {
+    if(chrome.runtime.lastError || (response && response.error)) {
+      handleExtensionError();
+    }
+  });
+} catch(err) {
+  handleExtensionError();
+}
+function handleExtensionError() {
+  alert("Please (re)install Privacy extension before proceeding");
+}

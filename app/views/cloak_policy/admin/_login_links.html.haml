@@ -1,0 +1,11 @@
+- unless controller.class.superclass.to_s.match 'Devise'
+  - if user_signed_in?
+    .nav-item
+      = link_to('my account', edit_user_registration_path, class: "nav-link")
+    .nav-item
+      = link_to("logout #{current_user.email}", destroy_user_session_path, class: "nav-link", method: :delete)
+  - else
+    .nav-item
+      = link_to('Login', new_user_session_path, class: "")
+    .nav-item
+      = link_to('Register', new_user_registration_path, class: "")

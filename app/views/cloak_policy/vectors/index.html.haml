@@ -1,0 +1,13 @@
+.card-body
+  .card.card-table
+  .card-header
+    Vectors
+  .card-body
+    %hr
+    - Vector.top_level.each do |v|
+      = render 'vector', vector: v
+      %hr
+
+
+    .card-footer
+      = link_to 'New top level vector', new_admin_vector_path

@@ -1,34 +1,25 @@
-= form_for @platform do |f|
+= form_with model: @platform, url: [:admin, @platform] do |f|
   - if @platform.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@platform.errors.count, "error")} prohibited this platform from being saved:"
+      %h2= "#{pluralize(@platform.errors.count, "error")} prohibited this org from being saved:"
       %ul
-        - @platform.errors.full_messages.each do |message|
+        - @org.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :fqdn
-    = f.text_field :fqdn
-  .field
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :domain
+    = f.text_field :domain, class: 'form-control'
+  .form-group
     = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :icon
-    = f.text_field :icon
-  .field
+    = f.text_field :description, class: 'form-control'
+  .form-group
+    = f.label :parent_id
+    = f.number_field :parent_id, class: 'form-control'
+  .form-group
     = f.label :platform_type
-    = f.text_field :platform_type
-  .field
-    = f.label :they_say
-    = f.text_field :they_say
-  .field
-    = f.label :we_say
-    = f.text_field :we_say
-  .field
-    = f.label :recommendable
-    = f.check_box :recommendable
+    = f.text_field :platform_type, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit class: "btn btn-primary"

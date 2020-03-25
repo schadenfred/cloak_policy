@@ -1,0 +1,29 @@
+.tab-pane.active{ id: "vectors", "aria-labelledby" => "#vectors-tab", :role => "tabpanel"}
+  .row
+  .card.card-table
+    .card-header
+      Vectors
+    .card-body
+
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Icon
+            %th Icon name
+            %th Vector
+            %th
+            %th
+
+        %tbody
+          - Vector.all.each do |vector|
+            %tr
+              %td= material_icon(vector.icon)
+              %td= vector.icon
+
+              %td= link_to vector.name, platform_score_path(platform_id: @platform.id, id: vector.id)
+              %td= link_to 'Edit', edit_vector_path(vector)
+              %td= link_to 'Destroy', vector, method: :delete, data: { confirm: 'Are you sure?' }
+
+      %br
+        .card-footer
+          = link_to 'New vector', new_vector_path

@@ -1,0 +1,17 @@
+.div{ id: "setting-choices-#{setting.id}"}
+  %dl.row
+    %dd.col-sm-1 Choices:
+  .col-sm-11
+    %hr
+  %dl.row
+    %dt.col-sm-3
+      Name
+    %dt.col-sm-3
+      = material_icon setting.platform.icon
+      = setting.platform.name + " description"
+    %dt.col-sm-3
+      = image_tag('extension_icons/16.png', size: '10')
+      Recall description
+  = render setting.choices
+  = link_to new_admin_choice_path(setting_id: setting.id), remote: true do
+    new choice

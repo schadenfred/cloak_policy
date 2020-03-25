@@ -1,0 +1,70 @@
+.div{ id: "settingEdit-#{setting.id}" }
+  .row
+    .col-sm-12
+      %dl.row
+        %dd.col-sm-2
+          = material_icon setting.platform.icon
+          Setting name:
+        %dd.col-sm-3
+          = material_icon setting.platform.icon
+          = setting.platform.name + " says about this setting:"
+        %dd.col-sm-3
+          = image_tag 'extension_icons/16.png'
+          Recall says about this setting:
+      %dl.row
+        %dd.col-sm-2
+          = setting.name
+        %dd.col-sm-3
+          = setting.they_say
+        %dd.col-sm-3
+          = setting.we_say
+        %dd.col-sm-4.text-right
+          -# - case
+          -# - when !current_user.browser_installed?
+            = link_to "Please install extension", "https://chrome.google.com/webstore/detail/recall-privacy-extension/ioieoedgkhlfcolmeglbioooehgmdjje", class: 'btn btn-primary btn-lg'
+          - if recommendation.choice_for(setting).nil?
+            Choose
+          - else
+            blah
+          -# - when current_user.browser_installed?
+            = link_to 'Launch', recommendation_setting_launch_path(recommendation, setting), remote: true, class: 'btn btn-primary'
+      %dl.row
+        %dd.col-sm-2
+          Choices
+      %hr
+      %dl.row
+        %dd.col-sm-2
+          Choice name
+        %dd.col-sm-3
+          = material_icon setting.platform.icon
+          = setting.platform.name + " says about this choice:"
+        %dd.col-sm-3
+          = image_tag 'extension_icons/16.png'
+          Recall says about this choice:
+        %dd.col-sm-4
+          Why is this choice good or bad?
+  .row
+    .col-sm-12
+      - setting.recommendables.each do |choice|
+        %dl.row
+          .col-sm-2
+            = form_with scope: :chosen, url: admin_chosens_url, method: :post, remote: true, id: "choice-#{choice.id}" do |form|
+              - checked = recommendation.choice_for(setting).eql?(choice) ? 'checked' : ''
+              .form-group.row.pt-1.pb-1
+                .col-12.col-sm-8.col-lg-6.form-check.mt-1
+                  %label.custom-control.custom-radio
+                    = form.radio_button :choice, choice.id, options = { class: "custom-control-input", multiple: true, checked: checked, data: {remote: true, method: :post, url: admin_chosens_url( chosen: { recommendation_id: recommendation.id, choice_id: choice.id, recommendable: true} )}}
+                    %span.custom-control-label= choice.name
+          %dd.col-sm-3
+            = choice.they_say
+          %dd.col-sm-3
+            = choice.we_say
+          %dd.col-sm-4
+            = form_with scope: :chosen, url: admin_chosens_url, method: :post, remote: true, id: "choice-#{choice.id}" do |form|
+              = form.hidden_field :choice_id, value: choice.id
+              = form.hidden_field :recommendation_id, value: recommendation.id
+
+              .form-group
+                = form.text_area :advice, value: advice_for(recommendation, choice), rows: 4, class: "form-control"
+                = form.submit "Save advice", class: "btn btn-primary btn-block"
+

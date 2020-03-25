@@ -1,0 +1,14 @@
+- unless ExtensionError.count == 0
+  .table-responsive
+    %table.table.table-striped
+      - @extension_errors.each do |e|
+        %thead
+          %tr
+            %th when
+            - e.message.keys.each do |k|
+              %th= k
+        %tbody
+          %tr
+            %td= time_ago_in_words(e.created_at) + " ago"
+            - e.message.values.each do |v|
+              %td= v

@@ -1,0 +1,14 @@
+.container
+  %h4
+    %i{class: group.icon}
+      = group.name.capitalize
+  = group.description
+  %br
+  %br
+  .container
+    - group.subgroups.each do |group|
+      = render "group", group: group
+      .container
+        - group.settings.each do |setting|
+          .container
+            = render 'setting', setting: setting

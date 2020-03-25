@@ -1,0 +1,23 @@
+%dl.row
+  %dt.col-sm-2
+    PI
+  %dt.col-sm-2
+    Name
+  %dt.col-sm-3
+    = material_icon(choice.setting.platform.icon)
+    = choice.setting.platform.name + " says about this choice:"
+  %dt.col-sm-3
+    = image_tag 'extension_icons/16.png'
+    Recall says about this choice:
+  -#   = material_icon setting.platform.icon
+  -# %dt.col-sm-3
+  -# %dt.col-sm-1
+  -#   = link_to setting, method: :delete, data: { confirm: 'Are you sure?' } do
+  -#     = material_icon("delete", "", "red")
+  -#   - if setting.recommendable?
+  -#     = link_to 'deactivate', deactivate_setting_path(setting), method: :patch
+  -#   - else
+  -#     = link_to "activate", activate_setting_path(setting), method: :patch
+
+
+

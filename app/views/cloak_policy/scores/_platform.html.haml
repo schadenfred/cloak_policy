@@ -1,0 +1,31 @@
+.card-header.card-header-divider
+  %h3
+    = material_icon(@platform.icon)
+    = @platform.name
+    |
+    = @vector.name
+    .row
+    %small
+      Weights for settings along the #{@vector.name} vector.
+.card-body
+  .row
+    .col-5
+      - @platform.recommendables.rank(:row_order).each do |setting|
+        .row
+          .col-9
+            .row
+            = setting.name
+            .row
+            %br
+            Choice weights:
+            = link_to admin_setting_score_path(setting_id: setting.id) do
+              - unless setting.choices.empty?
+                - setting.choices.each do |c|
+                  .badge= c.points_for(@vector)
+          .col-3
+            = render 'score', scorable: setting, vector: @vector
+        %hr
+    .col-7
+      #polarChart
+        %canvas{ id: "scoreChart", data: { "chart-type" => "polarArea", "label" => 'Vector weights',  labels: @platform.chart_data(@vector)[:labels], scores: @platform.chart_data(@vector)[:points] }, :height => "300", :width => "400"}
+

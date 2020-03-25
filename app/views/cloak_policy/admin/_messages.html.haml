@@ -1,0 +1,9 @@
+- flash.each do |key, value|
+  .alert.alert-dismissible{:role => "alert", class: "alert-#{flash_class(key.to_sym)}"}
+    %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+      %span.mdi.mdi-close{"aria-hidden" => "true"}
+    .icon
+      %span.mdi.mdi-check
+    .message
+      %strong= value
+

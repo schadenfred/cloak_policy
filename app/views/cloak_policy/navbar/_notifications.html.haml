@@ -1,0 +1,16 @@
+%li.nav-item.dropdown
+  %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    = material_icon("notifications")
+  %ul.dropdown-menu.be-notifications
+    %li
+      .title
+        Notifications
+        %span.badge.badge-pill 3
+      .list
+        .be-scroller-notifications
+          .content
+            %ul
+              - ["Jon Doe", "Jane Roe", "Bob Daniels"].each do |user|
+                = render 'admin/navbar/notification', username: user
+      .footer
+        %a{:href => "#"} View all notifications

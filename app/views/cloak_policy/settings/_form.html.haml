@@ -1,31 +1,30 @@
-= form_for @setting do |f|
-  - if @setting.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@setting.errors.count, "error")} prohibited this setting from being saved:"
-      %ul
-        - @setting.errors.full_messages.each do |message|
-          %li= message
-
-  .field
+= form_with model: setting, url: [:admin, setting], platform_id: setting.platform.id do |f|
+  = f.hidden_field :platform_id, value: setting.platform.id
+  - if setting.id.nil?
+    = f.hidden_field :row_order_position, value: '0'
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, class: 'form-control'
+  -# .form-group
+    -# = f.label :category
+    -# = f.collection_select :vector_id, Vector.all, :id, :name, {}, {class: 'form-control'}
+  .form-group
+    = f.label :page
+    = f.text_field :page, class: 'form-control'
+  .form-group
     = f.label :edit_url
-    = f.text_field :edit_url
-  .field
-    = f.label :platform_id
-    = f.number_field :platform_id
-  .field
-    = f.label :row_order
-    = f.number_field :row_order
-  .field
-    = f.label :recommendable
-    = f.check_box :recommendable
-  .field
+    = f.text_field :edit_url, class: 'form-control'
+  .form-group
     = f.label :they_say
-    = f.text_field :they_say
-  .field
+    = f.text_area :they_say, class: 'form-control'
+  .form-group
     = f.label :we_say
-    = f.text_field :we_say
-  .actions
-    = f.submit 'Save'
+    = f.text_area :we_say, class: 'form-control'
+  .form-action
+    .row
+      .col
+        = f.submit class: "btn btn-primary"
+      .col.text-right
+        = link_to 'cancel', [:admin, setting], remote: true
+
+%br
