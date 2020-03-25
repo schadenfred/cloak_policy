@@ -1,5 +1,5 @@
 module CloakPolicy
-  class FeedbacksController < ApplicationControllerr
+  class FeedbacksController < ApplicationController
     before_action :set_feedback, only: [:destroy]
     before_action :authenticate_user!, :except => [:create]
 

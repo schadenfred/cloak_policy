@@ -1,5 +1,5 @@
 module CloakPolicy
-  class RecommendationsController < ApplicationControllerr
+  class RecommendationsController < ApplicationController
     before_action :set_recommendation, only: [:choose, :show, :edit, :update, :destroy]
 
     def index

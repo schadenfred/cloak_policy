@@ -1,6 +1,6 @@
 module CloakPolicy
 
-  class PreferencesController < ApplicationControllerr
+  class PreferencesController < ApplicationController
     before_action :set_preference, only: [:show, :edit, :update, :destroy]
 
     def index

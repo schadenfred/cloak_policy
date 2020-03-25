@@ -1,5 +1,5 @@
 module CloakPolicy
-  class VectorsController < ApplicationControllerr
+  class VectorsController < ApplicationController
     before_action :set_vector, only: [:show, :edit, :update, :destroy]
 
     def index

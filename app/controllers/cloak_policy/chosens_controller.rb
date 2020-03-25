@@ -1,6 +1,6 @@
 module CloakPolicy
 
-  class ChosensController < ApplicationControllerr
+  class ChosensController < ApplicationController
 
     def create
       recommendation = Recommendation.find(chosen_params[:recommendation_id])

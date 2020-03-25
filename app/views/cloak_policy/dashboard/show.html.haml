@@ -10,7 +10,7 @@
               %tr
                 %th email address
                 %th status
-            %tbody
+            -# %tbody
               - @pack.each do |invitation|
                 %tr
                   %th= invitation.email
@@ -20,7 +20,7 @@
         .card-header
           %h2= t "devise.invitations.new.header"
         .card-body
-          = simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f|
+          -# = simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f|
             = devise_error_messages!
             - resource.class.invite_key_fields.each do |field|
               = f.input field

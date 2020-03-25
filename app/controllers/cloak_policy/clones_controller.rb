@@ -1,5 +1,5 @@
 module CloakPolicy
-  class ClonesController < ApplicationControllerr
+  class ClonesController < ApplicationController
     before_action :set_cloneable, only: :clone
 
     def clone

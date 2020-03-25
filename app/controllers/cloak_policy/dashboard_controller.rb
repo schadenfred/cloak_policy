@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+require_dependency "cloak_policy/application_controller"
+
 module CloakPolicy
-  class DashboardController < ApplicationControllerr
+  class DashboardController < ApplicationController
     def show
       @settings = Setting.all
       @platforms = Platform.all
-      @pack = current_user.invitations
     end
   end
 end

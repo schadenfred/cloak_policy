@@ -1,5 +1,5 @@
 module CloakPolicy
-  class UseCasesController < ApplicationControllerr
+  class UseCasesController < ApplicationController
     before_action :set_use_case, only: [:show, :edit, :update, :destroy]
 
     def edit

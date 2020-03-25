@@ -1,5 +1,5 @@
 module CloakPolicy
-  class RecommendationsPlatformsController < ApplicationControllerr
+  class RecommendationsPlatformsController < ApplicationController
     before_action :set_recommendations_platform, only: [:show]
 
     def show

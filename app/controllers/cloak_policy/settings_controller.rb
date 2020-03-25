@@ -1,5 +1,5 @@
 module CloakPolicy
-  class SettingsController < ApplicationControllerr
+  class SettingsController < ApplicationController
     before_action :set_setting, only: [:show, :edit, :adjust, :update, :destroy, :activate, :deactivate]
 
     def update_row_order

@@ -1,5 +1,5 @@
 module CloakPolicy
-  class ChoicesController < ApplicationControllerr
+  class ChoicesController < ApplicationController
     before_action :set_choice, only: [:show, :edit, :update, :destroy, :activate, :deactivate]
 
     def activate

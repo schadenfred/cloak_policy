@@ -1,5 +1,5 @@
 module CloakPolicy
-  class ScoresController < ApplicationControllerr
+  class ScoresController < ApplicationController
 
     before_action :set_score, only: [:update, :destroy]
     before_action :set_scorable, only: [:index, :adjust, :show]

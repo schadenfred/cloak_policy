@@ -1,5 +1,5 @@
 module CloakPolicy
-  class PlatformsController < ApplicationControllerr
+  class PlatformsController < ApplicationController
     before_action :set_platform, only: [:show, :edit, :update, :destroy]
 
     def index
