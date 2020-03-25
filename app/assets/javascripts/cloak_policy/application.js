@@ -17,13 +17,8 @@
 //= require popper
 //= require bootstrap
 //= require Chart.min
-//= require cloak_policy/perfect-scrollbar
-
-//= require cloak_policy/configurator_init
-//= require cloak_policy/app
-//= require activestorage
 //= require cloak_policy/chosen
-//= require cloak_policy/recommendations
 //= require cloak_policy/settings
 //= require cloak_policy/scorable
-//= require cloak_policy/sidebar
+//= require activestorage
+//= require turbolinks
