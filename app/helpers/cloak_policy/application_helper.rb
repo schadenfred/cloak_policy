@@ -1,5 +1,14 @@
+require "webpacker/helper"
+
 module CloakPolicy
+
   module ApplicationHelper
+
+    include ::Webpacker::Helper
+
+    def current_webpacker_instance
+      CloakPolicy.webpacker
+    end
 
     def title
       base_title = "Recall"
