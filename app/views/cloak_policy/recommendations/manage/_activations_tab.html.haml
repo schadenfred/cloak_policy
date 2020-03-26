@@ -2,7 +2,7 @@
   %h3 Platforms
   %hr
   %br
-  = simple_form_for([:admin, recommendation]) do |f|
+  = simple_form_for recommendation do |f|
     = f.collection_check_boxes(:platform_ids, Platform.recommendable, :id, :name) do |checkbox|
       .row
         .col-2

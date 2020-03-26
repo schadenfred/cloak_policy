@@ -7,6 +7,6 @@
         .content
           - Platform.all.each do |platform|
             .col
-              = link_to [:admin, platform], class: 'connection-item' do
+              = link_to platform, class: 'connection-item' do
                 = material_icon(platform.icon, "3x")
                 %span= platform.name

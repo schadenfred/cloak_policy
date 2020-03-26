@@ -2,7 +2,7 @@
   %ul#platforms.nav.nav-tabs{:role => "tablist"}
     - @platforms.each do |platform|
       %li.nav-item
-        = link_to_unless_current material_icon(platform.icon), [:admin, platform], class: 'nav-link'
+        = link_to_unless_current material_icon(platform.icon), platform, class: 'nav-link'
 .card-body
   .row
     .container-fluid

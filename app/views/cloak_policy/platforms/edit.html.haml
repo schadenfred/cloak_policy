@@ -1,6 +1,6 @@
 .card-body
   = render 'form', platform: @platform
 
-  = link_to 'Show', [:admin, @platform]
+  = link_to 'Show', @platform
   \|
   = link_to 'Back', platforms_path

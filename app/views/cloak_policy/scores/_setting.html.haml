@@ -28,10 +28,10 @@
                 .col-3
                   .badge.badge-info= choice.name
                 .col-7
-                  = form_with model: choice.scores.where(vector_id: @vector.id).first, url: [:admin, choice.scores.where(vector_id: @vector.id).first] do |form|
+                  = form_with model: choice.scores.where(vector_id: @vector.id).first, url: choice.scores.where(vector_id: @vector.id).first do |form|
                     = form.text_field :impact, class: 'form-control'
                 .col-2
-                  = form_with model: choice.scores.where(vector_id: @vector.id).first, url: [:admin, choice.scores.where(vector_id: @vector.id).first] do |form|
+                  = form_with model: choice.scores.where(vector_id: @vector.id).first, url: choice.scores.where(vector_id: @vector.id).first do |form|
                     = form.number_field :points, class: 'form-control'
                     = form.hidden_field :score_id, value: choice.try(:scores).where(vector_id: @vector.id).first.try(:id)
 

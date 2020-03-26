@@ -28,7 +28,7 @@
                 = link_to edit_setting_path(setting), remote: true do
                   = material_icon("edit")
               .col
-                = link_to [:admin, setting], method: :delete, data: { confirm: 'Are you sure?' } do
+                = link_to setting, method: :delete, data: { confirm: 'Are you sure?' } do
                   = material_icon("delete")
 
 

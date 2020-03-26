@@ -2,7 +2,7 @@
   .card-header.card-header-divider
     = @recommendation.name.capitalize
     |
-    = link_to "platforms", [:admin, @recommendation]
+    = link_to "platforms", @recommendation
     .card-subtitle= @recommendation.description
   .card-body
     = render 'form'

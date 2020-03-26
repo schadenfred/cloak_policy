@@ -1,4 +1,4 @@
-= simple_form_for([:admin, @recommendation]) do |f|
+= simple_form_for @recommendation do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
   .row
@@ -44,7 +44,7 @@
                     .card-header
                       = setting.name
                     .card-body{id: "setting-#{setting.id}"}
-                      = simple_form_for([:admin, @recommendation]) do |f|
+                      = simple_form_for @recommendation do |f|
                         - setting.recommendable_choices.each do |sc|
                           - checked = @recommendation.chosens.pluck(:choice_id).include?(sc.id)
                           .radio{id: "choice-#{sc.id}"}

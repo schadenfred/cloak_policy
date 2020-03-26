@@ -1,4 +1,4 @@
-= form_with model: setting, url: [:admin, setting], platform_id: setting.platform.id do |f|
+= form_with model: setting, url: setting, platform_id: setting.platform.id do |f|
   = f.hidden_field :platform_id, value: setting.platform.id
   - if setting.id.nil?
     = f.hidden_field :row_order_position, value: '0'
@@ -25,6 +25,6 @@
       .col
         = f.submit class: "btn btn-primary"
       .col.text-right
-        = link_to 'cancel', [:admin, setting], remote: true
+        = link_to 'cancel', setting, remote: true
 
 %br

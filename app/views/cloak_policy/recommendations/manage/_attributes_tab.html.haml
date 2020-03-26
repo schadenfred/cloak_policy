@@ -2,7 +2,7 @@
   %h3 Attributes
   %hr
   %br
-  = simple_form_for([:admin, recommendation]) do |f|
+  = simple_form_for recommendation do |f|
     = f.error_notification
     = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
     .row

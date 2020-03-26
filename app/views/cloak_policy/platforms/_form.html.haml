@@ -1,4 +1,4 @@
-= form_with model: @platform, url: [:admin, @platform] do |f|
+= form_with model: @platform, url: @platform do |f|
   - if @platform.errors.any?
     #error_explanation
       %h2= "#{pluralize(@platform.errors.count, "error")} prohibited this org from being saved:"

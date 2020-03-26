@@ -1,12 +1,12 @@
 .card-header
   %ul.nav.nav-tabs
     %li.nav-item
-      = link_to 'Profile', [:admin, @use_case.profile], class: "nav-link"
+      = link_to 'Profile', @use_case.profile, class: "nav-link"
     %li.nav-item
 .card-body
   .card-title
     Edit Use Case for Profile:
-    = link_to @use_case.profile.name, [:admin, @use_case.profile]
+    = link_to @use_case.profile.name, @use_case.profile
   .card-deck
     .card
       .card-header.card-header-divider
@@ -18,7 +18,7 @@
         Preferences
       .card-body
 
-        = form_for([:admin, @use_case]) do |f|
+        = form_for @use_case do |f|
           = collection_check_boxes :use_case, :preference_ids, Preference.all, :id, :name do |cb|
             .custom-control.custom-checkbox
               = cb.check_box class: 'custom-control-input'
@@ -31,7 +31,7 @@
         Default recommendation
         - if @use_case.default_recommendation
           |
-          = link_to 'view', [:admin, @use_case.default_recommendation]
+          = link_to 'view', @use_case.default_recommendation
       .card-body
         = render 'default_recommendation',  housable: @use_case
   = help_for('configuration.help.use_case')

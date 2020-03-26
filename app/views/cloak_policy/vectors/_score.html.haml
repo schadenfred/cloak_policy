@@ -23,7 +23,7 @@
       = form_with model: score, url: score_path(id: score.id) do |f|
         = f.number_field :points, class: 'form-control'
     .col-1
-      = link_to [:admin, score], method: :delete, data: { confirm: 'Are you sure?' } do
+      = link_to score, method: :delete, data: { confirm: 'Are you sure?' } do
         = material_icon("delete", "", "red")
 - else
   = form_with model: Score.new, url: scores_path do |f|
