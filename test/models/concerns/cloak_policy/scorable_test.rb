@@ -11,8 +11,8 @@ module CloakPolicy
     Given(:setting)                  { settings(:one) }
     Given(:vector)                   { vectors(:privacy) }
 
-    # scorables = %w(choice preference platform setting)
-    scorables = %w( platform)
+    scorables = %w(choice preference platform setting)
+    # scorables = %w( platform)
 
     scorables.each do |scorable|
 

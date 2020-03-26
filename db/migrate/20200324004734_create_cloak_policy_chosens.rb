@@ -1,6 +1,7 @@
 class CreateCloakPolicyChosens < ActiveRecord::Migration[6.0]
   def change
     create_table :cloak_policy_chosens do |t|
+      t.string :advice
       t.integer :choice_id
       t.integer :recommendation_id
       t.integer :setting_id

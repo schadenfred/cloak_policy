@@ -5,9 +5,11 @@ require "test_helper"
 module CloakPolicy
 
   describe Platform do
+
     Given(:subject) { Platform.new }
 
     describe "db" do
+
       specify "columns" do
         must have_db_column(:description).of_type(:string)
         must have_db_column(:icon).of_type(:string)

@@ -54,36 +54,5 @@ module CloakPolicy
 
       # Then { assert_equal choice.impact_for(vectors(:privacy)), 'yuuuge' }
     end
-
-    describe ":create_development_recommendation" do
-
-      describe "must generate a new recommendation" do
-
-        # Then { assert_difference(['Recommendation.count'], 1) {
-        #   choice.create_development_recommendation} }
-      end
-
-      describe "must generate a new chosen" do
-
-        # Then { assert_difference(['Chosen.count'], 1) {
-        #   choice.create_development_recommendation} }
-      end
-
-      describe "must generate a new recommendation_platform" do
-
-        # Then { assert_difference(['RecommendationsPlatform.count'], 1) {
-        #   choice.create_development_recommendation} }
-      end
-
-      describe "must have correct associations" do
-
-        Given { choice.create_development_recommendation }
-        Given(:dev_rec) { Recommendation.last }
-        Given(:platforms) { dev_rec.platforms }
-        # Then { assert_equal dev_rec.chosens.last.choice_id, choice.id }
-        # And { assert_match /Isolation/, dev_rec.name  }
-        # And { assert_includes platforms.pluck(:id), choice.setting.platform.id }
-      end
-    end
   end
 end

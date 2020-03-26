@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_005949) do
   end
 
   create_table "cloak_policy_chosens", force: :cascade do |t|
+    t.string "advice"
     t.integer "choice_id"
     t.integer "recommendation_id"
     t.integer "setting_id"

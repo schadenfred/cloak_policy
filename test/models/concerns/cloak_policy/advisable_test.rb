@@ -59,68 +59,68 @@ module CloakPolicy
       end
     end
 
-#     describe "cascading advice" do
+    describe "cascading advice" do
 
-#       describe "default" do
+      describe "default" do
 
-#         # Then { assert_equal platform.they_say, platform.name }
-#         # And  { assert_equal platform.we_say, platform.name }
-#         # And  { assert_equal setting.they_say, setting.name }
-#         # And  { assert_equal setting.we_say, setting.name }
-#         # And  { assert_equal choice.they_say, setting.name }
-#         # And  { assert_equal chosen.advice, setting.name }
-#       end
+        Then { assert_equal platform.they_say, platform.name }
+        And  { assert_equal platform.we_say, platform.name }
+        And  { assert_equal setting.they_say, setting.name }
+        And  { assert_equal setting.we_say, setting.name }
+        And  { assert_equal choice.they_say, setting.name }
+        And  { assert_equal chosen.advice, setting.name }
+      end
 
-#       describe "setting :they_say" do
+      describe "setting :they_say" do
 
-#         Given { setting.update(they_say: theirs)}
+        Given { setting.update(they_say: theirs)}
 
-#         # Then { assert_equal setting.we_say, theirs }
-#         # And  { assert_equal choice.they_say, theirs }
-#         # And  { assert_equal choice.we_say, theirs }
-#         # And  { assert_equal chosen.advice, theirs }
-#       end
+        Then { assert_equal setting.we_say, theirs }
+        And  { assert_equal choice.they_say, theirs }
+        And  { assert_equal choice.we_say, theirs }
+        And  { assert_equal chosen.advice, theirs }
+      end
 
-#       describe "setting :we_say" do
+      describe "setting :we_say" do
 
-#         Given { setting.update(they_say: theirs)}
-#         Given { setting.update(we_say: ours)}
+        Given { setting.update(they_say: theirs)}
+        Given { setting.update(we_say: ours)}
 
-#         # Then { assert_equal setting.we_say, ours }
-#         # And  { assert_equal choice.they_say, theirs }
-#         # And  { assert_equal choice.we_say, theirs }
-#         # And  { assert_equal chosen.advice, theirs }
-#       end
+        Then { assert_equal setting.we_say, ours }
+        And  { assert_equal choice.they_say, theirs }
+        And  { assert_equal choice.we_say, theirs }
+        And  { assert_equal chosen.advice, theirs }
+      end
 
-#       describe "choice :they_say" do
+      describe "choice :they_say" do
 
-#         Given { setting.update(we_say: ours)}
-#         Given { choice.update(they_say: theirs)}
+        Given { setting.update(we_say: ours)}
+        Given { choice.update(they_say: theirs)}
 
-#         # Then { assert_equal choice.they_say, theirs }
-#         # And  { assert_equal choice.we_say, theirs }
-#         # And  { assert_equal chosen.advice, theirs }
-#       end
+        Then { assert_equal choice.they_say, theirs }
+        And  { assert_equal choice.we_say, theirs }
+        And  { assert_equal chosen.advice, theirs }
+      end
 
-#       describe "choice :we_say" do
+      describe "choice :we_say" do
 
-#         Given { choice.update(they_say: theirs)}
-#         Given { choice.update(we_say: ours)}
+        Given { choice.update(they_say: theirs)}
+        Given { choice.update(we_say: ours)}
 
-#         # Then { assert_equal choice.they_say, theirs }
-#         # And  { assert_equal choice.we_say, ours }
-#         # And  { assert_equal chosen.advice, ours }
-#       end
+        Then { assert_equal choice.they_say, theirs }
+        And  { assert_equal choice.we_say, ours }
+        And  { assert_equal chosen.advice, ours }
+      end
 
-#       describe "chosen :we_say" do
+      describe "chosen :we_say" do
 
-#         Given { choice.update(they_say: theirs)}
-#         Given { chosen.update(advice: ours)}
+        Given { choice.update(they_say: theirs)}
+        Given { chosen.update(advice: ours)}
 
-#         # Then { assert_equal choice.we_say, theirs }
-#         # And  { assert_equal chosen.they_say, theirs }
-#         # And  { assert_equal chosen.advice, ours }
-#       end
-#     end
+        # Then { assert_equal choice.we_say, theirs }
+        # And  { assert_equal chosen.they_say, theirs }
+        # And  { assert_equal chosen.advice, ours }
+      end
+    end
   end
 end
