@@ -55,7 +55,7 @@
 
                 - CloakPolicy::Platform.all.each do |svc|
                   %li.parent{ class: ('open' if svc.id.to_s.eql?(params[:id]))}
-                    = link_to [:admin, svc] do
+                    = link_to svc do
                       = material_icon(svc.icon, '', icon_color(svc))
                       = svc.name
                     %ul.sub-menu
@@ -91,7 +91,7 @@
 
                     - CloakPolicy::Platform.all.each do |svc|
                       %li.parent{ class: ('open' if svc.id.to_s.eql?(params[:platform_id]))}
-                        = link_to [:admin, svc] do
+                        = link_to svc do
                           = material_icon(svc.icon)
                           = svc.name
                         %ul.sub-menu

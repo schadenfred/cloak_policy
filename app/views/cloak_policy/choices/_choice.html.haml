@@ -14,7 +14,7 @@
           = link_to edit_choice_path(choice), remote: true do
             = material_icon("edit")
         .col
-          = link_to [:admin, choice], method: :delete, data: { confirm: 'Are you sure?' } do
+          = link_to choice, method: :delete, data: { confirm: 'Are you sure?' } do
             = material_icon("delete")
 
 

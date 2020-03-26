@@ -11,7 +11,7 @@
   %ul#platforms.nav.nav-tabs{:role => "tablist"}
     - @recommendation.platforms.each do |svc|
       %li.nav-item
-        = link_to material_icon(svc.icon, '2x'), admin_recommendation_platform_path(recommendation_id: @recommendation.id, id: svc.id), class: 'nav-link'
+        = link_to material_icon(svc.icon, '2x'), recommendation_platform_path(recommendation_id: @recommendation.id, id: svc.id), class: 'nav-link'
     %li.nav-item
       %a.nav-link{ id: "attributes-tab", "aria-controls" => "attributes", "aria-selected" => "false", "data-toggle" => "tab", :href => "#attributes", :role => "tab"}
         Attributes

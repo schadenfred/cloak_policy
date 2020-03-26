@@ -48,19 +48,19 @@
       - setting.recommendables.each do |choice|
         %dl.row
           .col-sm-2
-            = form_with scope: :chosen, url: admin_chosens_url, method: :post, remote: true, id: "choice-#{choice.id}" do |form|
+            = form_with scope: :chosen, url: chosens_url, method: :post, remote: true, id: "choice-#{choice.id}" do |form|
               - checked = recommendation.choice_for(setting).eql?(choice) ? 'checked' : ''
               .form-group.row.pt-1.pb-1
                 .col-12.col-sm-8.col-lg-6.form-check.mt-1
                   %label.custom-control.custom-radio
-                    = form.radio_button :choice, choice.id, options = { class: "custom-control-input", multiple: true, checked: checked, data: {remote: true, method: :post, url: admin_chosens_url( chosen: { recommendation_id: recommendation.id, choice_id: choice.id, recommendable: true} )}}
+                    = form.radio_button :choice, choice.id, options = { class: "custom-control-input", multiple: true, checked: checked, data: {remote: true, method: :post, url: chosens_url( chosen: { recommendation_id: recommendation.id, choice_id: choice.id, recommendable: true} )}}
                     %span.custom-control-label= choice.name
           %dd.col-sm-3
             = choice.they_say
           %dd.col-sm-3
             = choice.we_say
           %dd.col-sm-4
-            = form_with scope: :chosen, url: admin_chosens_url, method: :post, remote: true, id: "choice-#{choice.id}" do |form|
+            = form_with scope: :chosen, url: chosens_url, method: :post, remote: true, id: "choice-#{choice.id}" do |form|
               = form.hidden_field :choice_id, value: choice.id
               = form.hidden_field :recommendation_id, value: recommendation.id
 

@@ -1,4 +1,4 @@
-= form_with model: choice, url: [:admin, choice], setting_id: choice.setting.id do |f|
+= form_with model: choice, url: choice, setting_id: choice.setting.id do |f|
   = f.hidden_field :setting_id, value: choice.setting.id
 
   .row

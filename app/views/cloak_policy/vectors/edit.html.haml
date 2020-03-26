@@ -7,6 +7,6 @@
   .card-footer
     = link_to 'Show', [:admin, @vector]
     \|
-    = link_to 'Back', admin_vectors_path
+    = link_to 'Back', vectors_path
     \|
     = link_to 'Destroy', [:admin, @vector], method: :delete, data: { confirm: 'Are you sure?' }, remote: true

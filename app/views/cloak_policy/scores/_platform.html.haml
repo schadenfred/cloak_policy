@@ -18,7 +18,7 @@
             .row
             %br
             Choice weights:
-            = link_to admin_setting_score_path(setting_id: setting.id) do
+            = link_to setting_score_path(setting_id: setting.id) do
               - unless setting.choices.empty?
                 - setting.choices.each do |c|
                   .badge= c.points_for(@vector)

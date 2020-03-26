@@ -11,7 +11,7 @@
       - active = (rs.name.eql? @platform.name) ? ' active' : ''
       %li.nav-item
 
-        = link_to material_icon(rs.icon, '2x'), admin_recommendation_platform_path(recommendation_id: @recommendation.id, id: rs.id), class: "nav-link#{active}"
+        = link_to material_icon(rs.icon, '2x'), recommendation_platform_path(recommendation_id: @recommendation.id, id: rs.id), class: "nav-link#{active}"
     %li.nav-item
       = link_to 'Manage', [:admin, @recommendation], class: 'nav-link'
 

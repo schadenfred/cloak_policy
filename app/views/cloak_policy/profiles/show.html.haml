@@ -1,7 +1,7 @@
 .card-header
   %ul.nav.nav-tabs
     %li.nav-item
-      = link_to 'Profiles',admin_profiles_path, class: "nav-link active"
+      = link_to 'Profiles', profiles_path, class: "nav-link active"
 .card-body
   .card-title
     Profile:
@@ -28,7 +28,7 @@
 
                 %td= use_case.description
                 %td= link_to 'Edit', edit_use_case_path(use_case)
-                %td= link_to 'Destroy', admin_use_case_url(use_case), method: :delete, data: { confirm: 'Are you sure?' }
+                %td= link_to 'Destroy', use_case_url(use_case), method: :delete, data: { confirm: 'Are you sure?' }
     .card
       .card-header.card-header-divider
         New Use Case

@@ -7,6 +7,7 @@ require "jquery-ui-rails"
 require "shoulda-context"
 require "shoulda-matchers"
 require "ranked-model"
+require "simple_form"
 require "chart-js-rails"
 require "turbolinks"
 

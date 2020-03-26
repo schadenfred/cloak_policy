@@ -2,7 +2,7 @@
   %ul.nav.nav-tabs
     - Vector.all.each do |vector|
       %li.nav-item
-        = link_to admin_setting_score_path(setting_id: @scorable.id, id: vector.id), class: "nav-link #{(' active' if (vector.id == @vector.id))}" do
+        = link_to setting_score_path(setting_id: @scorable.id, id: vector.id), class: "nav-link #{(' active' if (vector.id == @vector.id))}" do
           = material_icon(vector.icon)
           = vector.name
 .card-body
@@ -11,7 +11,7 @@
       .row
         .card.col-12
           .card-header.card-header-divider
-            = link_to admin_platform_score_path(platform_id: @scorable.platform.id, id:  @vector.id) do
+            = link_to platform_score_path(platform_id: @scorable.platform.id, id:  @vector.id) do
               = material_icon(@scorable.platform.icon)
               = @scorable.name
           .card-body

@@ -4,6 +4,6 @@
 
     - Vector.all.each do |vector|
       %li.nav-item
-        = link_to admin_recommendation_score_path(recommendation_id: @recommendation.id, id: vector.id), class: 'nav-link' do
+        = link_to recommendation_score_path(recommendation_id: @recommendation.id, id: vector.id), class: 'nav-link' do
           = material_icon(vector.icon)
           = vector.name

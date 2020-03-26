@@ -20,13 +20,13 @@
 - if score
   .row
     .col-9
-      = form_with model: score, url: admin_score_path(id: score.id) do |f|
+      = form_with model: score, url: score_path(id: score.id) do |f|
         = f.number_field :points, class: 'form-control'
     .col-1
       = link_to [:admin, score], method: :delete, data: { confirm: 'Are you sure?' } do
         = material_icon("delete", "", "red")
 - else
-  = form_with model: Score.new, url: admin_scores_path do |f|
+  = form_with model: Score.new, url: scores_path do |f|
     = f.hidden_field :scorable_type, value: 'Vector'
     = f.hidden_field :scorable_id, value: scorable.id
     = f.hidden_field :vector_id, value: @vector.id
