@@ -8,20 +8,10 @@ require "shoulda-context"
 require "shoulda-matchers"
 require "ranked-model"
 require "chart-js-rails"
-require "webpacker"
-
 require "turbolinks"
 
 module CloakPolicy
-  ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
+  # Your code goes here...
 
-  class << self
-    def webpacker
-      @webpacker ||= ::Webpacker::Instance.new(
-        root_path: Rails.root,
-        config_path: ROOT_PATH.join("config/webpacker.yml")
-      )
-    end
-  end
 
 end
