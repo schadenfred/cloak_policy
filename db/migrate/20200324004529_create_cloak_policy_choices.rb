@@ -7,7 +7,6 @@ class CreateCloakPolicyChoices < ActiveRecord::Migration[6.0]
       t.string :we_say
       t.string :they_say
       t.boolean :recommendable
-      t.integer :development_recommendation_id
 
       t.timestamps
     end

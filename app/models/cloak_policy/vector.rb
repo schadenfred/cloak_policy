@@ -3,10 +3,10 @@ module CloakPolicy
 
     include Scorable
 
-    has_many :scored, class_name: 'CloakPolicy::Score', foreign_key: :vector_id, dependent: :destroy
-    has_many :scored_subvectors, through: :scored, source: :scorable, source_type: 'CloakPolicy::Vector'
+    has_many :scored, class_name: 'Score', foreign_key: :vector_id, dependent: :destroy
+    has_many :scored_subvectors, through: :scored, source: :scorable, source_type: 'Vector'
     has_many :settings, through: :scored, source: :scorable, source_type: 'Setting'
-    has_many :subvectors, class_name: "CloakPolicy::Vector", foreign_key: :parent_id
+    has_many :subvectors, class_name: "Vector", foreign_key: :parent_id
 
     validates :name, presence: true
     validates :name, uniqueness: { scope: :parent_id }

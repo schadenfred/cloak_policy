@@ -23,24 +23,25 @@ module CloakPolicy
         Then {
           assert Vector.top_level.include? vector }
 
-        # And  { refute Vector.top_level.include? subvector }
-        # And  { assert vector.subvectors.include? subvector }
+        And  { refute Vector.top_level.include? subvector }
+        And  { assert vector.subvectors.include? subvector }
       end
     end
 
     describe ":full_name" do
 
-      # Then { assert_equal vector.full_name, vector.name }
+      Then { assert_equal vector.full_name, vector.name }
     end
 
     describe ":all_settings" do
 
-      # Then {
-      #   assert_includes vector.settings, settings(:two)
-      #   assert_includes subvector.settings, settings(:three)
-      #   assert_equal vector.settings.count, 2
-      #   assert_equal subvector.settings.count, 1
-      #   assert_equal vector.all_settings.count, 4 }
+      Then {
+        # assert_includes vector.settings, settings(:two)
+        # assert_includes subvector.settings, settings(:three)
+        # assert_equal vector.settings.count, 2
+        # assert_equal subvector.settings.count, 1
+        # assert_equal vector.all_settings.count, 4
+      }
     end
   end
 end

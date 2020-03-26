@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_005949) do
     t.string "we_say"
     t.string "they_say"
     t.boolean "recommendable"
-    t.integer "development_recommendation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
