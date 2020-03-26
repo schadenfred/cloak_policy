@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.2", ">= 6.0.2.2"
   spec.add_dependency "haml-rails"
+  spec.add_dependency "coffee-rails"
+
   spec.add_dependency "bootstrap"
   spec.add_dependency "sass-rails"
   spec.add_dependency "ranked-model"
