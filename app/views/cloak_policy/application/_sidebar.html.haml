@@ -8,45 +8,6 @@
               %br
               Admin Menu
               = material_icon('chevron-down')
-            %li.parent
-              = link_to do
-                = material_icon("album")
-                %span Configuration
-              %ul.sub-menu
-                %li{class: (current_page?(controller: "profiles") ? "active" : "") }
-                  = link_to profiles_path, class: "active"  do
-                    = material_icon("folder-outline")
-                    Profiles
-                %li{class: (current_page?(controller: "preferences") ? "active" : "") }
-                  = link_to preferences_path, class: "active" do
-                    = material_icon("album")
-                    Preferences
-                %li.parent{ class: ('open' if controller_name.eql?('vectors') )}
-                  = link_to  do
-                    = material_icon("apps")
-                    %span Vectors
-                  %ul.sub-menu
-                    %li
-                      = link_to vectors_path do
-                        = material_icon('album')
-                        'Vectors'
-                    %li
-                      = link_to new_vector_path do
-                        = material_icon('open-in-new')
-                        'New vector'
-
-            %li{class: (current_page?(controller: "recommendations") ? "active" : "") }
-              = link_to(recommendations_path, class: "active" ) do
-                = material_icon("album")
-                Recommendations
-            %li{class: (current_page?(controller: "extension_errors") ? "active" : "") }
-              = link_to(extension_errors_path, class: "active" ) do
-                = material_icon("album")
-                Extension Errors
-            %li{class: (current_page?(controller: "feedbacks") ? "active" : "") }
-              = link_to(feedbacks_path, class: "active" ) do
-                = material_icon("album")
-                Uninstall feedback
             %li.parent{ class: ('open' if controller_name.eql?('platforms') )}
               = link_to platforms_path do
                 = material_icon("share")
@@ -100,8 +61,3 @@
                               = link_to platform_score_path(platform_id: svc.id, id: v.id) do
                                 = material_icon(v.icon)
                                 = v.name
-                %li{class: (current_page?(controller: "preferences") ? "active" : "") }
-                  = link_to(preferences_path, class: "active" ) do
-                    = material_icon("album")
-                    Preferences
-
