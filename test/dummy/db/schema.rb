@@ -10,24 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_005949) do
+ActiveRecord::Schema.define(version: 2020_03_27_011724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cloak_policy_categories", force: :cascade do |t|
-    t.string "description"
-    t.string "icon"
-    t.string "name"
-    t.string "parent_type"
-    t.integer "parent_id"
-    t.integer "row_order"
-    t.string "category_type"
-    t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["parent_id", "parent_type"], name: "index_cloak_policy_categories_on_parent_id_and_parent_type"
-  end
 
   create_table "cloak_policy_choices", force: :cascade do |t|
     t.string "name"
@@ -40,19 +26,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_005949) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cloak_policy_chosens", force: :cascade do |t|
-    t.string "advice"
-    t.integer "choice_id"
-    t.integer "recommendation_id"
-    t.integer "setting_id"
-    t.boolean "recommendable"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["choice_id"], name: "index_cloak_policy_chosens_on_choice_id"
-    t.index ["recommendation_id"], name: "index_cloak_policy_chosens_on_recommendation_id"
-    t.index ["setting_id"], name: "index_cloak_policy_chosens_on_setting_id"
-  end
-
   create_table "cloak_policy_platforms", force: :cascade do |t|
     t.string "name"
     t.string "fqdn"
@@ -62,13 +35,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_005949) do
     t.string "they_say"
     t.string "we_say"
     t.boolean "recommendable"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "cloak_policy_preferences_use_cases", force: :cascade do |t|
-    t.integer "use_case_id"
-    t.integer "preference_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -96,6 +62,13 @@ ActiveRecord::Schema.define(version: 2020_03_24_005949) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["platform_id"], name: "index_cloak_policy_settings_on_platform_id"
+  end
+
+  create_table "cloak_policy_vectors", force: :cascade do |t|
+    t.string "description"
+    t.string "icon"
+    t.string "name"
+    t.integer "parent_id"
   end
 
 end

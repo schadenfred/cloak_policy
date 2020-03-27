@@ -1,7 +1,11 @@
 module CloakPolicy
-  class Vector < Category
+
+  class Vector < ApplicationRecord
 
     include Scorable
+
+    belongs_to :parent, class_name: "CloakPolicy::Vector", optional: true
+
 
     has_many :scored, class_name: 'Score', foreign_key: :vector_id, dependent: :destroy
     has_many :scored_subvectors, through: :scored, source: :scorable, source_type: 'Vector'

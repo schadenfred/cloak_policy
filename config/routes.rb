@@ -1,13 +1,9 @@
 CloakPolicy::Engine.routes.draw do
 
   resources :settings
-  resources :preferences_use_cases
-  resources :chosens
   resources :choices
   resources :feedbacks, only: [:create, :index, :destroy]
 
-  resources :profiles
-  resources :preferences
   resources :use_cases, only: [:edit, :create, :update, :destroy]
   resources :vectors
   resources :extension_errors,          only: :index

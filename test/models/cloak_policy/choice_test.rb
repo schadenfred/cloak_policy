@@ -21,7 +21,6 @@ module CloakPolicy
     specify "associations" do
 
       must belong_to :setting
-      must have_many :chosens
     end
 
     specify "validations" do

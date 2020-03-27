@@ -5,14 +5,11 @@ module CloakPolicy
   class ScorableTest < ActiveSupport::TestCase
 
     Given(:choice)                   { choices(:one) }
-    Given(:chosen)                   { chosens(:one) }
-    Given(:preference)               { preferences(:posts_frequently) }
     Given(:platform)                 { platforms(:facebook) }
     Given(:setting)                  { settings(:one) }
     Given(:vector)                   { vectors(:privacy) }
 
-    scorables = %w(choice preference platform setting)
-    # scorables = %w( platform)
+    scorables = %w(choice  platform setting)
 
     scorables.each do |scorable|
 

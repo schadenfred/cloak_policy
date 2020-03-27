@@ -1,8 +1,0 @@
-%br
-.row
-  .col-3
-    = vector.full_name
-  .col
-    = render 'score', scorable: @preference, vector: vector
-- vector.subvectors.each do |sv|
-  = render 'vector', vector: sv

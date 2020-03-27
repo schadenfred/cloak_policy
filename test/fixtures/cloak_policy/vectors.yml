@@ -3,14 +3,11 @@ _fixture:
 
 privacy:
   name: Privacy
-  type: CloakPolicy::Vector
 
 location:
   name: location
   parent: privacy
-  type: CloakPolicy::Vector
 
 geolocation:
   name: geolocation
   parent: location
-  type: CloakPolicy::Vector

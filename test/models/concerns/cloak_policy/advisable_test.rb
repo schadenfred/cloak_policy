@@ -7,7 +7,6 @@ module CloakPolicy
     Given(:platform) { platforms(:facebook) }
     Given(:setting) { settings(:one) }
     Given(:choice)  { choices(:one) }
-    Given(:chosen)  { chosens(:one)}
     Given(:theirs)  { "their text" }
     Given(:ours)    { "our text" }
 
@@ -27,11 +26,8 @@ module CloakPolicy
 
             specify "columns" do
 
-              unless m.eql?('chosen')
-
-                must have_db_column(:they_say)
-                must have_db_column(:we_say)
-              end
+              must have_db_column(:they_say)
+              must have_db_column(:we_say)
             end
           end
 
@@ -68,7 +64,6 @@ module CloakPolicy
         And  { assert_equal setting.they_say, setting.name }
         And  { assert_equal setting.we_say, setting.name }
         And  { assert_equal choice.they_say, setting.name }
-        And  { assert_equal chosen.advice, setting.name }
       end
 
       describe "setting :they_say" do
@@ -78,7 +73,6 @@ module CloakPolicy
         Then { assert_equal setting.we_say, theirs }
         And  { assert_equal choice.they_say, theirs }
         And  { assert_equal choice.we_say, theirs }
-        And  { assert_equal chosen.advice, theirs }
       end
 
       describe "setting :we_say" do
@@ -89,7 +83,6 @@ module CloakPolicy
         Then { assert_equal setting.we_say, ours }
         And  { assert_equal choice.they_say, theirs }
         And  { assert_equal choice.we_say, theirs }
-        And  { assert_equal chosen.advice, theirs }
       end
 
       describe "choice :they_say" do
@@ -99,7 +92,6 @@ module CloakPolicy
 
         Then { assert_equal choice.they_say, theirs }
         And  { assert_equal choice.we_say, theirs }
-        And  { assert_equal chosen.advice, theirs }
       end
 
       describe "choice :we_say" do
@@ -109,7 +101,6 @@ module CloakPolicy
 
         Then { assert_equal choice.they_say, theirs }
         And  { assert_equal choice.we_say, ours }
-        And  { assert_equal chosen.advice, ours }
       end
 
       describe "chosen :we_say" do

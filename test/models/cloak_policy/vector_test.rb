@@ -8,10 +8,28 @@ module CloakPolicy
 
     Given(:subject) { Vector.new }
 
-    specify "associations" do
-      must have_many(:scores)
-      must have_many(:settings)
-      must have_many(:subvectors)
+    describe "db" do
+
+      specify "columns" do
+
+        must have_db_column(:name)
+        must have_db_column(:description)
+        must have_db_column(:icon)
+        must have_db_column(:parent_id).of_type(:integer)
+      end
+    end
+
+    describe "associations" do
+
+      specify "belongs_to" do
+        must belong_to(:parent).optional
+      end
+
+      specify "has_many" do
+        must have_many(:scores)
+        must have_many(:settings)
+        must have_many(:subvectors)
+      end
     end
 
     Given(:vector) { vectors(:privacy)}

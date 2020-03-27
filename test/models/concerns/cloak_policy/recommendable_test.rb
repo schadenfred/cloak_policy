@@ -4,11 +4,9 @@ module CloakPolicy
 
   class RecommendableTest < ActiveSupport::TestCase
 
-    Given(:recommendation) { recommendations(:kardashian)}
     Given(:platform)        { platforms(:facebook) }
     Given(:setting)        { settings(:one) }
     Given(:choice)         { choices(:one) }
-    Given(:chosen)         { chosens(:one)}
 
     describe "sloppy?" do
 
@@ -113,7 +111,7 @@ module CloakPolicy
 
     describe "shared behavior of Platform, Setting, and Choice models" do
 
-      %w[platform setting choice chosen].each do |m|
+      %w[platform setting choice].each do |m|
 
         klass = ("CloakPolicy::#{m.capitalize}").classify.constantize
 
@@ -185,7 +183,6 @@ module CloakPolicy
             Then { refute platform.recommendable }
             And  { assert setting.recommendable }
             And  { assert choice.recommendable }
-            And  { assert chosen.recommendable }
           end
 
           describe "but not :recommendable?" do
@@ -193,7 +190,6 @@ module CloakPolicy
             Then { refute platform.recommendable? }
             And  { refute setting.recommendable? }
             And  { refute choice.recommendable? }
-            And  { refute chosen.recommendable? }
           end
         end
       end
@@ -209,8 +205,6 @@ module CloakPolicy
 
         Then { refute setting.recommendable }
         And  { assert choice.recommendable }
-        And  { assert chosen.recommendable }
-        And  { refute chosen.recommendable? }
         And  { refute choice.recommendable? }
 
         describe "setting.choices.first.parent_recommendable? return false" do
@@ -225,16 +219,6 @@ module CloakPolicy
 
         Then { refute choice.recommendable }
         And  { refute choice.recommendable? }
-        And  { refute chosen.recommendable? }
-        And  { assert chosen.recommendable }
-      end
-
-      describe "of chosen" do
-
-        Given { chosen.deactivate! }
-
-        Then { refute chosen.recommendable }
-        And  { refute chosen.recommendable? }
       end
     end
   end

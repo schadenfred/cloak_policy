@@ -6,11 +6,6 @@ module CloakPolicy
     include Scorable
 
     belongs_to :setting
-    belongs_to :development_recommendation,
-                class_name: "Recommendation", optional: true
-
-    has_many :chosens, dependent: :destroy
-    has_many :recommendations, through: :chosens
 
     validates :setting, presence: true
     validates :name, presence: true
@@ -48,14 +43,5 @@ module CloakPolicy
       end
       hash
     end
-
-    def create_development_recommendation
-      rec_name = "Isolation: #{setting.name} > #{name}"
-      recommendation = Recommendation.create(name: rec_name)
-      recommendation.chosens.create(choice_id: id, setting_id: setting.id)
-      update(development_recommendation_id: recommendation.id)
-      recommendation.recommendations_platforms.create(platform_id: setting.platform.id)
-    end
   end
-
 end
