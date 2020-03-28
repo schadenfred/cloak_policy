@@ -9,7 +9,7 @@
     %dd.col-sm-2
       .row
         .col
-          -# = eval(activation_link_for(choice))
+          = eval(activation_link_for(choice))
         .col
           = link_to edit_choice_path(choice), remote: true do
             = material_icon("edit")

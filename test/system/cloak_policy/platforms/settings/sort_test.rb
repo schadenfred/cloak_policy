@@ -3,10 +3,8 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-  Given { skip }
 
   Given { javascript }
-  Given { sign_in }
 
   Given(:sone)    { settings(:one) }
   Given(:stwo)    { settings(:two) }
@@ -14,7 +12,7 @@ class PlatformsTest < ApplicationSystemTestCase
   Given(:choice2) { choices(:two) }
   Given(:choice3) { choices(:three) }
 
-  Given { visit admin_platform_path(platforms(:facebook)) }
+  Given { visit platform_path(platforms(:facebook)) }
 
   describe "sortable" do
     describe "on page load" do

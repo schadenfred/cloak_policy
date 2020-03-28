@@ -37,7 +37,7 @@ module CloakPolicy
       @setting = Setting.find(params["setting_id"])
       @choice = @setting.choices.build
       respond_to do |f|
-        f.js { render 'new', locals: { choice: @choice }}
+        f.js { render 'cloak_policy/choices/new', locals: { choice: @choice }}
       end
     end
 

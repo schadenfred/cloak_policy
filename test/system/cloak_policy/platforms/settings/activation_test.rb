@@ -3,18 +3,17 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-  Given { skip }
 
   Given { javascript }
-  Given { sign_in }
 
   describe "activation" do
+
     Given(:sone)    { settings(:one) }
     Given(:stwo)    { settings(:two) }
     Given(:choice1) { choices(:one) }
     Given(:choice2) { choices(:two) }
     Given(:choice3) { choices(:three) }
-    Given { visit admin_platform_path(platforms(:facebook)) }
+    Given { visit platform_path(platforms(:facebook)) }
 
     describe "settings" do
       describe "#deactivate" do

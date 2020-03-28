@@ -3,12 +3,10 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-  Given { skip }
 
   Given { javascript }
-  Given { sign_in }
   Given(:platform) { platforms(:facebook) }
-  Given { visit admin_platform_path(platform) }
+  Given { visit platform_path(platform) }
 
   describe "new setting form" do
     Given { refute_selector ".accordion", text: "Who can see muh grbils?" }

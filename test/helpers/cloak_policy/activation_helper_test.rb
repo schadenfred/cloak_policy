@@ -1,9 +1,8 @@
 require 'test_helper'
+
 include CloakPolicy::ActivationHelper
+
 class ActivationHelperTest < ActiveSupport::TestCase
-  Given { skip }
-
-
 
   Given(:platform) { platforms(:facebook) }
   Given(:setting) { settings(:one) }
@@ -16,14 +15,14 @@ class ActivationHelperTest < ActiveSupport::TestCase
 
     describe "choice active" do
 
-      Then { assert_match /deactivate_admin_choice_path/, activation_link_for(choice)}
+      Then { assert_match /deactivate_choice_path/, activation_link_for(choice)}
     end
 
     describe "choice inactive" do
 
       Given { choice.deactivate! }
 
-      Then { assert_match /activate_admin_choice_path/, activation_link_for(choice) }
+      Then { assert_match /activate_choice_path/, activation_link_for(choice) }
     end
 
     describe "choice active setting inactive" do
@@ -45,7 +44,7 @@ class ActivationHelperTest < ActiveSupport::TestCase
 
     describe "setting and platform active" do
 
-      Given(:expected) {"deactivate_admin_setting_path(setting)" }
+      Given(:expected) {"deactivate_setting_path(setting)" }
 
       Then { assert_match expected, activation_link_for(setting) }
     end
@@ -53,7 +52,7 @@ class ActivationHelperTest < ActiveSupport::TestCase
     describe "setting inactive and platform active" do
 
       Given { setting.deactivate! }
-      Given(:expected) {"deactivate_admin_setting_path(setting)" }
+      Given(:expected) {"deactivate_setting_path(setting)" }
 
       Then { refute_match expected, activation_link_for(setting) }
     end
@@ -61,7 +60,7 @@ class ActivationHelperTest < ActiveSupport::TestCase
     describe "setting active and platform inactive" do
 
       Given { platform.deactivate! }
-      Given(:expected) {"deactivate_admin_setting_path(setting)" }
+      Given(:expected) {"deactivate_setting_path(setting)" }
 
       Then { refute_match expected, activation_link_for(setting) }
     end
@@ -70,7 +69,7 @@ class ActivationHelperTest < ActiveSupport::TestCase
 
       Given { platform.deactivate! }
       Given { setting.deactivate! }
-      Given(:expected) {"deactivate_admin_setting_path(setting)" }
+      Given(:expected) {"deactivate_setting_path(setting)" }
 
       Then { refute_match expected, activation_link_for(setting) }
     end

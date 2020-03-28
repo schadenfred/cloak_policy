@@ -72,7 +72,7 @@ module CloakPolicy
       @setting = Setting.new(setting_params)
       respond_to do |format|
         if @setting.save
-          format.js { redirect_to [:admin, @setting.platform], notice: "setting created"}
+          format.js { redirect_to @setting.platform, notice: "setting created"}
         else
           format.html { render :new }
           format.json { render json: @setting.errors, status: :unprocessable_entity }
@@ -85,7 +85,6 @@ module CloakPolicy
         if @setting.update(setting_params)
           format.html { redirect_back fallback_location: root_path, notice: 'setting activated.' }
           format.js { render 'update', locals: { setting: @setting }}
-          format.json { render :show, status: :ok, location: @setting }
         else
           format.html { render :edit }
           format.json { render json: @setting.errors, status: :unprocessable_entity }

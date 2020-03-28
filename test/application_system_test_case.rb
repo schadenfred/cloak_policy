@@ -1,5 +1,6 @@
 require "test_helper"
 require "minitest/rails/capybara"
+require "capybara/apparition"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
@@ -14,7 +15,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def javascript
-    Capybara.current_driver = :selenium_chrome_headless
+    Capybara.current_driver = :apparition
   end
 
 end

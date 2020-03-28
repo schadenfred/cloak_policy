@@ -3,12 +3,10 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-  Given { skip }
 
   Given { javascript }
-  Given { sign_in }
   Given(:platform) { platforms(:facebook) }
-  Given { visit admin_platform_path(platform) }
+  Given { visit platform_path(platform) }
 
   describe "update" do
     describe "setting" do
@@ -17,7 +15,7 @@ class PlatformsTest < ApplicationSystemTestCase
           click_link href: edit_setting_path(settings(:one).id)
         end
         within "#setting-#{settings(:one).id}" do
-          fill_in "Name", with: "some new name"
+          fill_in "setting_name", with: "some new name"
           click_button "Update Setting"
         end
       end
