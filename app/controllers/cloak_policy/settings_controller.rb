@@ -3,7 +3,7 @@ module CloakPolicy
     before_action :set_setting, only: [:show, :edit, :adjust, :update, :destroy, :activate, :deactivate]
 
     def update_row_order
-      klass = params.keys.first.classify.constantize
+      klass = ("CloakPolicy::" + params.keys.first.capitalize).classify.constantize
       orderable_params = params[params.keys.first]
       @orderable = klass.find(orderable_params[:orderable_id])
       @orderable.row_order_position = orderable_params[:row_order_position]

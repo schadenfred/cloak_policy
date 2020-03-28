@@ -14,11 +14,14 @@
 
 //= require rails-ujs
 //= require jquery-ui/widgets/sortable
+
 //= require popper
 //= require bootstrap
 //= require Chart.min
-//= require cloak_policy/chosen
-//= require cloak_policy/settings
-//= require cloak_policy/scorable
+//= require app
+//= require perfect-scrollbar
 //= require activestorage
+//= require cloak_policy/application/settings
+//= require cloak_policy/application/scorable
+//= require cloak_policy/application/sidebar
 //= require turbolinks

@@ -32,11 +32,6 @@ module CloakPolicy
 
     Given(:facebook) { platforms(:facebook) }
 
-    describe "weights_for(vector)" do
-Given { skip }
-      Then { assert_equal facebook.weights_for("privacy"), [20, 20] }
-    end
-
 
     describe "chart-data" do
 Given { skip }
