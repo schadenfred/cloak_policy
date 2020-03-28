@@ -28,7 +28,7 @@
                         = link_to platform_path(svc) do
                           = material_icon('edit')
                           settings
-                      %li.parent{ class: 'open'}
+                      -# %li.parent{ class: 'open'}
                         = link_to platform_scores_path(svc) do
                           = material_icon('swap-vertical')
                           scoring
@@ -56,7 +56,7 @@
                           = material_icon(svc.icon)
                           = svc.name
                         %ul.sub-menu
-                          - Vector.all.each do |v|
+                          -# - Vector.all.each do |v|
                             %li
                               = link_to platform_score_path(platform_id: svc.id, id: v.id) do
                                 = material_icon(v.icon)

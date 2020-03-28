@@ -14,7 +14,7 @@ class PlatformsTest < ApplicationSystemTestCase
   Given(:choice2) { choices(:two) }
   Given(:choice3) { choices(:three) }
 
-  Given { visit admin_platform_path(platforms(:facebook)) }
+  Given { visit platform_path(platforms(:facebook)) }
 
   describe "initial state" do
     describe "must show settings as accordions" do

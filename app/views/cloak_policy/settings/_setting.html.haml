@@ -1,5 +1,5 @@
 .div{ class: 'item', id: "setting-#{setting.id}", data: { 'item-id': setting.id} }
-  = render 'admin/settings/accordion', setting: setting
+  = render 'cloak_policy/settings/accordion', setting: setting
   - i = defined?(setting_iteration) ? setting_iteration.index : 0
   .collapse.multi-collapse{ class: ('show' if i.eql?(0)), id: "collapse-setting-#{setting.id}", "aria-labelledby" => "#setting-header-#{setting.id}", "data-parent" => "#accordion-setting-#{setting.id}"}
     .card
@@ -11,7 +11,7 @@
             = material_icon setting.platform.icon
             = setting.platform.name + " description"
           %dt.col-sm-3
-            = image_tag('extension_icons/16.png', size: '10')
+            = image_tag('cloak_policy/extension_icons/16.png', size: '10')
             Recall description
         %dl.row
           %dd.col-sm-3
@@ -23,7 +23,7 @@
           %dd.col-sm-2
             .row
               .col
-                = eval(activation_link_for(setting))
+                -# = eval(activation_link_for(setting))
               .col
                 = link_to edit_setting_path(setting), remote: true do
                   = material_icon("edit")
@@ -32,4 +32,4 @@
                   = material_icon("delete")
 
 
-        = render 'admin/settings/choices', setting: setting
+        = render 'cloak_policy/settings/choices', setting: setting
