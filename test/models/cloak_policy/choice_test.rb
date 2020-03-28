@@ -1,7 +1,6 @@
 require 'test_helper'
 
 module CloakPolicy
-  require 'test_helper'
 
   describe Choice do
 

@@ -13,4 +13,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     addl.include? :system
   end
 
+  def javascript
+    Capybara.current_driver = :selenium_chrome_headless
+  end
+
 end

@@ -3,10 +3,8 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-  Given { skip }
 
   Given { javascript }
-  Given { sign_in }
 
   Given(:sone)    { settings(:one) }
   Given(:stwo)    { settings(:two) }
