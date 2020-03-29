@@ -52,7 +52,11 @@ class PlatformsTest < ApplicationSystemTestCase
       end
     end
 
-    Given { page.find("#accordion-setting-#{sone.id}").click }
+    Given do
+      within "#accordion-setting-#{sone.id}" do
+        click_button
+      end
+    end
 
     Then do
       within "#setting-#{sone.id}" do
@@ -70,7 +74,11 @@ class PlatformsTest < ApplicationSystemTestCase
       end
     end
 
-    Given { page.find("#accordion-setting-#{stwo.id}").click }
+    Given do
+      within "#accordion-setting-#{stwo.id}" do
+        click_button
+      end
+    end
 
     Then do
       within "#setting-#{stwo.id}" do

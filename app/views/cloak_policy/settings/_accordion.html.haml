@@ -4,14 +4,14 @@
       .card
         .card-header{ class: accordion_class(setting), id: "setting-header-#{setting.id}" }
           %button.btn{"aria-controls" => "#collapse-setting-#{setting.id}", "aria-expanded" => "false", "data-target" => "#collapse-setting-#{setting.id}", "data-toggle" => "collapse"}
-            .row
-              .col
-                = material_icon(setting.platform.icon)
-                = setting.name ? setting.name : "New #{setting.platform.name.capitalize} setting:"
-              .col.text-right
+            .col
+              -# .col-9
+              = material_icon(setting.platform.icon)
+              = setting.name ? setting.name : "New #{setting.platform.name.capitalize} setting:"
+              -# .col-2.text-right
                 - setting.vectors.each do |v|
                   = link_to v.name, v
   .col-sm-1
-    .card-header
+    .card-body
       .setting-grabber.grabbable
         = material_icon("arrows", "lg")

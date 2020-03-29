@@ -2,7 +2,7 @@
   = render 'cloak_policy/settings/accordion', setting: setting
   - i = defined?(setting_iteration) ? setting_iteration.index : 0
   .collapse.multi-collapse{ class: ('show' if i.eql?(0)), id: "collapse-setting-#{setting.id}", "aria-labelledby" => "#setting-header-#{setting.id}", "data-parent" => "#accordion-setting-#{setting.id}"}
-    .card
+    .card.border-0
       .card-body
         %dl.row
           %dt.col-sm-3
