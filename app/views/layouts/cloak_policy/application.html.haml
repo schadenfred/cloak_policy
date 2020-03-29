@@ -4,16 +4,16 @@
     %title= title
     = render 'head'
   %body{'data-environment' => Rails.env}
-    .be-wrapper
-      = render 'navbar'
-      .be-fixed-sidebar
-        = render 'sidebar'
-
-      .be-content
-
-        .main-content.container-fluid
-          = render 'messages'
-          .row
-            .col-md-12
-              .card
-                = yield
+    .container
+      .row
+        = render 'messages'
+      .row
+        .col-2
+          %ul.nav.flex-column
+            %li.nav-item
+              = active_link_to 'Platforms', platforms_path
+            %li.nav-item
+              = active_link_to 'Scores', scores_path
+        .col-10
+          .card
+            = yield

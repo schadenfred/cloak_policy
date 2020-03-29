@@ -3,6 +3,11 @@ module CloakPolicy
 
   module ApplicationHelper
 
+
+    def active_link_to(name, url)
+      link_to name, url, class: "nav-link #{'active' if current_page?(url)}"
+    end
+
     def title
       base_title = "Recall"
       page = controller_name

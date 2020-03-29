@@ -1,25 +1,17 @@
 
 .card-body
-  %ul#platforms.nav.nav-tabs{:role => "tablist"}
-    - @platforms.each do |platform|
-      - if platform.eql?(@platform)
-        - %w(all).each do |selector|
-          %li.nav-item
-            %a.nav-link{ class: ('active' if selector.eql?('all')), id: "#{selector}-settings-tab", "aria-selected" => "false", "data-toggle" => "tab", :href => "##{selector}-settings", :role => "tab"}
-              = material_icon(@platform.icon)
-              = selector
-
-      - else
-        %li.nav-item
-          = link_to_platform platform
+  %ul.nav.nav-tabs
     %li.nav-item
       = link_to new_setting_path(platform_id: @platform.id), class: 'nav-link', remote: true do
-        New setting
-#platformsContent.tab-content
+        New setting for
+        = material_icon(@platform.icon, 'sm')
+    - @platforms.each do |platform|
+      %li.nav-item
+        = active_link_to material_icon(platform.icon, 'lg'), platform
 
-  .tab-pane.active{id: "all-settings", "aria-labelledby" => "#all-settings-tab", :role => "tabpanel"}
-    .card-body
-      .settings.list-group{data: { model: 'setting',
-        "update-url" => update_row_order_settings_path}}
-        #newSetting
-        = render @platform.settings.rank(:row_order)
+.tab-pane.active{id: "all-settings", "aria-labelledby" => "#all-settings-tab", :role => "tabpanel"}
+  -# .card-body
+  .settings.list-group{data: { model: 'setting',
+    "update-url" => update_row_order_settings_path}}
+    #newSetting
+    = render @platform.settings.rank(:row_order)
