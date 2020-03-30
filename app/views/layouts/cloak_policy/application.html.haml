@@ -5,15 +5,14 @@
     = render 'head'
   %body{'data-environment' => Rails.env}
     .container
+      = render 'messages'
       .row
-        = render 'messages'
-      .row
-        .col-2
-          %ul.nav.flex-column
+        .nav.navbar
+          %ul.nav
             %li.nav-item
               = active_link_to 'Platforms', platforms_path
             %li.nav-item
               = active_link_to 'Scores', scores_path
-        .col-10
-          .card.border-0
-            = yield
+      .row
+        .col-12
+          = yield

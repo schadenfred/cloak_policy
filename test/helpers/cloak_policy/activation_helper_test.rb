@@ -11,8 +11,23 @@ class ActivationHelperTest < ActiveSupport::TestCase
   Given { [platform, setting, choice].each.map { |r| r.activate! } }
   Given { assert choice.recommendable }
 
-  describe "choice" do
+  describe "platform" do
 
+    describe "platform active" do
+
+      Then { assert_match /deactivate_platform_path/, activation_link_for(platform)}
+    end
+
+    describe "platform inactive" do
+
+      # Given { choice.deactivate! }
+
+      # Then { assert_match /activate_choice_path/, activation_link_for(choice) }
+    end
+  end
+
+  describe "choice" do
+Given { skip }
     describe "choice active" do
 
       Then { assert_match /deactivate_choice_path/, activation_link_for(choice)}
@@ -41,8 +56,9 @@ class ActivationHelperTest < ActiveSupport::TestCase
   end
 
   describe "setting" do
+    Given { skip }
 
-    describe "setting and platform active" do
+    describe "settingrecord and platform active" do
 
       Given(:expected) {"deactivate_setting_path(setting)" }
 

@@ -1,14 +1,14 @@
 
 .card-body
   %ul.nav.nav-tabs
+    - @platforms.each do |platform|
+      %li.nav-item
+        = active_link_to material_icon(platform.icon, 'lg'), platform
     %li.nav-item
       = link_to new_setting_path(platform_id: @platform.id), class: 'nav-link', remote: true do
         New
         = material_icon(@platform.icon, 'sm')
         setting
-    - @platforms.each do |platform|
-      %li.nav-item
-        = active_link_to material_icon(platform.icon, 'lg'), platform
 
 .tab-pane.active{id: "all-settings", "aria-labelledby" => "#all-settings-tab", :role => "tabpanel"}
   .settings.list-group{data: { model: 'setting',

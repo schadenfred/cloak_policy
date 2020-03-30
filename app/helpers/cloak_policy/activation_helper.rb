@@ -4,13 +4,14 @@ module CloakPolicy
 
     def activation_link_for(record)
       klass = record.class.name.demodulize.to_s.downcase
+
       case
+      when !record.parent_recommendable?
+        "\"inactive\"".html_safe
       when record.recommendable && record.parent_recommendable?
         action_link_for(klass, "deactivate")
       when !record.recommendable && record.parent_recommendable?
         action_link_for(klass, "activate")
-      when !record.parent_recommendable?
-        "\"inactive\"".html_safe
       end
     end
 

@@ -1,6 +1,8 @@
-.card-body
+.container
+  -# .card-body
   = render 'form', platform: @platform
-
+  -# .card-footer
+  %br
   = link_to 'Show', @platform
   \|
   = link_to 'Back', platforms_path

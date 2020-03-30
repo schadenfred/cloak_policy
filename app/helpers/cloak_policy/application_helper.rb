@@ -83,7 +83,7 @@ module CloakPolicy
 
     def flash_class(level)
       case level
-      when :notice then "alert alert-info"
+      when :notice then "alert-info"
       when :success then "alert alert-success"
       when :error then "alert alert-danger"
       when :alert then "alert alert-warning"
@@ -95,11 +95,11 @@ module CloakPolicy
     end
 
     def accordion_class(recommendable)
-      marker = recommendable.sloppy? ? 'warning' : 'success'
-      "card-full-#{marker}"
+      recommendable.sloppy? ? 'text-white bg-info mb-3' : 'text-white bg-success mb-3'
     end
 
-    def material_icon(name, size=nil, color=nil)
+    def material_icon(name=nil, size=nil, color=nil)
+      name = name.nil? ? 'album' : name
       size = size.nil? ? nil : " mdi-hc-#{size}"
       color = color.nil? ? nil : " mdc-text-#{color}"
       "<i class='icon mdi mdi-#{name}#{size}#{color}'></i>".html_safe

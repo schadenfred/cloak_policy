@@ -35,6 +35,8 @@ module CloakPolicy::Recommendable
         self.setting.recommendable?
       when 'CloakPolicy::Setting'
         self.platform.recommendable?
+      when 'CloakPolicy::Platform'
+        true
       end
     end
 
