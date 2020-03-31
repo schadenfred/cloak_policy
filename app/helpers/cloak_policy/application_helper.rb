@@ -90,13 +90,7 @@ module CloakPolicy
       end
     end
 
-    def icon_color(recommendable)
-      recommendable.sloppy? ? 'amber' : 'green'
-    end
 
-    def accordion_class(recommendable)
-      recommendable.sloppy? ? 'text-white bg-info mb-3' : 'text-white bg-success mb-3'
-    end
 
     def material_icon(name=nil, size=nil, color=nil)
       name = name.nil? ? 'album' : name

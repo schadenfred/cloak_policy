@@ -1,7 +1,7 @@
 .card-body
   %ul.nav.nav-tabs{:role => "tablist"}
     - @platforms.each do |platform|
-      = active_link_to material_icon(platform.icon), platform
+      = active_link_to material_icon(platform.icon, 'lg'), platform
   %table.table.table-responsive.table-borderless
     %thead
       %tr

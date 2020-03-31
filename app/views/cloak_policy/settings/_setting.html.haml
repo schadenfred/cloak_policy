@@ -1,5 +1,20 @@
 .div{ class: 'item', id: "setting-#{setting.id}", data: { 'item-id': setting.id} }
-  = render 'cloak_policy/settings/accordion', setting: setting
+  .row
+    .col-sm-11
+      .accordion.accordion-color{ id: "accordion-setting-#{setting.id}" }
+        .card{class: accordion_class(setting)}
+          .card-header{  id: "setting-header-#{setting.id}" }
+            %button.btn{class: 'text-white', "aria-controls" => "#collapse-setting-#{setting.id}", "aria-expanded" => "false", "data-target" => "#collapse-setting-#{setting.id}", "data-toggle" => "collapse"}
+              .col
+                = material_icon(setting.platform.icon)
+                = setting.name ? setting.name : "New #{setting.platform.name.capitalize} setting:"
+                -# .col-2.text-right
+                  - setting.vectors.each do |v|
+                    = link_to v.name, v
+    .col-sm-1
+      .card-body
+        .setting-grabber.grabbable
+          = material_icon("arrows", "lg")
   - i = defined?(setting_iteration) ? setting_iteration.index : 0
   .collapse.multi-collapse{ class: ('show' if i.eql?(0)), id: "collapse-setting-#{setting.id}", "aria-labelledby" => "#setting-header-#{setting.id}", "data-parent" => "#accordion-setting-#{setting.id}"}
     .card.border-0
