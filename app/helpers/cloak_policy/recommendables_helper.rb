@@ -26,7 +26,7 @@ module CloakPolicy
             recommendable_class: #{record.class.name.to_s }
           }
         }
-      )"), class: "btn btn-#{recommendable_status(record)} btn-sm btn-block text-white", method: :patch, remote: true
+      )"), id: "#{record.class.name.demodulize.downcase}#{action.capitalize}-#{record.id}", class: "btn btn-#{recommendable_status(record)} btn-sm btn-block text-white", method: :patch, remote: true
     end
   end
 end

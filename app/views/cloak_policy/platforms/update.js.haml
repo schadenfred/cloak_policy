@@ -1,0 +1,3 @@
+var $setting = $('#setting-#{@setting.id}');
+
+$setting.replaceWith("#{j render partial: "cloak_policy/settings/setting", locals: { setting: setting }}");

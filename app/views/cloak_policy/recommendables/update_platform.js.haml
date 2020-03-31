@@ -1,0 +1,3 @@
+var $platform = $('#platform-#{@recommendable.id}');
+
+$platform.replaceWith("#{j render partial: "cloak_policy/platforms/platform", locals: { platform: @recommendable }}");
