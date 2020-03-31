@@ -8,7 +8,6 @@ one:
   name: "Who can see muh puppies?"
   platform: facebook
   edit_url: '/page=section'
-  recommendable: true
   row_order: 0
   page: "/settings?tab=followers"
   <<: *default
@@ -16,19 +15,17 @@ one:
 two:
   name: "Who can see muh kittehs?"
   platform: facebook
-  recommendable: true
   row_order: 1
   <<: *default
+  recommendable: false
 
 three:
   name: "Photo tagging"
   platform: twitter
-  recommendable: true
   row_order: 2
   <<: *default
 
 four:
   name: "lat-long"
   platform: twitter
-  recommendable: true
   <<: *default

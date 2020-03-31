@@ -27,13 +27,6 @@ module CloakPolicy
           }
         }
       )"), class: "btn btn-#{recommendable_status(record)} btn-sm btn-block text-white", method: :patch, remote: true
-
-      # "link_to '#{action}', recommendables_#{action}_path(params: {
-      #   recommendable: {
-      #     recommendable_id: #{record.id},
-      #     recommendable_class: #{record.class.name.to_s }
-      #   }
-      # }), class: 'btn btn-#{recommendable_status(record)} btn-sm btn-block text-white', method: :patch, remote: true".html_safe
     end
   end
 end
