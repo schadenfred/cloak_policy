@@ -1,59 +1,50 @@
-# require "application_system_test_case"
+# frozen_string_literal: true
 
-# module CloakPolicy
-#   class PlatformsTest < ApplicationSystemTestCase
-#     setup do
-#       @platform = platforms(:one)
-#     end
+require "application_system_test_case"
 
-#     test "visiting the index" do
-#       visit platforms_url
-#       assert_selector "h1", text: "Platforms"
-#     end
+class PlatformsTest < ApplicationSystemTestCase
 
-#     test "creating a Platform" do
-#       visit platforms_url
-#       click_on "New Platform"
+  Given { javascript }
 
-#       fill_in "Description", with: @platform.description
-#       fill_in "Fqdn", with: @platform.fqdn
-#       fill_in "Icon", with: @platform.icon
-#       fill_in "Name", with: @platform.name
-#       fill_in "Platform type", with: @platform.platform_type
-#       check "Recommendable" if @platform.recommendable
-#       fill_in "They say", with: @platform.they_say
-#       fill_in "We say", with: @platform.we_say
-#       click_on "Create Platform"
+  describe "index" do
 
-#       assert_text "Platform was successfully created"
-#       click_on "Back"
-#     end
+    Given { visit platforms_path }
 
-#     test "updating a Platform" do
-#       visit platforms_url
-#       click_on "Edit", match: :first
+    Then { save_and_open_page }
 
-#       fill_in "Description", with: @platform.description
-#       fill_in "Fqdn", with: @platform.fqdn
-#       fill_in "Icon", with: @platform.icon
-#       fill_in "Name", with: @platform.name
-#       fill_in "Platform type", with: @platform.platform_type
-#       check "Recommendable" if @platform.recommendable
-#       fill_in "They say", with: @platform.they_say
-#       fill_in "We say", with: @platform.we_say
-#       click_on "Update Platform"
 
-#       assert_text "Platform was successfully updated"
-#       click_on "Back"
-#     end
+  end
+  Given(:platform) { platforms(:facebook) }
+  Given { visit platform_path(platform) }
 
-#     test "destroying a Platform" do
-#       visit platforms_url
-#       page.accept_confirm do
-#         click_on "Destroy", match: :first
-#       end
+  describe "update" do
+    describe "setting" do
+      Given do
+        within "#setting-#{settings(:one).id}" do
+          click_link href: edit_setting_path(settings(:one).id)
+        end
+        within "#setting-#{settings(:one).id}" do
+          fill_in "setting_name", with: "some new name"
+          click_button "Update Setting"
+        end
+      end
 
-#       assert_text "Platform was successfully destroyed"
-#     end
-#   end
-# end
+      Then { assert_equal settings(:one).reload.name, "some new name" }
+    end
+
+    describe "choice" do
+      Given do
+        within "#choice-#{choices(:one).id}" do
+          click_link href: edit_choice_path(choices(:one).id)
+        end
+
+        within "#setting-choices-#{choices(:one).setting.id}" do
+          fill_in "Name", with: "some new name"
+          click_button "Update Choice"
+        end
+      end
+
+      Then { assert_equal choices(:one).reload.name, "some new name" }
+    end
+  end
+end

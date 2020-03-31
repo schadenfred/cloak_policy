@@ -2,52 +2,16 @@
   %ul.nav.nav-tabs{:role => "tablist"}
     - @platforms.each do |platform|
       = active_link_to material_icon(platform.icon), platform
-
-  -# .row
-  -#   .col-2
-  -#     %em Name
-  -#   .col-8
-  -#     %em description
   %table.table.table-responsive.table-borderless
     %thead
       %tr
         %th
-        %th name
-        %th descripton
-        %th
-    %tbody
+          %th name
+          %th descripton
+          %th
+      %tbody
       - @platforms.each do |platform|
-        %tr
-          %td= eval(activation_link_for(platform))
-          %td= link_to platform.name, platform
-          %td= platform.description
-          %td= link_to 'Edit', edit_platform_path(platform)
-          %td= link_to 'Destroy', platform, method: :delete, data: { confirm: 'Are you sure?' }
-      -# %tr
-        %th{:scope => "row"} 1
-        %td Mark
-        %td Otto
-        %td @mdo
-      -# %tr
-        %th{:scope => "row"} 2
-        %td Jacob
-        %td Thornton
-        %td @fat
-      -# %tr
-        %th{:scope => "row"} 3
-        %td Larry
-        %td the Bird
-        %td @twitter
-  -# %table.table
-    -# - @platforms.each do |platform|
-      .row
-        .col-2
-          = link_to platform.name, platform
-        .col-8
-          = platform.description
-        .col-2
-          = link_to 'Edit', edit_platform_path(platform)
-          |
-          = link_to 'Destroy', platform, method: :delete, data: { confirm: 'Are you sure?' }
+        = render platform
+
 .card-footer.bg-white
   = link_to "New platform", new_platform_path

@@ -54,7 +54,7 @@ guard 'livereload' do
   watch(%r{config/locales/.+\.yml})
 end
 
-guard :minitest, all_after_pass: true, spring: "bin/rails test"    do
+guard :minitest, all_after_pass: false, spring: "bin/rails test"    do
   # with Minitest::Unit
   watch(%r{^test/(.*)\/?(.*)_test\.rb$})
   # watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { |m| "test/#{m[1]}test_#{m[2]}.rb" }

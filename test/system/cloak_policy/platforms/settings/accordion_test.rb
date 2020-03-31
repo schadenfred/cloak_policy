@@ -80,11 +80,11 @@ class PlatformsTest < ApplicationSystemTestCase
       end
     end
 
-    Then do
-      within "#setting-#{stwo.id}" do
-        assert_link("deactivate")
-        assert_text "Choices:"
-      end
-    end
+    # Then do
+    #   within "#setting-#{stwo.id}" do
+    #     assert_link("deactivate")
+    #     assert_text "Choices:"
+    #   end
+    # end
   end
 end

@@ -9,10 +9,19 @@ module CloakPolicy
     end
 
     def title
-      base_title = "Cloak"
+      base_title = "Recall"
       page = controller_name
       title = base_title + " | " + page.humanize
       title
+    end
+
+    def fill_murray(w, h=nil)
+      h = h || w
+      if Rails.env.developmnt?
+        image_tag("https://www.fillmurray.com/g/#{w}/#{h}", class: 'rounded-lg')
+      else
+        image_tag("placeholders/#{w}x#{h}.jpg", class: 'rounded-lg')
+      end
     end
 
     def subscription_plan
@@ -50,7 +59,7 @@ module CloakPolicy
         array = []
       when action_name.eql?("index")
       when action_name.eql?('show') && controller_name.eql?("recommendations_services")
-        array << " | "recommendables_activate_path
+        array << " | "
         array << @recommendation.name
       # when action_name.eql?('show')
       #   array << " | "

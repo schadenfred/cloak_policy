@@ -38,8 +38,8 @@ CloakPolicy::Engine.routes.draw do
     end
   end
 
-  # get 'recommendables/activate'
-  # get 'recommendables/deactivate'
+  patch 'recommendables/activate'
+  patch 'recommendables/deactivate'
 
   patch 'adjust', to: "scoring#adjust"
   post 'clone',               to: "clones#clone"

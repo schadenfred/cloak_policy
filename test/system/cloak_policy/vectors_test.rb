@@ -1,6 +1,8 @@
-# require "application_system_test_case"
+# frozen_string_literal: true
 
-# class VectorsTest < ApplicationSystemTestCase
+require "application_system_test_case"
+
+class VectorsTest < ApplicationSystemTestCase
 #   setup do
 #     @vector = vectors(:one)
 #   end
@@ -38,4 +40,4 @@
 
 #     assert_text "Vector was successfully destroyed"
 #   end
-# end
+end

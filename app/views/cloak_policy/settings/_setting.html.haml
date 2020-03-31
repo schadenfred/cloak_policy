@@ -23,7 +23,7 @@
           %dd.col-sm-2
             .row
               .col
-                = eval(activation_link_for(setting))
+                -# = eval(activation_link_for(setting))
               .col
                 = link_to edit_setting_path(setting), remote: true do
                   = material_icon("edit")
