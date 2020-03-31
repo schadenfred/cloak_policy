@@ -10,7 +10,7 @@ module CloakPolicy
     end
 
     def recommendable_status(record)
-      record.recommendable? ? 'success' : 'warning'
+      record.recommendable? ? 'success' : 'info'
     end
 
     def recommendable_link_for(record)
@@ -26,19 +26,18 @@ module CloakPolicy
       end
     end
 
-    def action_link_for(record, action)
-      recClass = "btn btn-#{recommendable_status(record)} btn-sm text-white"
-      recId = "#{record.class.name.demodulize.downcase}#{action.capitalize}-#{record.id}"
+    def action_link_for(rec, action)
+      klass = "btn btn-#{recommendable_status(rec)} btn-sm text-white"
+      id = "#{rec.class.name.demodulize.downcase}#{action.capitalize}-#{rec.id}"
       params = { recommendable: {
-          recommendable_id: record.id,
-          recommendable_class: record.class.name.to_s } }
+          recommendable_id: rec.id, recommendable_class: rec.class.name.to_s } }
       case action
       when 'deactivate'
         path = recommendables_deactivate_path( params: params )
       when 'activate'
         path = recommendables_activate_path( params: params )
       end
-      link_to action, path, id: recId, class: recClass, method: :patch, remote: true
+      link_to action, path, id: id, class: klass, method: :patch, remote: true
     end
   end
 end

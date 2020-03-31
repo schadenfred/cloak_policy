@@ -1,5 +1,6 @@
 .card-header.card-header-divider
   %h3
+    = @vector.icon
     = material_icon(@vector.icon)
     = @vector.full_name
     .row
@@ -11,7 +12,7 @@
       .col-3
         = render 'score', scorable: sv, vector: @vector
 
-  -# - @vector.all_settings.each do |s|
+  - @vector.all_settings.each do |s|
     = link_to s.platform do
       = material_icon(s.platform.icon)
       = s.name

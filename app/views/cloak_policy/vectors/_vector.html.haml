@@ -1,18 +1,16 @@
-.row
-  .col-2
-    = material_icon(vector.icon)
-    = link_to vector.full_name, vector
-  .col-7
+%tr
+
+  %td
+    = active_link_to((material_icon(vector.icon, 'lg') + vector.full_name), vector)
+  %td
     = vector.description
-    .row
+  %td
     = link_to "New subvector", new_vector_path(id: vector.id)
-    %br
-  .col-1= link_to 'Edit', edit_vector_path(vector)
-  .col-1= link_to 'Destroy', vector, method: :delete, data: { confirm: 'Are you sure?'}
+  %td
+    = link_to 'Edit', edit_vector_path(vector)
+  %td
+    = link_to 'Destroy', vector, method: :delete, data: { confirm: 'Are you sure?'}
 %br
-
-
-.row
 - vector.subvectors.each do |v|
   = render 'vector', vector: v
 

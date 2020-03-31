@@ -1,1 +1,3 @@
-$('#setting-choices-#{recommendable.setting.id}').replaceWith("#{j render "cloak_policy/settings/choices", setting: recommendable.setting}");
+var $setting = $('#setting-#{@recommendable.setting.id}');
+
+$setting.replaceWith("#{j render partial: "cloak_policy/settings/setting", locals: { setting: recommendable.setting }}");

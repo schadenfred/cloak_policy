@@ -1,13 +1,18 @@
 .card-body
-  .card.card-table
-  .card-header
-    Vectors
-  .card-body
-    %hr
-    - Vector.top_level.each do |v|
-      = render 'vector', vector: v
-      %hr
+  Vectors
+
+  %table.table.table-responsive.table-borderless
+    %thead
+      %tr
+        %th name
+        %th description
+        %th
+        %th
+      %tbody
+        - CloakPolicy::Vector.top_level.each do |vector|
+          = render 'vector', vector: vector
 
 
-    .card-footer
-      = link_to 'New top level vector', new_vector_path
+
+.card-footer.bg-white
+  = link_to 'New top level vector', new_vector_path

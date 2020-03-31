@@ -3,8 +3,6 @@ module CloakPolicy
     before_action :set_vector, only: [:show, :edit, :update, :destroy]
 
     def index
-      @recommendations_platforms = RecommendationsPlatform.all
-      @platforms = Platform.all
       @vectors = Vector.all
       @vector = Vector.new
     end
@@ -24,13 +22,12 @@ module CloakPolicy
     def create
       @vector = Vector.new(vector_params)
 
-      respond_to do |format|
+      respond_to do |f|
         if @vector.save
-          format.html { redirect_to admin_vectors_path, notice: 'Vector was successfully created.' }
-          format.json { render :show, status: :created, location: @vector }
+          f.html { redirect_to vectors_path, success: 'Vector created.' }
         else
-          format.html { render :new }
-          format.json { render json: @vector.errors, status: :unprocessable_entity }
+          f.html { render :new }
+          f.json { render json: @vector.errors, status: :unprocessable_entity }
         end
       end
     end

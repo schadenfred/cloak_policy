@@ -13,6 +13,7 @@ module CloakPolicy
     end
 
     def create
+      byebug
       scorable_type = score_params[:scorable_type]
       scorable_id = score_params[:scorable_id]
       vector_id = score_params[:vector_id]
@@ -20,9 +21,9 @@ module CloakPolicy
       @score = @scorable.scores.new(points: 100, vector_id: vector_id)
       respond_to do |format|
         if @score.save
-          format.js { redirect_back fallback_location: root_path, notice: 'scored!' }
+          format.js { redirect_back fallback_location: vectors_path, notice: 'scored!' }
         else
-          format.js { redirect_back fallback_location: root_path, notice: 'failed to create score' }
+          format.js { redirect_back fallback_location: vectors_path, notice: 'failed to create score' }
         end
       end
     end

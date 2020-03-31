@@ -3,13 +3,12 @@ module CloakPolicy
 
   module ApplicationHelper
 
-
     def active_link_to(name, url)
-      link_to name, url, class: "nav-link #{'active' if current_page?(url)}"
+      link_to name, url, class: "nav-link #{'disabled' if current_page?(url)}"
     end
 
     def title
-      base_title = "Recall"
+      base_title = "Cloak"
       page = controller_name
       title = base_title + " | " + page.humanize
       title
@@ -33,42 +32,6 @@ module CloakPolicy
       when
         "Not subscribed"
       end
-    end
-
-    def extension_install_path
-      "https://chrome.google.com/webstore/detail/recall-privacy-extension/ioieoedgkhlfcolmeglbioooehgmdjje"
-    end
-
-    def call_to_action
-      array = []
-      controller = controller_name
-      case
-      when controller_name.eql?("configurator")
-        array << "Configure Recall: #{step.to_s.humanize.titleize}"
-      when controller_name.eql?("services")
-        case
-        when action_name.eql?('show')
-          array << "Admin: Manage settings for #{@service.name}"
-        end
-      when controller_name.eql?("scores")
-      when controller_name.eql?("pricing")
-        array[0] = nil
-
-
-      when %w(extension_errors dashboard scores).include?(controller)
-        array = []
-      when action_name.eql?("index")
-      when action_name.eql?('show') && controller_name.eql?("recommendations_services")
-        array << " | "
-        array << @recommendation.name
-      # when action_name.eql?('show')
-      #   array << " | "
-      #   array << params["controller"].classify.constantize.find(params["id"]).name
-      when
-        array << " | "
-        array << action_name.titleize
-      end
-      array.join.html_safe
     end
 
     def link_to_clone(original)

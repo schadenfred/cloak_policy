@@ -7,6 +7,6 @@
     = f.input :name
     = f.input :icon
     = f.input :description, as: :text, input_html: { rows: 4 }
-    = f.collection_select :parent_id, Vector.all, :id, :name, {include_blank: "top level"}, { class: 'form-control' }
+    = f.collection_select :parent_id, CloakPolicy::Vector.all, :id, :name, {include_blank: "top level"}, { class: 'form-control' }
     %br
     = f.button :submit, class: "btn btn-primary btn-lg"
