@@ -53,13 +53,11 @@ module CloakPolicy
       end
     end
 
-
-
-    def material_icon(name=nil, size=nil, color=nil)
-      name = name.nil? ? 'album' : name
+    def material_icon(icon=nil, size=nil, color=nil)
+      icon = icon.blank? ? 'album' : icon
       size = size.nil? ? nil : " mdi-hc-#{size}"
       color = color.nil? ? nil : " mdc-text-#{color}"
-      "<i class='icon mdi mdi-#{name}#{size}#{color}'></i>".html_safe
+      "<i class='icon mdi mdi-#{icon}#{size}#{color}'></i>".html_safe
     end
 
     def markdown(text)

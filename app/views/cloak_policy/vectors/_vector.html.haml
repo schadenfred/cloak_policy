@@ -1,7 +1,7 @@
 %tr
 
   %td
-    = active_link_to((material_icon(vector.icon, 'lg') + vector.full_name), vector)
+    = link_to material_icon(vector.icon, 'lg') + " " +  vector.full_name, vector
   %td
     = vector.description
   %td

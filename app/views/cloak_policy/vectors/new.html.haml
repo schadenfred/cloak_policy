@@ -1,6 +1,5 @@
-.card
-  .card-header
-    %h1 New vector
-  .card-body
-    = render 'form', vector: @vector
+.card-body
+  %h1 New vector
+  = render 'form', vector: @vector
+  = link_to 'Back', vectors_path
 

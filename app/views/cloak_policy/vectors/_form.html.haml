@@ -1,12 +1,26 @@
-= simple_form_for vector do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-  .card-title
-    Attributes
-  .card-text
-    = f.input :name
-    = f.input :icon
-    = f.input :description, as: :text, input_html: { rows: 4 }
+= form_with model: @vector do |f|
+  - if @vector.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@vector.errors.count, "error")} prohibited this org from being saved:"
+      %ul
+        - @org.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :icon
+    = f.text_field :icon, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_field :description, class: 'form-control'
+  .form-group
+    = f.label :parent_vector
     = f.collection_select :parent_id, CloakPolicy::Vector.all, :id, :name, {include_blank: "top level"}, { class: 'form-control' }
-    %br
-    = f.button :submit, class: "btn btn-primary btn-lg"
+  .actions
+    = f.submit class: "btn btn-primary"
+
+  -# .card-text
+  -#   %br
+  -#   = f.button :submit, class: "btn btn-primary btn-lg"
