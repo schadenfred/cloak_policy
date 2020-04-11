@@ -8,17 +8,17 @@ default: &default
 
 one:
   scorable: one
-  scorable_type: RecommendationsPlatform
+  scorable_type: Vector
   <<: *default
 
 two:
   scorable: two
-  scorable_type: RecommendationsPlatform
+  scorable_type: Vector
   <<: *default
 
 three:
   scorable: three
-  scorable_type: RecommendationsPlatform
+  scorable_type: Vector
   <<: *default
 
 four:

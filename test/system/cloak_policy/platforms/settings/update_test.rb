@@ -3,7 +3,7 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-
+Given { skip }
   Given { javascript }
   Given(:platform) { platforms(:facebook) }
   Given { visit platform_path(platform) }

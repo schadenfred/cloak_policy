@@ -23,7 +23,7 @@ module CloakPolicy
 
       specify "belongs_to" do
         must belong_to(:parent).optional
-      end
+    end
 
       specify "has_many" do
         must have_many(:scores)
@@ -35,11 +35,35 @@ module CloakPolicy
     Given(:vector) { vectors(:privacy)}
     Given(:subvector) { vectors(:location)}
 
+    describe "newly created vector" do
+
+      Given(:new_vector) { Vector.last }
+
+      describe "must create a new score with itself as its own vector" do
+
+        Given(:action) { Vector.create(name: 'sharing')}
+
+        Then { assert_difference(['Score.count'] ) { action } }
+        And  { assert_equal new_vector.name, 'sharing'}
+        And  { assert_equal new_vector.scores.last.vector, new_vector }
+      end
+
+      describe "newly created subvector" do
+
+        Given(:action) { vector.subvectors.create(name: 'presence') }
+
+        Then { assert_difference(['Score.count'] ) { action } }
+        And  { assert_equal new_vector.name, 'presence'}
+        And  { assert_equal new_vector.scores.last.vector, vector }
+        And  { assert_includes vector.subvectors, new_vector  }
+      end
+    end
+
     describe "scopes" do
 
       describe ":top_level" do
-        Then {
-          assert Vector.top_level.include? vector }
+
+        Then { assert Vector.top_level.include? vector }
 
         And  { refute Vector.top_level.include? subvector }
         And  { assert vector.subvectors.include? subvector }

@@ -5,7 +5,7 @@ module CloakPolicy
     belongs_to :vector
 
     validates :scorable, :vector, presence: true
-    validates :vector_id, uniqueness: { scope: [:scorable_id, :scorable_type] }
+    validates :vector_id, uniqueness: { scope: :scorable }
 
     default_scope { order(points: :desc) }
 
@@ -32,5 +32,4 @@ module CloakPolicy
       end
     end
   end
-
 end

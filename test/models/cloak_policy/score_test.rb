@@ -3,6 +3,7 @@ require 'test_helper'
 module CloakPolicy
 
   describe Score do
+
     Given(:subject) { Score.new }
 
     describe "db" do
@@ -23,7 +24,6 @@ module CloakPolicy
     specify "validations" do
       must validate_presence_of :scorable
       must validate_presence_of :vector
-      # must validate_uniqueness_of(:vector_id).scoped_to([:scorable_id, :scorable_type])
     end
 
     describe "Scoring a setting must create scores for each of its choices" do
