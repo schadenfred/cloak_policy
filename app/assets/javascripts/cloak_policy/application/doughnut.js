@@ -70,6 +70,12 @@ $(document).on('turbolinks:load', function() {
   };
 
   var options = {
+    plugins: {
+      // Change options for ALL labels of THIS CHART
+      datalabels: {
+          color: 'white'
+      }
+    },
     tooltips: {
       enabled: true,
     },

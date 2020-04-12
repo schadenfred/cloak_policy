@@ -25,4 +25,5 @@
 //= require cloak_policy/application/sidebar
 //= require cloak_policy/application/utils
 //= require cloak_policy/application/doughnut
+//= require chartsjs-plugin-datalabels
 //= require turbolinks
