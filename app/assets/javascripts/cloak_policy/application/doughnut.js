@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function() {
             ctx.save();
         }
     }
-});
+  });
   var exposure = {
     'red' : 10,
     'yellow' : 20,
@@ -70,16 +70,18 @@ $(document).on('turbolinks:load', function() {
   };
 
   var options = {
-    title: {
-      display: true,
-      position: "bottom",
-      text: 'Upcoming Meetings'
+    tooltips: {
+      enabled: true,
     },
+    // title: {
+    //   display: true,
+    //   position: "bottom",
+    //   text: 'Upcoming Meetings'
+    // },
     legend: {
       display: true,
     },
-    centertext: "getsome",
-    tooltips: false,
+    centertext: "back",
     elements: {
       arc: {
         backgroundColor: colorize.bind(null, false, false),
@@ -88,10 +90,7 @@ $(document).on('turbolinks:load', function() {
     }
   };
 
-  var backButton = [
 
-
-  ]
   var canvas = document.getElementById("chart-0");
 
   canvas.onclick = function(evt) {
@@ -119,21 +118,11 @@ $(document).on('turbolinks:load', function() {
 
 
   var chart = new Chart('chart-0', {
-    type: 'doughnut',
+    type: 'pie',
     data: data,
     options: options
   });
 
-  // eslint-disable-next-line no-unused-vars
-  $('#randomize').click(function() {
-    randomize();
-  });
-  function randomize() {
-    chart.data.datasets.forEach(function(dataset) {
-      dataset.data = generateData();
-    });
-    chart.update();
-  }
   $('#addDataset').click(function() {
     addDataset();
   });
@@ -168,4 +157,16 @@ $(document).on('turbolinks:load', function() {
     }
     chart.update();
   }
-  });
+  // // eslint-disable-next-line no-unused-vars
+  // $('#randomize').click(function() {
+  //   randomize();
+  // });
+
+  // $('#chart-0').append("<p>Test</p>")
+  // function randomize() {
+  //   chart.data.datasets.forEach(function(dataset) {
+  //     dataset.data = generateData();
+  //   });
+  //   chart.update();
+  // }
+});
