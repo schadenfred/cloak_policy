@@ -22,6 +22,7 @@
 //= require perfect-scrollbar
 //= require activestorage
 //= require cloak_policy/application/settings
-//= require cloak_policy/application/scorable
 //= require cloak_policy/application/sidebar
+//= require cloak_policy/application/utils
+//= require cloak_policy/application/doughnut
 //= require turbolinks

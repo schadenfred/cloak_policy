@@ -1,17 +1,27 @@
 .card-body
-  %ul.nav.nav-tabs{:role => "tablist"}
-    - @platforms.each do |platform|
-      = active_link_to material_icon(platform.icon, 'lg'), platform
-  %table.table.table-responsive.table-borderless
-    %thead
-      %tr
-        %th
-          %th name
-          %th descripton
-          %th
-      %tbody
-      - @platforms.each do |platform|
-        = render platform
+  %ul#platformsTab.nav.nav-tabs{:role => "tablist"}
+    %li.nav-item
+      %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
+    %li.nav-item
+      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
+  #platformsTabContent.tab-content
+    #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
+      getsome
+    #attributes.tab-pane.fade{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
 
-.card-footer.bg-white
-  = link_to "New platform", new_platform_path
+      %ul.nav.nav-tabs{:role => "tablist"}
+        - @platforms.each do |platform|
+          = active_link_to material_icon(platform.icon, 'lg'), platform
+      %table.table.table-responsive.table-borderless
+        %thead
+          %tr
+            %th icon
+            %th name
+            %th descripton
+            %th
+          %tbody
+          - @platforms.each do |platform|
+            = render platform
+
+      .card-footer.bg-white
+        = link_to "New platform", new_platform_path
