@@ -1,10 +1,19 @@
-.card-body
-  %ul#platformsTab.nav.nav-tabs{:role => "tablist"}
-    %li.nav-item
-      %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
-    %li.nav-item
-      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
-  #platformsTabContent.tab-content
+.content
+  .wrapper
+    %canvas#chart-0
+  -# .toolbar
+    %button#randomize Randomize
+    %button#addDataset Add Dataset
+    %button#removeDataset Remove Dataset
+    %button#togglePieDoughnut Toggle Doughnut View
+-# .card-body
+
+  -# %ul#platformsTab.nav.nav-tabs{:role => "tablist"}
+  -#   %li.nav-item
+  -#     %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
+  -#   %li.nav-item
+  -#     %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
+  -# #platformsTabContent.tab-content
     #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
       .content
         .wrapper

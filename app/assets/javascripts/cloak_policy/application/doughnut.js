@@ -1,7 +1,70 @@
 $(document).on('turbolinks:load', function() {
+
+  var sampleDatasets = {
+    datasets: [
+      {
+        data: [100,200,3000],
+        labels: ['red', 'yellow', 'blue']
+      },
+      {
+        data: [100,200,300],
+        labels: ['green', 'brown', 'purple']
+      },
+      {
+        data: [100,200,300],
+        labels: ['bill', 'bobo', 'ted']
+      }
+
+    ]
+  }
+
+  const exposure = [
+    {
+      'name' : 'privacy',
+      'weight' : 100,
+      'subvectors' : [
+        {
+          'name' : 'locatability',
+          'weight' : 300,
+          'subvectors' : [
+            {
+              'name' : 'address',
+              'weight' : 20,
+              'subvectors' : []
+            },
+            {
+              'name' : 'ip address',
+              'weight' : 40,
+              'subvectors' : []
+            }
+          ]
+        },
+        {
+          'name' : 'sharability',
+          'weight' : 400,
+          'subvectors' : []
+        }
+      ]
+    },
+    {
+      'name' : 'notifiability',
+      'weight' : 200,
+      'subvectors' : []
+    }
+  ]
   var DATA_COUNT = 5;
+
   var utils = Samples.utils;
+
   utils.srand(110);
+
+  function getValuesAt(object, key) {
+    array = []
+    object.filter(function(e) {
+      array.push(e[key])
+    });
+    return array;
+  }
 
   function colorize(opaque, hover, ctx) {
     var v = ctx.dataset.data[ctx.dataIndex];
@@ -27,70 +90,126 @@ $(document).on('turbolinks:load', function() {
     });
   }
 
-  var configuratorStep = 0
+  var matrixPosition = [0,0]
+
+  var initialDataset = {
+    data: [100],
+    labels: ['GET YOUR CLOAK ON'],
+    borderWidth: [0],
+    backgroundColor: ['#DCDCDC'],
+    hoverBackgroundColor: ['#ADD8E6']
+  }
+
+  var data = sampleDatasets;
+  // var data = { datasets: [ initialDataset ] };
+
+
+  function getDataset(jsObject) {
+    hash = {
+      data: getValuesAt(jsObject, 'weight'),
+      labels: getValuesAt(jsObject, 'name'),
+      borderWidth: 0,
+      hoverBorderWidth: 0,
+    }
+    return hash
+  }
 
   var options = {
-    tooltips: {
-      enabled: false
-    },
-    legend: {
-      display: false
-    },
+    legend: false,
+    tooltips: false,
     plugins: {
       datalabels: {
-        color: 'white',
-        borderColor: 'white',
-        // borderWidth: 2,
-        // borderRadius: 25,
+    //     color: 'white',
+    //     borderColor: 'white',
+    //     borderWidth: 2,
+    //     borderRadius: 25,
         formatter: function(value, context) {
-          return context.chart.data.datasets[configuratorStep].labels[context.dataIndex];
+          label = context.chart.data.datasets[context.datasetIndex].labels[context.dataIndex];
+          // label =  context.chart.data.datasets[context.dataIndex].labels[context.datasetIndex]
+          // console.log(label)
+          return label
+
+          // return context.chart.data.datasets[0].labels[context.dataIndex];
         }
       }
     },
 
     elements: {
       arc: {
-        borderWidth: 0,
-        hoverBorderWidth: 0,
+        // borderWidth: 0,
+        // hoverBorderWidth: 0,
         backgroundColor: colorize.bind(null, false, false),
         hoverBackgroundColor: hoverColorize
       }
     }
   };
-
   var canvas = document.getElementById("chart-0");
-  var exposure = {
-    'privacy' : 100,
-    'notifications' : 200,
-    'reachability' : 300,
-  }
-
-  var data = {
-    datasets: [
-      {
-        data: Object.values(exposure),
-        labels: Object.keys(exposure)
-      }
-    ]
-  };
 
   canvas.onclick = function(evt) {
     var activePoints = chart.getElementsAtEvent(evt);
+    console.log (activePoints);
+    // console.log(activePoints[0]['_chart'].config.data)
     if (activePoints[0]) {
       var chartData = activePoints[0]['_chart'].config.data;
       var idx = activePoints[0]['_index'];
-      addDataset()
+
+      var label = chartData.datasets[0].labels[idx];
+      var value = chartData.datasets[0].data[idx];
+      var node = exposure.find(o => o['name'] === label)
+      // console.log(label)
+      // addDataset(node)
+
     } else if (data.datasets.length == 1) {
       return;
     } else { removeDataset();}
   };
-
 
   var chart = new Chart('chart-0', {
     type: 'pie',
     data: data,
     options: options
   });
+
+  function addDataset(exposureObject) {
+    chart.data.datasets.unshift( getDataset(exposureObject.subvectors));
+    chart.update();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function removeDataset() {
+    chart.data.datasets.shift();
+    chart.update();
+  }
+
+  function togglePieDoughnut() {
+    if (chart.options.cutoutPercentage) {
+      chart.options.cutoutPercentage = 0;
+    } else {
+      chart.options.cutoutPercentage = 50;
+    }
+    chart.update();
+  }
 
   $('#addDataset').click(function() {
     addDataset();
@@ -104,38 +223,10 @@ $(document).on('turbolinks:load', function() {
     togglePieDoughnut();
   });
 
-  function addDataset() {
-    chart.data.datasets.unshift({
-      data: generateData()
+  function randomize() {
+    chart.data.datasets.forEach(function(dataset) {
+      dataset.data = generateData();
     });
     chart.update();
   }
-
-  function removeDataset() {
-    chart.data.datasets.shift();
-    chart.update();
-  }
-
-
-  // eslint-disable-next-line no-unused-vars
-  // function togglePieDoughnut() {
-  //   if (chart.options.cutoutPercentage) {
-  //     chart.options.cutoutPercentage = 0;
-  //   } else {
-  //     chart.options.cutoutPercentage = 50;
-  //   }
-  //   chart.update();
-  // }
-  // // eslint-disable-next-line no-unused-vars
-  // $('#randomize').click(function() {
-  //   randomize();
-  // });
-
-  // $('#chart-0').append("<p>Test</p>")
-  // function randomize() {
-  //   chart.data.datasets.forEach(function(dataset) {
-  //     dataset.data = generateData();
-  //   });
-  //   chart.update();
-  // }
 });
