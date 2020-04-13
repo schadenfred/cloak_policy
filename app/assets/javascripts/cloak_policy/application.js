@@ -23,7 +23,7 @@
 //= require activestorage
 //= require cloak_policy/application/settings
 //= require cloak_policy/application/sidebar
+//= require chartsjs-plugin-datalabels
 //= require cloak_policy/application/utils
 //= require cloak_policy/application/doughnut
-//= require chartsjs-plugin-datalabels
 //= require turbolinks
