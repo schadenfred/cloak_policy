@@ -15,9 +15,19 @@ module CloakPolicy
     validates :name, uniqueness: { scope: :parent_id }
 
     scope :top_level, -> { where(parent_id: nil) }
+    scope :bottom_level, -> { where.not(id: pluck(:parent_id)) }
+
     after_create :create_score
 
     before_destroy { |record| Vector.where(parent_id: record.id).update_all(parent_id: nil )   }
+
+    def self.bottom_level
+      where.not(id: pluck(:parent_id))
+    end
+
+    def bottom_level?
+      subvectors.empty? ? true : false
+    end
 
     def full_name
       parent_id.nil? ? self["name"] : [parent.full_name, self["name"]].join(" >> ")
@@ -34,5 +44,4 @@ module CloakPolicy
       scores.create(vector_id: parent_id.nil? ? self['id'] : self['parent_id'])
     end
   end
-
 end

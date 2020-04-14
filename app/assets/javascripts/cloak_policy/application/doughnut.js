@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-
+  if ($(canvas).length == 0) { return }
   var sampleDatasets = {
     datasets: [
       {

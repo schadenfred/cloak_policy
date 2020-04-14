@@ -34,6 +34,7 @@ module CloakPolicy
 
     Given(:vector) { vectors(:privacy)}
     Given(:subvector) { vectors(:location)}
+    Given(:bottom_vector) { vectors(:geolocation)}
 
     describe "newly created vector" do
 
@@ -67,6 +68,19 @@ module CloakPolicy
 
         And  { refute Vector.top_level.include? subvector }
         And  { assert vector.subvectors.include? subvector }
+      end
+
+      describe ":bottom_level" do
+
+        Then {
+        assert_equal vector.bottom_level?, false
+        assert_equal subvector.bottom_level?, false
+        assert_equal bottom_vector.bottom_level?, true
+        assert_includes Vector.bottom_level, bottom_vector
+      }
+
+        # And  { refute Vector.bottom_level.include? subvector }
+        # And  { assert vector.subvectors.include? subvector }
       end
     end
 

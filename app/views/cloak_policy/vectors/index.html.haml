@@ -3,24 +3,27 @@
     %li.nav-item
       %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
     %li.nav-item
-      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
+      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} list
   #vectorsTabContent.tab-content
-    -# #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
+    #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
       getsome
     #attributes.tab-pane.fade{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
 
-      .card.card-table
-        .card-header
-          Vectors
-        .card-body
-          %hr
-          -# - Vector.top_level.each do |v|
-            = render 'vector', vector: v
-            %hr
+      %table.table.table-responsive.table-borderless
+        %thead
+          %tr
+            %th name
+            %th description
+            %th
+            %th
+          %tbody
+            - CloakPolicy::Vector.top_level.each do |vector|
+              = render 'vector', vector: vector
 
 
-          .card-footer
-            = link_to 'New top level vector', new_vector_path
+
+      .card-footer.bg-white
+        = link_to 'New top level vector', new_vector_path
 
 
 
