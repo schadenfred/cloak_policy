@@ -1,4 +1,60 @@
-.content
+.card-body
+  %ul#vectorsTab.nav.nav-tabs{:role => "tablist"}
+    %li.nav-item
+      %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
+    %li.nav-item
+      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
+  #vectorsTabContent.tab-content
+    -# #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
+      getsome
+    #attributes.tab-pane.fade{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
+
+      .card.card-table
+        .card-header
+          Vectors
+        .card-body
+          %hr
+          -# - Vector.top_level.each do |v|
+            = render 'vector', vector: v
+            %hr
+
+
+          .card-footer
+            = link_to 'New top level vector', new_vector_path
+
+
+
+    -# #attributes.tab-pane.fade{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
+      %table.table.table-responsive.table-borderless
+        %thead
+          %tr
+            %th name
+            %th description
+            %th
+            %th
+          %tbody
+            - CloakPolicy::Vector.top_level.each do |vector|
+              = render 'vector', vector: vector
+
+
+
+      .card-footer.bg-white
+        = link_to 'New top level vector', new_vector_path
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-# .content
   .wrapper
     %canvas#chart-0
   -# .toolbar
@@ -8,22 +64,22 @@
     %button#togglePieDoughnut Toggle Doughnut View
 -# .card-body
 
-  -# %ul#platformsTab.nav.nav-tabs{:role => "tablist"}
-  -#   %li.nav-item
-  -#     %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
-  -#   %li.nav-item
-  -#     %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
-  -# #platformsTabContent.tab-content
+  %ul#vectorsTab.nav.nav-tabs{:role => "tablist"}
+    %li.nav-item
+      %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
+    %li.nav-item
+      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
+  #vectorsTabContent.tab-content
     #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
       .content
         .wrapper
           %canvas#chart-0
 
         .toolbar
-          -# %button#randomize Randomize
-          -# %button#addDataset Add Dataset
-          -# %button#removeDataset Remove Dataset
-          -# %button#togglePieDoughnut Toggle Doughnut View
+          %button#randomize Randomize
+          %button#addDataset Add Dataset
+  -#         -# %button#removeDataset Remove Dataset
+  -#         -# %button#togglePieDoughnut Toggle Doughnut View
       -# #polarChart
       -#   %canvas{ id: "chart-0", data: { "chart-type" => "doughnut", "label" => 'Vector weights',  labels: @vectors.pluck(:name), scores: []}, :height => "300", :width => "400"}
       -# -# %button#randomizeData Randomize Data
@@ -68,19 +124,3 @@
       -#     = f.hidden_field :scorable_id, value: scorable.id
       -#     = f.hidden_field :vector_id, value: @vector.id
       -#     = f.submit "Score it", class: 'btn btn-primary'
-    #attributes.tab-pane.fade{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
-      %table.table.table-responsive.table-borderless
-        %thead
-          %tr
-            %th name
-            %th description
-            %th
-            %th
-          %tbody
-            - CloakPolicy::Vector.top_level.each do |vector|
-              = render 'vector', vector: vector
-
-
-
-      .card-footer.bg-white
-        = link_to 'New top level vector', new_vector_path

@@ -100,6 +100,14 @@ $(document).on('turbolinks:load', function() {
     hoverBackgroundColor: ['#ADD8E6']
   }
 
+  var backDataset = {
+    data: [100],
+    labels: ['START OVER'],
+    borderWidth: [0],
+    backgroundColor: ['#DCDCDC'],
+    hoverBackgroundColor: ['#ADD8E6']
+  }
+
   var data = sampleDatasets;
   // var data = { datasets: [ initialDataset ] };
 
@@ -114,15 +122,27 @@ $(document).on('turbolinks:load', function() {
     return hash
   }
 
+  function storeMatrixCoordinates(index, datasetIndex, activePoint) {
+    console.log("index: " + index)
+    console.log("datasetIndex: " + datasetIndex)
+    console.log(activePoint._chart.config.data.datasets[datasetIndex].labels[index])
+
+  }
   var options = {
+    onClick: function(e) {
+      var activePoint = this.getElementAtEvent(e)[0];
+      var index = activePoint._index;
+      var datasetIndex = activePoint._datasetIndex;
+      storeMatrixCoordinates(index, datasetIndex, activePoint)
+    },
     legend: false,
     tooltips: false,
     plugins: {
       datalabels: {
-    //     color: 'white',
-    //     borderColor: 'white',
-    //     borderWidth: 2,
-    //     borderRadius: 25,
+        color: 'white',
+        borderColor: 'white',
+        borderWidth: 2,
+        borderRadius: 25,
         formatter: function(value, context) {
           label = context.chart.data.datasets[context.datasetIndex].labels[context.dataIndex];
           // label =  context.chart.data.datasets[context.dataIndex].labels[context.datasetIndex]
@@ -145,24 +165,36 @@ $(document).on('turbolinks:load', function() {
   };
   var canvas = document.getElementById("chart-0");
 
-  canvas.onclick = function(evt) {
-    var activePoints = chart.getElementsAtEvent(evt);
-    console.log (activePoints);
-    // console.log(activePoints[0]['_chart'].config.data)
-    if (activePoints[0]) {
-      var chartData = activePoints[0]['_chart'].config.data;
-      var idx = activePoints[0]['_index'];
+  // canvas.onclick = function(evt) {
+  //   var activePoints = chart.getElementsAtEvent(evt);
+  //   if (activePoints[0]) {
+  //     var chartData = activePoints[0]['_chart'].config.data;
+  //     var idx = activePoints[0]['_index'];
 
-      var label = chartData.datasets[0].labels[idx];
-      var value = chartData.datasets[0].data[idx];
-      var node = exposure.find(o => o['name'] === label)
-      // console.log(label)
-      // addDataset(node)
+  //     var label = chartData.datasets[0].labels[idx];
+  //     var value = chartData.datasets[0].data[idx];
+  //     var node = exposure.find(o => o['name'] === label)
+  //     loggable(activePoints[0])
+  //     loggable(activePoints[1])
+  //     loggable(activePoints[2])
+  //     // console.log(evt)
+  //     // loggable(activePoints[3])
+  //     // console.log(activePoints[0], activePoints[1])
+  //     // console.log(activePoints[1])
+  //     // console.log(activePoints[2])
+  //     // console.log(activePoints[3])
+  //     // console.log(activePoints)
+  //     // addDataset(node)
 
-    } else if (data.datasets.length == 1) {
-      return;
-    } else { removeDataset();}
-  };
+  //   } else if (data.datasets.length == 1) {
+  //     return;
+  //   } else { removeDataset();}
+  // };
+
+  function loggable(point) {
+    console.log(point['_datasetIndex'])
+
+  }
 
   var chart = new Chart('chart-0', {
     type: 'pie',
