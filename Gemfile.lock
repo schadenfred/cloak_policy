@@ -4,7 +4,7 @@ PATH
     cloak_policy (0.1.0)
       bootstrap
       chart-js-rails
-      coffee-rails
+      fast_jsonapi
       haml-rails
       jquery-rails
       jquery-ui-rails
@@ -77,7 +77,7 @@ GEM
     apparition (0.5.0)
       capybara (~> 3.13, < 4)
       websocket-driver (>= 0.6.5)
-    autoprefixer-rails (9.7.5)
+    autoprefixer-rails (9.7.6)
       execjs
     better_errors (2.6.0)
       coderay (>= 1.0.0)
@@ -103,13 +103,6 @@ GEM
       railties (> 3.1)
     childprocess (3.0.0)
     coderay (1.1.2)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
@@ -120,6 +113,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.12.2)
     formatador (0.2.5)
     given_core (3.8.0)
