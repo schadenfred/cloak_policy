@@ -73,14 +73,11 @@ module CloakPolicy
       describe ":bottom_level" do
 
         Then {
-        assert_equal vector.bottom_level?, false
-        assert_equal subvector.bottom_level?, false
-        assert_equal bottom_vector.bottom_level?, true
-        assert_includes Vector.bottom_level, bottom_vector
-      }
-
-        # And  { refute Vector.bottom_level.include? subvector }
-        # And  { assert vector.subvectors.include? subvector }
+          assert_equal vector.bottom_level?, false
+          assert_equal subvector.bottom_level?, false
+          assert_equal bottom_vector.bottom_level?, true
+          assert_includes Vector.bottom_level, bottom_vector
+        }
       end
     end
 

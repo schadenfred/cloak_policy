@@ -35,7 +35,7 @@ module CloakPolicy
     def update
       respond_to do |format|
         if @vector.update(vector_params)
-          format.html { redirect_to admin_vectors_path, notice: 'Vector was successfully updated.' }
+          format.html { redirect_to vectors_path, notice: 'Vector was successfully updated.' }
           format.json { render :show, status: :ok, location: @vector }
         else
           format.html { render :edit }
