@@ -9,7 +9,7 @@ module CloakPolicy
     Given(:setting)                  { settings(:one) }
     Given(:vector)                   { vectors(:privacy) }
 
-    scorables = %w(choice  platform setting)
+    scorables = %w( vector )
 
     scorables.each do |scorable|
 
@@ -25,11 +25,12 @@ module CloakPolicy
 
       describe "#{scorable}:points_for(:vector)" do
 
-        describe "default must be 0" do
-Given { skip }
-          Then { assert_equal record.points_for(:privacy), 20 }
-          And  { assert_equal record.points_for(vector), 20 }
-          And  { assert_equal chosen.points_for(:privacy), 1 }
+        Given { Score.destroy_all }
+        describe "default must be 100" do
+# sGiven { skip }
+          Then { assert_equal record.points_for(:privacy), 100 }
+          # And  { assert_equal record.points_for(vector), 20 }
+          # And  { assert_equal chosen.points_for(:privacy), 1 }
         end
 
       #   describe "after update" do

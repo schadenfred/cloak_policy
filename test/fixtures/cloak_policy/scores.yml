@@ -23,12 +23,12 @@ three:
 
 four:
   scorable: two
-  scorable_type: Cloak::Setting
+  scorable_type: CloakPolicy::Setting
   <<: *default
 
 five:
   scorable: one
-  scorable_type: Cloak::Setting
+  scorable_type: CloakPolicy::Setting
   <<: *default
 
 six:
@@ -48,12 +48,18 @@ eight:
 
 nine:
   scorable: three
-  scorable_type: Cloak::Setting
+  scorable_type: CloakPolicy::Setting
   <<: *default
   vector: location
 
 ten:
   scorable: four
-  scorable_type: Cloak::Setting
+  scorable_type: CloakPolicy::Setting
   <<: *default
   vector: geolocation
+
+eleven:
+  scorable: privacy
+  scorable_type: CloakPolicy::Vector
+  <<: *default
+  vector: privacy

@@ -14,26 +14,27 @@ module CloakPolicy
       unless vector.class.name.eql?("Vector")
         vector = Vector.find_by(name: vector.to_s.capitalize)
       end
-      case self.class.to_s
-      when "Chosen"
-        rec = recommendation
-        svc = choice.setting.platform
-        rs = RecommendationsPlatform.where(
-          recommendation_id: recommendation.id,
-          platform_id: svc.id).first
+      # case self.class.to_s
+      # when "Chosen"
+      #   rec = recommendation
+      #   svc = choice.setting.platform
+      #   rs = RecommendationsPlatform.where(
+      #     recommendation_id: recommendation.id,
+      #     platform_id: svc.id).first
 
-        rsp = rs.points_for(vector)
-        sp = choice.setting.points_for(vector)
-        cp = choice.points_for(vector)
-        score = (rsp.to_f * (sp.to_f / 100) * (cp.to_f / 100 )).round
-        return score
-      end
+      #   rsp = rs.points_for(vector)
+      #   sp = choice.setting.points_for(vector)
+      #   cp = choice.points_for(vector)
+      #   score = (rsp.to_f * (sp.to_f / 100) * (cp.to_f / 100 )).round
+      #   return score
+      # end
 
-      if scores.empty?
-        return
-      end
+      # if scores.empty?
+      #   return
+      # end
       score = scores.where(vector_id: vector.id).first
-      score.nil? ? nil : score.points
+      score.nil? ? 100 : score.points
+      # score.nil? ? nil : score.points
     end
 
     def point_total_for(vector)
