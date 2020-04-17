@@ -21,7 +21,7 @@
             = link_to setting_score_path(setting_id: setting.id) do
               - unless setting.choices.empty?
                 - setting.choices.each do |c|
-                  .badge= c.points_for(@vector)
+                  .badge= c.weight_for(@vector)
           .col-3
             = render 'score', scorable: setting, vector: @vector
         %hr

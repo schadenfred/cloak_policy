@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_011724) do
     t.integer "scorable_id"
     t.integer "vector_id"
     t.string "impact"
-    t.integer "points"
+    t.integer "weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["scorable_type", "scorable_id"], name: "index_cloak_policy_scores_on_scorable_type_and_scorable_id"

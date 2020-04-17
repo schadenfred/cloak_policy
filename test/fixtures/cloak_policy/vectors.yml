@@ -5,9 +5,12 @@ privacy:
   name: Privacy
 
 location:
-  name: location
+  name: Location
   parent: privacy
 
 geolocation:
-  name: geolocation
+  name: Geolocation
   parent: location
+
+unscored_vector:
+  name: Karma

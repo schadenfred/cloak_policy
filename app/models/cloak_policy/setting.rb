@@ -38,7 +38,7 @@ module CloakPolicy
 
     def indices_for(vector)
       array = []
-      choices.each { |c| array << c.points_for(vector.downcase.to_s)}
+      choices.each { |c| array << c.weight_for(vector.downcase.to_s)}
       array
     end
   end

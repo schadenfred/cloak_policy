@@ -9,7 +9,7 @@ module CloakPolicy
 
     def show
       # @platform_points = []
-      # @platforms.each { |s| @platform_points << s.points_for(@vector.name) }
+      # @platforms.each { |s| @platform_points << s.weight_for(@vector.name) }
     end
 
     def new

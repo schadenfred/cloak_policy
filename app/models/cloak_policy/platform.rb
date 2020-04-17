@@ -20,7 +20,7 @@ module CloakPolicy
 
     def weights_for(vector)
       array = []
-      settings.each { |s| array << (s.points_for(vector) || "null")}
+      settings.each { |s| array << (s.weight_for(vector) || "null")}
       array
     end
 

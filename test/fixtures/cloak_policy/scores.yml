@@ -2,64 +2,23 @@ _fixture:
   model_class: CloakPolicy::Score
 
 default: &default
+  scorable: one
+  scorable_type: CloakPolicy::Setting
   vector: privacy
-  points: 20
+  weight: 100
   impact: yuuuge
 
 one:
-  scorable: one
-  scorable_type: Vector
   <<: *default
+  scorable: facebook
+  scorable_type: CloakPolicy::Platform
 
 two:
-  scorable: two
-  scorable_type: Vector
   <<: *default
+  scorable_type: CloakPolicy::Choice
 
 three:
-  scorable: three
-  scorable_type: Vector
   <<: *default
-
-four:
-  scorable: two
-  scorable_type: CloakPolicy::Setting
-  <<: *default
-
-five:
-  scorable: one
-  scorable_type: CloakPolicy::Setting
-  <<: *default
-
-six:
-  scorable: one
-  scorable_type: Choice
-  <<: *default
-
-seven:
-  scorable: one
-  scorable_type: Category
-  <<: *default
-
-eight:
-  scorable: facebook
-  scorable_type: Platform
-  <<: *default
-
-nine:
-  scorable: three
-  scorable_type: CloakPolicy::Setting
-  <<: *default
-  vector: location
-
-ten:
-  scorable: four
-  scorable_type: CloakPolicy::Setting
-  <<: *default
-  vector: geolocation
-
-eleven:
   scorable: privacy
   scorable_type: CloakPolicy::Vector
-  <<: *default
-  vector: privacy
+

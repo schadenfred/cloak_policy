@@ -5,7 +5,7 @@ class CreateCloakPolicyScores < ActiveRecord::Migration[6.0]
       t.integer :scorable_id
       t.integer :vector_id
       t.string :impact
-      t.integer :points
+      t.integer :weight
 
       t.timestamps
     end

@@ -10,31 +10,12 @@ module CloakPolicy
       has_many :vectors, through: :scores, as: :scorable
     end
 
-    def points_for(vector)
-      unless vector.class.name.eql?("Vector")
+    def weight_for(vector)
+      unless vector.class.name.eql?("CloakPolicy::Vector")
         vector = Vector.find_by(name: vector.to_s.capitalize)
       end
-      # case self.class.to_s
-      # when "Chosen"
-      #   rec = recommendation
-      #   svc = choice.setting.platform
-      #   rs = RecommendationsPlatform.where(
-      #     recommendation_id: recommendation.id,
-      #     platform_id: svc.id).first
-
-      #   rsp = rs.points_for(vector)
-      #   sp = choice.setting.points_for(vector)
-      #   cp = choice.points_for(vector)
-      #   score = (rsp.to_f * (sp.to_f / 100) * (cp.to_f / 100 )).round
-      #   return score
-      # end
-
-      # if scores.empty?
-      #   return
-      # end
       score = scores.where(vector_id: vector.id).first
-      score.nil? ? 100 : score.points
-      # score.nil? ? nil : score.points
+      score.nil? ? 100 : score.weight
     end
 
     def point_total_for(vector)
@@ -42,12 +23,12 @@ module CloakPolicy
       case self.class.to_s
       when "Recommendation"
         recommendations_platforms.each do |rs|
-          total += rs.points_for(vector)
+          total += rs.weight_for(vector)
         end
         total
       when "Setting"
         platform.settings.each do |setting|
-          total += setting.points_for(:vector)
+          total += setting.weight_for(:vector)
         end
         total
       end
@@ -57,9 +38,9 @@ module CloakPolicy
       case self.class.to_s
       when "Recommendation"
         rs = recommendations_platforms.find_by(platform_id: platform.id)
-        (rs.points_for(vector).to_f / point_total_for(vector).to_f * 100).round
+        (rs.weight_for(vector).to_f / point_total_for(vector).to_f * 100).round
       when "Setting"
-        (points_for(vector).to_f / point_total_for(vector).to_f * 100).round
+        (weight_for(vector).to_f / point_total_for(vector).to_f * 100).round
       end
     end
   end

@@ -7,7 +7,7 @@ module CloakPolicy
     validates :scorable, :vector, presence: true
     validates :vector_id, uniqueness: { scope: :scorable }
 
-    default_scope { order(points: :desc) }
+    default_scope { order(weight: :desc) }
 
     after_create :create_child_scores
     after_destroy :destroy_child_scores

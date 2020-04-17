@@ -39,7 +39,7 @@ Given { skip }
       Given(:data) { facebook.chart_data("privacy") }
 
       Then { assert_includes data[:labels], setting.name}
-      And  { assert_equal data[:points][0], setting.points_for(:privacy)}
+      And  { assert_equal data[:points][0], setting.weight_for(:privacy)}
       # And  { assert_equal data.size, 2 }
     end
   end
