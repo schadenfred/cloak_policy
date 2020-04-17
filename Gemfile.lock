@@ -4,7 +4,6 @@ PATH
     cloak_policy (0.1.0)
       bootstrap
       chart-js-rails
-      fast_jsonapi
       haml-rails
       jquery-rails
       jquery-ui-rails
@@ -113,8 +112,6 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    fast_jsonapi (1.5)
-      activesupport (>= 4.2)
     ffi (1.12.2)
     formatador (0.2.5)
     given_core (3.8.0)
