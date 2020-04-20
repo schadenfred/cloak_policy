@@ -8,7 +8,7 @@ module CloakPolicy
 
     has_many :scored, class_name: 'Score', foreign_key: :vector_id, dependent: :destroy
     has_many :scored_subvectors, through: :scored, source: :scorable, source_type: 'Vector'
-    has_many :settings, through: :scored, source: :scorable, source_type: 'Setting'
+    has_many :scored_settings, through: :scored, source: :scorable, source_type: 'Setting'
     has_many :subvectors, class_name: "Vector", foreign_key: :parent_id
 
     validates :name, presence: true

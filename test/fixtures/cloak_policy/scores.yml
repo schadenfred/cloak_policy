@@ -22,3 +22,11 @@ three:
   scorable: privacy
   scorable_type: CloakPolicy::Vector
 
+
+four:
+  weight: 100
+  impact: yuuuge
+  vector: geolocation
+  scorable: two
+  scorable_type: Setting
+
