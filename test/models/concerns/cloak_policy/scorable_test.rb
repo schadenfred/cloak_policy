@@ -9,7 +9,7 @@ module CloakPolicy
     Given(:setting)                  { settings(:one) }
     Given(:vector)                   { vectors(:privacy) }
 
-    scorables = %w(  vector choice platform setting  )
+    scorables = %w( vector choice platform setting  )
 
     scorables.each do |scorable|
 
