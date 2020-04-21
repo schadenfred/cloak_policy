@@ -10,12 +10,9 @@ module CloakPolicy
       has_many :vectors, through: :scores, as: :scorable
     end
 
-    def weight_for(vector)
-      unless vector.class.name.eql?("CloakPolicy::Vector")
-        vector = Vector.find_by(name: vector.to_s.capitalize)
-      end
-      score = scores.where(vector_id: vector.id).first
-      score.nil? ? 100 : score.weight
+    def weight_for(vector_id)
+      array = scores.where(vector_id: vector_id)
+      array.empty? ? 100 : array.first.weight
     end
 
     def point_total_for(vector)

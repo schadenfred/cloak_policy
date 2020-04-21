@@ -2,15 +2,15 @@ _fixture:
   model_class: CloakPolicy::Vector
 
 privacy:
-  name: Privacy
+  name: privacy
 
 location:
-  name: Location
+  name: location
   parent: privacy
 
 geolocation:
-  name: Geolocation
+  name: geolocation
   parent: location
 
 unscored_vector:
-  name: Karma
+  name: karma
