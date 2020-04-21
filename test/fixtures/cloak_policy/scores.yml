@@ -28,5 +28,5 @@ four:
   impact: yuuuge
   vector: geolocation
   scorable: two
-  scorable_type: Setting
+  scorable_type: CloakPolicy::Setting
 
