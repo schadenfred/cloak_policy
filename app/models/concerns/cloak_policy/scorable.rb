@@ -18,11 +18,7 @@ module CloakPolicy
     def point_total_for(vector)
       total = 0
       case self.class.to_s
-      when "Recommendation"
-        recommendations_platforms.each do |rs|
-          total += rs.weight_for(vector)
-        end
-        total
+
       when "Setting"
         platform.settings.each do |setting|
           total += setting.weight_for(:vector)
