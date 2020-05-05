@@ -1,13 +1,13 @@
 .card-body
   %ul#platformsTab.nav.nav-tabs{:role => "tablist"}
     %li.nav-item
-      %a#scoring-tab.nav-link.active{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
+      %a#scoring-tab.nav-link{"aria-controls" => "scoring", "aria-selected" => "false", "data-toggle" => "tab", :href => "#scoring", :role => "tab"} scoring
     %li.nav-item
-      %a#attributes-tab.nav-link{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
+      %a#attributes-tab.nav-link.active{"aria-controls" => "attributes", "aria-selected" => "true", "data-toggle" => "tab", :href => "#attributes", :role => "tab"} Attributes
   #platformsTabContent.tab-content
-    #scoring.tab-pane.fade.show.active{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
+    #scoring.tab-pane.fade{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
       getsome
-    #attributes.tab-pane.fade{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
+    #attributes.tab-pane.fade.show.active{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
 
       %ul.nav.nav-tabs{:role => "tablist"}
         - @platforms.each do |platform|

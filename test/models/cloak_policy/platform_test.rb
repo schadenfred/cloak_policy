@@ -31,16 +31,5 @@ module CloakPolicy
     end
 
     Given(:facebook) { platforms(:facebook) }
-
-
-    describe "chart-data" do
-Given { skip }
-      Given(:setting) { settings(:one) }
-      Given(:data) { facebook.chart_data("privacy") }
-
-      Then { assert_includes data[:labels], setting.name}
-      And  { assert_equal data[:points][0], setting.weight_for(:privacy)}
-      # And  { assert_equal data.size, 2 }
-    end
   end
 end

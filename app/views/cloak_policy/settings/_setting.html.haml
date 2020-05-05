@@ -8,9 +8,6 @@
               .col
                 = material_icon(setting.platform.icon)
                 = setting.name ? setting.name : "New #{setting.platform.name.capitalize} setting:"
-                -# .col-2.text-right
-                  - setting.vectors.each do |v|
-                    = link_to v.name, v
     .col-sm-1
       .card-body
         .setting-grabber.grabbable

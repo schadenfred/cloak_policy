@@ -1,4 +1,5 @@
-jQuery(function() {
+$(document).on('turbolinks:load', function() {
+
   var makeSortable, settings;
   settings = '.settings';
   $('.grabbable').tooltip({

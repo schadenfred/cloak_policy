@@ -3,17 +3,20 @@
 require "application_system_test_case"
 
 class PlatformsTest < ApplicationSystemTestCase
-Given { skip }
+
   Given { javascript }
   Given(:platform) { platforms(:facebook) }
   Given { visit platform_path(platform) }
 
   describe "update" do
+
     describe "setting" do
+
       Given do
         within "#setting-#{settings(:one).id}" do
           click_link href: edit_setting_path(settings(:one).id)
         end
+
         within "#setting-#{settings(:one).id}" do
           fill_in "setting_name", with: "some new name"
           click_button "Update Setting"
@@ -24,6 +27,7 @@ Given { skip }
     end
 
     describe "choice" do
+
       Given do
         within "#choice-#{choices(:one).id}" do
           click_link href: edit_choice_path(choices(:one).id)

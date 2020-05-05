@@ -20,7 +20,6 @@ CloakPolicy::Engine.routes.draw do
   end
 
   resources :recommendations do
-    resources :platforms, controller: 'admin/recommendations_platforms'
     member do
       patch 'choose'
     end
@@ -44,5 +43,5 @@ CloakPolicy::Engine.routes.draw do
   patch 'adjust', to: "scoring#adjust"
   post 'clone',               to: "clones#clone"
 
-  get '',                to: "dashboard#show"
+  get '',                to: "vectors#index"
 end

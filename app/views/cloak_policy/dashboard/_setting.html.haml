@@ -1,9 +1,0 @@
-.container
-  %h5
-    %i{class: setting.platform.icon}
-      = setting.name
-      %br
-      %br
-      %br
-      - setting.choices.each do |choice|
-        = render 'choice', choice: choice
