@@ -1,0 +1,11 @@
+_fixture:
+  model_class: CloakPolicy::Recommendation
+one:
+  name: MyString
+  description: MyString
+  recommender_id: 1
+
+two:
+  name: MyString
+  description: MyString
+  recommender_id: 1

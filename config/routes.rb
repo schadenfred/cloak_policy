@@ -1,5 +1,7 @@
 CloakPolicy::Engine.routes.draw do
 
+  resources :chosens
+  resources :recommendations
   resources :settings
   resources :choices
   resources :feedbacks, only: [:create, :index, :destroy]

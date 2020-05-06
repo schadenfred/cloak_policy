@@ -1,0 +1,32 @@
+.row 
+  .col 
+    %p#notice= notice
+
+    %p
+      %b Name:
+      = @recommendation.name
+    %p
+      %b Description:
+      = @recommendation.description
+    %p
+      %b Recommender:
+      = @recommendation.recommender_id
+
+    = link_to 'Edit', edit_recommendation_path(@recommendation)
+    \|
+    = link_to 'Back', recommendations_path
+    %table.table.table-striped 
+      %thead 
+        %tr 
+          %th platform
+          %th setting 
+          %th choice
+      
+      %tbody 
+        - @recommendation.chosens.each do |chosen|
+          %tr 
+            %td= chosen.choice.setting.platform.name
+            %td= chosen.choice.setting.name
+            %td= chosen.choice.name
+  .col
+

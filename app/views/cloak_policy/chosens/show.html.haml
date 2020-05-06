@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Choice:
+  = @chosen.choice_id
+%p
+  %b Recommendation:
+  = @chosen.recommendation_id
+%p
+  %b Advice:
+  = @chosen.advice
+
+= link_to 'Edit', edit_chosen_path(@chosen)
+\|
+= link_to 'Back', chosens_path

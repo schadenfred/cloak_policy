@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_011724) do
+ActiveRecord::Schema.define(version: 2020_05_05_184536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2020_03_27_011724) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cloak_policy_chosens", force: :cascade do |t|
+    t.integer "choice_id"
+    t.integer "recommendation_id"
+    t.string "advice"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["choice_id"], name: "index_cloak_policy_chosens_on_choice_id"
+    t.index ["recommendation_id"], name: "index_cloak_policy_chosens_on_recommendation_id"
+  end
+
   create_table "cloak_policy_platforms", force: :cascade do |t|
     t.string "name"
     t.string "fqdn"
@@ -39,12 +49,21 @@ ActiveRecord::Schema.define(version: 2020_03_27_011724) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cloak_policy_recommendations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "recommender_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recommender_id"], name: "index_cloak_policy_recommendations_on_recommender_id"
+  end
+
   create_table "cloak_policy_scores", force: :cascade do |t|
     t.string "scorable_type"
     t.integer "scorable_id"
     t.integer "vector_id"
     t.string "impact"
-    t.integer "weight"
+    t.integer "weight", default: 100
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["scorable_type", "scorable_id"], name: "index_cloak_policy_scores_on_scorable_type_and_scorable_id"

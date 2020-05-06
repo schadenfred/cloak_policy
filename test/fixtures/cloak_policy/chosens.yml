@@ -1,0 +1,11 @@
+_fixture:
+  model_class: CloakPolicy::Chosen
+one:
+  choice_id: 1
+  recommendation_id: 1
+  advice: MyString
+
+two:
+  choice_id: 1
+  recommendation_id: 1
+  advice: MyString
