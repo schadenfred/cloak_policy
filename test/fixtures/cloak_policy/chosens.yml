@@ -1,8 +1,8 @@
 _fixture:
   model_class: CloakPolicy::Chosen
 one:
-  choice_id: 1
-  recommendation_id: 1
+  choice: one
+  recommendation: one
   advice: MyString
 
 two:

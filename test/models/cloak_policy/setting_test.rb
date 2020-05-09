@@ -64,5 +64,11 @@ module CloakPolicy
         assert_equal settings(:three).row_order_rank, 2
       }
     end
+
+    describe "choice_count" do 
+
+      Then { assert_equal setting.choices.count, 3}
+
+    end
   end
 end

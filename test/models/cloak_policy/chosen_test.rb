@@ -21,6 +21,19 @@ module CloakPolicy
       must belong_to :choice 
       must belong_to :recommendation 
     end
+
+    describe "must provide name and value of choice" do 
+      Given(:chosen) { chosens(:one) }
+      Given(:choice) { chosen.choice }
+      
+      Then { 
+        assert_equal chosen.choice.name, choice.name
+        assert_equal chosen.choice.value, choice.value
+        assert_equal chosen.name, choice.name
+        assert_equal chosen.value, choice.value 
+      }
+
+    end
     # describe "must be destroyed if reccommendation is destroyed" do
 
     #   Given(:count) { recommendation.chosens.count }

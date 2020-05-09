@@ -19,6 +19,7 @@ module CloakPolicy
 
       specify "has_many" do
         must have_many :chosens
+        must have_many :choices
       end
     end
   end 
