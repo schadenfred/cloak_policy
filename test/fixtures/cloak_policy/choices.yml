@@ -5,48 +5,48 @@ default: &default
   recommendable: true
 
 one:
+  <<: *default
   name: "Friends"
   setting: one
-  <<: *default
 
 two:
+  <<: *default
   name: "Public"
   setting: one
-  <<: *default
 
 three:
+  <<: *default
   name: "Only me"
   setting: one
   recommendable: true
-  <<: *default
 
 four:
+  <<: *default
   name: "Yes"
   setting: two
   recommendable: true
-  <<: *default
 
 five:
+  <<: *default
   name: "No"
   setting: two
   recommendable: true
-  <<: *default
 
 six:
+  <<: *default
   name: "yes"
   setting: three
   recommendable: true
-  <<: *default
 
 seven:
+  <<: *default
   name: "no"
   setting: three
   recommendable: true
-  <<: *default
 
 boolean_choice:
+  <<: *default
   name: "yes"
   setting: three
   value: "1"
   recommendable: true
-  <<: *default

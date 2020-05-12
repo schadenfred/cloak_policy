@@ -87,12 +87,24 @@ module CloakPolicy
     end
 
     describe ":settings" do
-      Given(:bottom_level_vector) { vectors(:geolocation) }
-      Then {
-        assert_equal scores(:four).vector, vectors(:geolocation)
-        assert_includes vectors(:geolocation).scored, scores(:four)
-        assert_includes vectors(:geolocation).scored_settings, settings(:two)
-      }
+
+      describe "must return settings scored for the vector" do 
+                
+        Then { assert_equal scores(:four).vector, vectors(:geolocation) } 
+        And  { assert_includes vectors(:geolocation).scored, scores(:four) }
+        And  { assert_includes vectors(:geolocation).scored_settings, settings(:two) }
+        And  { assert_includes vectors(:geolocation).child_settings, settings(:two) }
+      end
+
+      describe "must return settings for the bottom level subvector" do
+
+        Then { assert_includes vectors(:location).child_settings, settings(:two) }
+      end
+
+      describe "must return all settings for all the bottom level subvectors" do
+
+        Then { assert_includes vectors(:privacy).child_settings, settings(:two) }
+      end
     end
   end
 end

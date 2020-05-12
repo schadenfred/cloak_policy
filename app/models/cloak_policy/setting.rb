@@ -6,7 +6,6 @@ module CloakPolicy
     include Recommendable
     include Scorable
 
-    # belongs_to :vector, class_name: 'Category', optional: true
     belongs_to :platform, optional: true
 
     has_many :choices, dependent: :destroy
