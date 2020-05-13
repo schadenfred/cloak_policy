@@ -26,40 +26,35 @@ module CloakPolicy
         case
         when (child.class.name.eql?('CloakPolicy::Vector') && child.bottom_level?)
           intent_options(child).each do |io| 
-            # hash[:name] = "#{io}: #{child.name}" 
-            # hash[:child_type] = 'vector'
-            # hash[:intent] = 'least' 
-            array << { name: "#{io}: #{child.name}", children: descendants(child.scored_settings) }
+            # array << { name: intent_cta(child, io), child_type: 'intent',  children: descendants(child.scored_settings) }
+            array << { name: intent_cta(child, io), size: 300 }
           end
+          array << { name: child.name, children: descendants(child.scored_settings) }
         when child.class.name.eql?('CloakPolicy::Vector')
+          array << { name: child.name, children: descendants(child.subvectors) }
           intent_options(child).each do |io| 
-            # hash[:name] = "#{io}: #{child.name}" 
-            # hash[:child_type] = 'vector'
-            # hash[:intent] = 'least' 
-            array << { name: "#{io}: #{child.name}", children: descendants(child.subvectors) }
+            array << { name: intent_cta(child, io), size: 300 }
           end 
         when child.class.name.eql?('CloakPolicy::Setting')
-          # array = []
-          array << { name: child.name.truncate(20), children: descendants(child.choices) }
-          # child.choices.each do |choice| 
-          #   array << { name: choice.name, size: 100 }
-          # end 
-          # hash[:child_type] = 'bottom_level'
-          # hash[:name] = child.name 
-          # hash[:children] = array
-        # when child.respond_to?(:choices) && child.choices.size > 0
-        #   hash[:child_type] = 'setting'
-        #   hash[:name] = child.name.truncate(20) 
-        #   hash[:children] = descendants(child.choices)
+          array << { name: child.name.truncate(20), child_type: 'intent', children: descendants(child.choices) }
         when 
-          # hash[:name] = child.name.truncate(20)
-          # hash[:child_type] = 'choice'
-          # hash[:size] = 100
           array << { name: child.name, size: 100 }
         end
-        # array << hash
       end
       array
+    end
+
+    def intent_cta(vector, io)
+      # fullname = vector.name
+      "Choose #{io} #{fullname(vector)}"
+    end
+
+    def fullname(vector, parent=nil)
+      if vector.parent.nil?
+        fullname = vector.name
+      else 
+        fullname = "#{vector.name} #{vector.parent.name}" 
+      end
     end
       
     def intent_options(vector, counts=nil)
