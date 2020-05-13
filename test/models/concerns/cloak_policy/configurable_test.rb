@@ -19,12 +19,13 @@ module CloakPolicy
       Given(:descendants) { subject.descendants }
       Then { 
         assert_equal subject.descendants[0][:name], 'privacy'
+        assert_equal subject.descendants[0][:child_type], 'vector'
+        assert_equal subject.descendants[0][:intent], 'least'
         assert_equal subject.descendants[0][:children][0][:name], 'least'
         assert_equal subject.descendants[0][:children][0][:children][0][:name], 'location'
         assert_equal subject.descendants[0][:children][0][:children][0][:children][0][:name], 'off'
         assert_equal subject.descendants[0][:children][0][:children][0][:children][0][:children][0][:name], 'geolocation'
         assert_equal subject.descendants[0][:children][0][:children][0][:children][0][:children][0][:children][0][:name], 'off'
-        assert_equal subject.descendants[0][:children][0][:children][0][:children][0][:children][0][:children][0][:children], 'blah'
       }                                                                                                                                                                                                                                                  
 
       # And  { assert_equal subject.descendants[0][:children][0][:name], 'location'}

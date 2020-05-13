@@ -25,7 +25,9 @@ module CloakPolicy
         hash = {}
         case
         when child.respond_to?(:subvectors) && child.subvectors.size > 0
-          hash[:name] = child.name 
+          hash[:name] = child.name
+          hash[:child_type] = 'vector'
+          hash[:intent] = 'least' 
           array = []
           intent_options(child).each do |io| 
             array << { name: io, children: descendants(child.subvectors) }
