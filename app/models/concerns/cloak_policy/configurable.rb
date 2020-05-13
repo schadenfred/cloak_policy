@@ -25,9 +25,11 @@ module CloakPolicy
         hash = {}
         case
         when (child.class.name.eql?('CloakPolicy::Vector') && child.bottom_level?)
-          intent_options(child).each do |io| 
-            # array << { name: intent_cta(child, io), child_type: 'intent',  children: descendants(child.scored_settings) }
-            array << { name: intent_cta(child, io), size: 300 }
+          unless child.scored_settings.empty?
+            intent_options(child).each do |io| 
+            #   # array << { name: intent_cta(child, io), child_type: 'intent',  children: descendants(child.scored_settings) }
+            #   # array << { name: intent_cta(child, io), size: 300 }
+            end
           end
           array << { name: child.name, children: descendants(child.scored_settings) }
         when child.class.name.eql?('CloakPolicy::Vector')
