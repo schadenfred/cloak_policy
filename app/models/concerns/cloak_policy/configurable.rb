@@ -13,43 +13,53 @@ module CloakPolicy
 
     def flare 
       {
-        name: 'flare', 
+        name: 'Cloak', 
         children: descendants
       }
     end
     
     def descendants(children=nil, descendants=nil)
-      descendants = descendants || []
+      array = descendants || []
       children = children || CloakPolicy::Vector.top_level
       children.each do |child| 
         hash = {}
         case
-        when child.respond_to?(:subvectors) && child.subvectors.size > 0
-          hash[:name] = child.name
-          hash[:child_type] = 'vector'
-          hash[:intent] = 'least' 
-          array = []
+        when (child.class.name.eql?('CloakPolicy::Vector') && child.bottom_level?)
           intent_options(child).each do |io| 
-            array << { name: io, children: descendants(child.subvectors) }
-          end 
-          hash[:children] = array
-        when child.respond_to?(:scored_settings) && child.scored_settings.size > 0
-          array = []
+            # hash[:name] = "#{io}: #{child.name}" 
+            # hash[:child_type] = 'vector'
+            # hash[:intent] = 'least' 
+            array << { name: "#{io}: #{child.name}", children: descendants(child.scored_settings) }
+          end
+        when child.class.name.eql?('CloakPolicy::Vector')
           intent_options(child).each do |io| 
-            array << { name: io, children: descendants(child.scored_settings) }
+            # hash[:name] = "#{io}: #{child.name}" 
+            # hash[:child_type] = 'vector'
+            # hash[:intent] = 'least' 
+            array << { name: "#{io}: #{child.name}", children: descendants(child.subvectors) }
           end 
-          hash[:name] = child.name 
-          hash[:children] = array
-        when child.respond_to?(:choices) && child.choices.size > 0
-          hash[:name] = child.name.truncate(20) 
-          hash[:children] = descendants(child.choices)
+        when child.class.name.eql?('CloakPolicy::Setting')
+          # array = []
+          array << { name: child.name.truncate(20), children: descendants(child.choices) }
+          # child.choices.each do |choice| 
+          #   array << { name: choice.name, size: 100 }
+          # end 
+          # hash[:child_type] = 'bottom_level'
+          # hash[:name] = child.name 
+          # hash[:children] = array
+        # when child.respond_to?(:choices) && child.choices.size > 0
+        #   hash[:child_type] = 'setting'
+        #   hash[:name] = child.name.truncate(20) 
+        #   hash[:children] = descendants(child.choices)
         when 
-          hash[:name] = child.name.truncate(20)
-          hash[:size] = 100
+          # hash[:name] = child.name.truncate(20)
+          # hash[:child_type] = 'choice'
+          # hash[:size] = 100
+          array << { name: child.name, size: 100 }
         end
-        descendants << hash
+        # array << hash
       end
-      descendants
+      array
     end
       
     def intent_options(vector, counts=nil)
