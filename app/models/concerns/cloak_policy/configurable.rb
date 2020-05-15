@@ -27,27 +27,25 @@ module CloakPolicy
         when (child.class.name.eql?('CloakPolicy::Vector') && child.bottom_level?)
           unless child.scored_settings.empty?
             intent_options(child).each do |io| 
-            #   # array << { name: intent_cta(child, io), child_type: 'intent',  children: descendants(child.scored_settings) }
-            #   # array << { name: intent_cta(child, io), size: 300 }
+              array << { name: intent_cta(child, io),  size: 300, selected: false }
             end
           end
           array << { name: child.name, children: descendants(child.scored_settings) }
         when child.class.name.eql?('CloakPolicy::Vector')
-          array << { name: child.name, children: descendants(child.subvectors) }
+          array << { name: child.name, child_type: 'vector', children: descendants(child.subvectors) }
           intent_options(child).each do |io| 
-            array << { name: intent_cta(child, io), size: 300 }
+            array << { name: intent_cta(child, io), size: 300, selected: false }
           end 
         when child.class.name.eql?('CloakPolicy::Setting')
-          array << { name: child.name.truncate(20), child_type: 'intent', children: descendants(child.choices) }
+          array << { name: child.name, child_type: 'intent', children: descendants(child.choices) }
         when 
-          array << { name: child.name, size: 100 }
+          array << { name: child.name, size: 100, selected: false }
         end
       end
       array
     end
 
     def intent_cta(vector, io)
-      # fullname = vector.name
       "Choose #{io} #{fullname(vector)}"
     end
 

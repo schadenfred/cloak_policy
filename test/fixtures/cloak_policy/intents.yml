@@ -1,0 +1,10 @@
+_fixture:
+  model_class: CloakPolicy::Intent
+
+one:
+  intendable: one
+  intendable_type: Intendable
+
+two:
+  intendable: two
+  intendable_type: Intendable

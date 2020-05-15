@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_184536) do
+ActiveRecord::Schema.define(version: 2020_05_13_071347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2020_05_05_184536) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["choice_id"], name: "index_cloak_policy_chosens_on_choice_id"
     t.index ["recommendation_id"], name: "index_cloak_policy_chosens_on_recommendation_id"
+  end
+
+  create_table "cloak_policy_intents", force: :cascade do |t|
+    t.string "intendable_type", null: false
+    t.bigint "intendable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["intendable_type", "intendable_id"], name: "index_cloak_policy_intents_on_intendable_type_and_intendable_id"
   end
 
   create_table "cloak_policy_platforms", force: :cascade do |t|
