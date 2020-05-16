@@ -22,20 +22,22 @@ module CloakPolicy
       array = descendants || []
       children = children || CloakPolicy::Vector.top_level
       children.each do |child| 
-        hash = {}
         case
         when (child.class.name.eql?('CloakPolicy::Vector') && child.bottom_level?)
           unless child.scored_settings.empty?
-            intent_options(child).each do |io| 
-              array << { name: intent_cta(child, io),  size: 300, selected: false }
+            intents = []
+            intent_options(child).each_with_index do |io, index| 
+               
+              intents << { name: intent_cta(child, io),  children: descendants(child.scored_settings), selected: ((index.eql?(0)) ? true : false) }
             end
           end
-          array << { name: child.name, children: descendants(child.scored_settings) }
+          array << { name: child.name, children: intents }
         when child.class.name.eql?('CloakPolicy::Vector')
-          array << { name: child.name, child_type: 'vector', children: descendants(child.subvectors) }
-          intent_options(child).each do |io| 
-            array << { name: intent_cta(child, io), size: 300, selected: false }
-          end 
+          intents = []
+          intent_options(child).each_with_index do |io, index| 
+            intents << { name: intent_cta(child, io), children: descendants(child.subvectors), selected: index.eql?(0) ? true : false }
+          end             
+          array << { name: child.name, child_type: 'vector', children: intents }
         when child.class.name.eql?('CloakPolicy::Setting')
           array << { name: child.name, child_type: 'intent', children: descendants(child.choices) }
         when 
