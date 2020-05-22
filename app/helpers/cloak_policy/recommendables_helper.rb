@@ -15,7 +15,6 @@ module CloakPolicy
 
     def recommendable_link_for(record)
       klass = record.class.name.demodulize.to_s.downcase
-
       case
       when !record.parent_recommendable?
         "inactive"
@@ -37,7 +36,7 @@ module CloakPolicy
       when 'activate'
         path = recommendables_activate_path( params: params )
       end
-      link_to action, path, id: id, class: klass, method: :patch, remote: true
+      link_to action, path, id: id, class: "", method: :patch, remote: true
     end
   end
 end

@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "bootstrap"
   spec.add_dependency "ranked-model"
-  spec.add_dependency "simple_form"
   spec.add_dependency "jquery-rails"
   spec.add_dependency "jquery-ui-rails"
   spec.add_dependency "chart-js-rails"

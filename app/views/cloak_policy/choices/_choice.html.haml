@@ -6,15 +6,11 @@
       = choice.they_say
     %dd.col-sm-3
       = choice.we_say
-    %dd.col-sm-2
-      .row
-        .col
-          = recommendable_link_for(choice)
-        .col
-          = link_to edit_choice_path(choice), remote: true do
-            = material_icon("edit")
-        .col
-          = link_to choice, method: :delete, data: { confirm: 'Are you sure?' } do
-            = material_icon("delete")
+    %dd.col-sm-3
+      = recommendable_link_for(choice)
+      = link_to edit_choice_path(choice), remote: true do
+        = material_icon("edit")
+      = link_to choice, method: :delete, data: { confirm: 'Are you sure?' } do
+        = material_icon("delete")
 
 
