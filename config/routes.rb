@@ -1,11 +1,11 @@
 CloakPolicy::Engine.routes.draw do
 
+  resources :choices
   resources :chosens
   resources :intents
   resources :platforms
   resources :recommendations
   resources :settings
-  resources :choices
   resources :vectors do 
     resources :intents
   end
