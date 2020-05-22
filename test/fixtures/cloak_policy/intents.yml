@@ -1,10 +1,12 @@
-_fixture:
-  model_class: CloakPolicy::Intent
+_fixture: 
+  model_class: CloakPolicy::Intent 
 
 one:
-  intendable: one
-  intendable_type: Intendable
+  name: MyString
+  weight: 1
+  vector: one
 
 two:
-  intendable: two
-  intendable_type: Intendable
+  name: MyString
+  weight: 1
+  vector: two

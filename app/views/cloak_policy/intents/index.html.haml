@@ -1,0 +1,19 @@
+%h1 Listing intents
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @intents.each do |intent|
+      %tr
+        %td= link_to 'Show', intent
+        %td= link_to 'Edit', edit_intent_path(intent)
+        %td= link_to 'Destroy', intent, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Intent', new_intent_path

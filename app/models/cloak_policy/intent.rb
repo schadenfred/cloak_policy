@@ -1,5 +1,5 @@
 module CloakPolicy
   class Intent < ApplicationRecord
-    belongs_to :intendable, polymorphic: true
+    belongs_to :vector
   end
 end

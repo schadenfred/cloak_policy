@@ -22,10 +22,13 @@ module CloakPolicy
     describe "associations" do
 
       specify "belongs_to" do
+
         must belong_to(:parent).optional
       end
 
       specify "has_many" do
+        
+        must have_many(:intents)
         must have_many(:scored)
         must have_many(:scores)
         must have_many(:scored_settings)
@@ -104,6 +107,24 @@ module CloakPolicy
       describe "must return all settings for all the bottom level subvectors" do
 
         Then { assert_includes vectors(:privacy).child_settings, settings(:two) }
+      end
+    end
+
+    describe "intent_options_count" do 
+      
+      describe "bottom level vector with settings" do 
+      
+        Then { assert_equal 2, vectors(:geolocation).intent_options_count }
+      end
+      
+      describe "subvector" do 
+        
+        Then { assert_equal 2, vectors(:location).intent_options_count }
+      end
+      
+      describe "top level vector with a setting with more than 2 choices" do 
+        
+        Then { assert_equal 3, vectors(:privacy).intent_options_count }
       end
     end
   end

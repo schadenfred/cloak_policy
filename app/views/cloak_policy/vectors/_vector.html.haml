@@ -1,5 +1,5 @@
 %tr
-
+  %td= vector.child_settings.count
   %td
     = link_to material_icon(vector.icon, 'lg') + " " +  vector.full_name, vector
   %td
@@ -10,7 +10,7 @@
     = link_to 'Edit', edit_vector_path(vector)
   %td
     = link_to 'Destroy', vector, method: :delete, data: { confirm: 'Are you sure?'}
-%br
 - vector.subvectors.each do |v|
   = render 'vector', vector: v
+  
 

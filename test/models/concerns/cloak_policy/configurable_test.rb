@@ -33,23 +33,5 @@ module CloakPolicy
       # # And  { assert_equal subject.descendants[0][:children][0][:children][0][:children][0][:name], settings(:two).name}
       # # And  { assert_equal subject.descendants[0][:children][0][:children][0][:children][0][:children][0][:name], choices(:four).name}
     end
-
-    describe "intent_options(vector)" do 
-      
-      describe "bottom level vector with settings" do 
-      
-        Then { assert_equal ["off", "on"], subject.intent_options(vectors(:geolocation))}
-      end
-      
-      describe "subvector" do 
-        
-        Then { assert_equal ["off", "on"], subject.intent_options(vectors(:location))}
-      end
-      
-      describe "top level vector with a setting with more than 2 choices" do 
-        
-        Then { assert_equal %w(least middle most), subject.intent_options(vectors(:privacy))}
-      end
-    end
   end
 end

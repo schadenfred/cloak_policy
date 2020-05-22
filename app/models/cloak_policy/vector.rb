@@ -6,6 +6,7 @@ module CloakPolicy
 
     belongs_to :parent, class_name: "Vector", optional: true
 
+    has_many :intents
     has_many :scored, class_name: 'Score', foreign_key: :vector_id, dependent: :destroy
     has_many :scored_settings,   through: :scored, source: :scorable, source_type: 'CloakPolicy::Setting'
     has_many :scored_subvectors, through: :scored, source: :scorable, source_type: 'CloakPolicy::Vector'
@@ -17,6 +18,7 @@ module CloakPolicy
     scope :top_level, -> { where(parent_id: nil) }
     scope :bottom_level, -> { where.not(id: pluck(:parent_id)) }
 
+    accepts_nested_attributes_for :intents
     after_create :create_score
 
     before_destroy { |record| Vector.where(parent_id: record.id).update_all(parent_id: nil )   }
@@ -38,6 +40,14 @@ module CloakPolicy
       subvectors.each { |sv| sv.child_settings(array) } 
       scored_settings.each { |s| array << s } 
       array
+    end
+
+    def intent_options_count(vector=nil, counts=nil)
+      vector = vector || self 
+      counts = counts || []
+      vector.scored_settings.each { |s| counts << s.choices.count } 
+      vector.subvectors.each { |sv| intent_options_count(sv, counts) } 
+      counts.max_by { |ic| ic }
     end
 
     private

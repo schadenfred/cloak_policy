@@ -1,19 +1,94 @@
-.card-header.card-header-divider
-  %h3
-    = @vector.icon
-    = @vector.scored_settings.count
-    = material_icon(@vector.icon)
-    = @vector.full_name
-    .row
-    = link_to @vector.parent.name, @vector.parent unless @vector.parent_id.nil?
 .card-body
-  - @vector.subvectors.each do |sv|
-    .row
-      .col-2= link_to sv.name, sv
-      .col-3
-        = render 'score', scorable: sv, vector: @vector
+  .row
+    .col  
+      %h3
+        = material_icon(@vector.icon)
+        = @vector.full_name
+        = link_to "back to #{@vector.parent.name}", @vector.parent unless @vector.parent_id.nil?
+      - @vector.scored_settings.each do |s| 
+        .row 
+          = s.name
+    .col
+      .row 
+        %h3 
+          Vector Intents 
+          %small
+            = @vector.intents.count
+            = "/"
+            = @vector.intent_options_count
+      .row 
+        %table.table.table-borderless
+          %thead 
+            %tr 
+              %th weight 
+              %th name 
+              %th description 
+              %th actions
+          %tbody 
+            - @vector.intents.each do |intent| 
+              %tr 
+                %td= intent.weight 
+                %td= intent.name 
+                %td= intent.description 
+                %td= link_to "edit", edit_vector_path(@vector) 
+                %td= link_to "destroy", intent, method: :delete, data: {confirm: 'Are you sure?'} 
+                -# %td= link_to "destroy", vector_intent_path(intent), method: :delete, data: { confirm: 'Are you sure?' }
 
-  - @vector.scored_settings.each do |s|
-    = link_to s.platform do
-      = material_icon(s.platform.icon)
-      = s.name
+                
+      -# -# = form_with model: @vector do |vector_form| 
+      -#   = vector_form.fields_for :intents, @vector.intents do |f| 
+      -#     .row 
+      -#       .col 
+      -#         .form-group 
+      -#           = f.label :name 
+      -#           = f.text_field :name, class: 'form-control'
+      -#       .col 
+      -#         .form-group 
+      -#           = f.label :description 
+      -#           = f.text_field :description, class: 'form-control'
+      -#       .col 
+      -#         .form-group 
+      -#           = f.label :weight 
+      -#           = f.number_field :weight, class: 'form-control'
+      -#       .col 
+      -#         -# = link_to "destroy",
+      -#   = vector_form.fields_for :intents_attributes do |f|   
+      -#     .row 
+      -#       .col 
+      -#         .form-group 
+      -#           = f.label :name 
+      -#           = f.text_field :name, class: 'form-control'
+      -#       .col 
+      -#         .form-group 
+      -#           = f.label :description 
+      -#           = f.text_field :description, class: 'form-control'
+      -#       .col 
+      -#         .form-group 
+      -#           = f.label :weight 
+      -#           = f.number_field :weight, class: 'form-control'
+            
+      -# = link_to "create new intent", new_vector_intent_path(@vector)	
+
+      -# %table.table
+      -#   %thead 
+      -#     %tr 
+      -#       %th name 
+      -#       %th description 
+      -#   %tbody 
+      -#     - @vector.intents.each do |intent| 
+      -#       %tr
+      -#         %td= intent.name
+      -#         %td= intent.description
+      -# -# = form_with-# = link_to "new intent", new_intent_path(@)
+
+  -# .row 
+  -#   - @vector.subvectors.each do |sv|
+  -#     .row
+  -#       .col-2= link_to sv.name, sv
+  -#       .col-3
+  -#         = render 'score', scorable: sv, vector: @vector
+
+  -# -# - @vector.scored_settings.each do |s|
+  -#   = link_to s.platform do
+  -#     = material_icon(s.platform.icon)
+  -#     = s.name

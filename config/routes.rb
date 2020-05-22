@@ -1,15 +1,16 @@
 CloakPolicy::Engine.routes.draw do
 
   resources :chosens
+  resources :intents
+  resources :platforms
   resources :recommendations
   resources :settings
   resources :choices
-  resources :vectors
+  resources :vectors do 
+    resources :intents
+  end
 
   resources :scores
-
-  resources :recommendations, :platforms, :settings do
-      end
 
   resources :settings do
     post :update_row_order, on: :collection
