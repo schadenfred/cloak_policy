@@ -5,12 +5,9 @@ CloakPolicy::Engine.routes.draw do
   resources :intents
   resources :platforms
   resources :recommendations
-  resources :settings
-  resources :vectors do 
-    resources :intents
-  end
-
   resources :scores
+  resources :settings
+  resources :vectors 
 
   resources :settings do
     post :update_row_order, on: :collection

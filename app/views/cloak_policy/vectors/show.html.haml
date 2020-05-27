@@ -16,6 +16,8 @@
             = @vector.intents.count
             = "/"
             = @vector.intent_options_count
+            = link_to "new intent", new_intent_path(vector_id: @vector.id)
+
       .row 
         %table.table.table-borderless
           %thead 
@@ -30,10 +32,8 @@
                 %td= intent.weight 
                 %td= intent.name 
                 %td= intent.description 
-                %td= link_to "edit", edit_vector_path(@vector) 
+                %td= link_to "edit", edit_intent_path(intent) 
                 %td= link_to "destroy", intent, method: :delete, data: {confirm: 'Are you sure?'} 
-                -# %td= link_to "destroy", vector_intent_path(intent), method: :delete, data: { confirm: 'Are you sure?' }
-
                 
       -# -# = form_with model: @vector do |vector_form| 
       -#   = vector_form.fields_for :intents, @vector.intents do |f| 

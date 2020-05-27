@@ -1,60 +1,10 @@
 .card-body 
-  %ul#vectorEditTab.nav.nav-tabs{:role => "tablist"}
-    %li.nav-item
-      %a#editAttributesTab.nav-link{"aria-controls" => "attributes", "aria-selected" => "false", "data-toggle" => "tab", :href => "#editAttributes", :role => "tab"} Attributes
-    %li.nav-item
-      %a#editIntentsTab.nav-link.active{"aria-controls" => "intents", "aria-selected" => "true", "data-toggle" => "tab", :href => "#editIntents", :role => "tab"} Intents
-  #vectorEditTabContent.tab-content
-    #editAttributes.tab-pane.fade.show{"aria-labelledby" => "scoring-tab", :role => "tabpanel"}
-      %h1 Edit vector
-      = render 'form', vector: @vector
-
-      %br
-      = link_to 'Show', @vector
-      \|
-      = link_to 'Back', vectors_path
-      \|
-      = link_to 'Destroy', @vector, method: :delete, data: { confirm: 'Are you sure?' }, remote: true
-    #editIntents.tab-pane.fade.show.active{"aria-labelledby" => "attributes-tab", :role => "tabpanel"}
-      %br 
-      .row 
-      %h1 
-        Edit Vector Intents 
-        %small
-          = @vector.intents.count
-          = "/"
-          = @vector.intent_options_count
-      %table.table.table-responsive.table-borderless
-        %thead
-          %tr
-            %th weight
-            %th name
-            %th descripton
-            %th
-          %tbody
-          - @vector.intents.each do |intent| 
-            = form_with model: intent do |f|
-              %tr
-                %td= f.number_field :weight, class: 'form-control'      
-                %td= f.text_field :name, class: 'form-control'      
-                %td= f.text_area :description, rows: 5, class: 'form-control'      
-                %td= f.submit class: 'btn btn-primary'
-                  
--#     -#       %h3 new intent
--#     -#       = form_with model: @vector.intents.new do |f| 
--#     -#         = f.hidden_field :vector_id, value: @vector.id
--#     -#         .row 
--#     -#           .col-4
--#     -#             .form-group 
--#     -#               = f.label :weight 
--#     -#               = f.number_field :weight, class: 'form-control'      
--#     -#             .form-group 
--#     -#               = f.label :name 
--#     -#               = f.text_field :name, class: 'form-control'
--#     -#           .col-8
--#     -#             .form-group 
--#     -#               = f.label :description 
--#     -#               = f.text_area :description, class: 'form-control'
--#     -#             .form-group 
--#     -#               = f.submit class: 'btn btn-primary'              
-              
+  %h1 Edit vector
+  = render 'form', vector: @vector
+  %br
+  = link_to 'Show', @vector
+  \|
+  = link_to 'Back', vectors_path
+  \|
+  = link_to 'Destroy', @vector, method: :delete, data: { confirm: 'Are you sure?' }, remote: true
+  

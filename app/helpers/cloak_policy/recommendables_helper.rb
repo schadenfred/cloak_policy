@@ -1,10 +1,6 @@
 module CloakPolicy
   module RecommendablesHelper
 
-    def icon_color(recommendable)
-      recommendable.sloppy? ? 'amber' : 'green'
-    end
-
     def accordion_class(recommendable)
       recommendable.sloppy? ? 'text-white bg-info mb-3' : 'text-white bg-success mb-3'
     end
@@ -26,7 +22,6 @@ module CloakPolicy
     end
 
     def action_link_for(rec, action)
-      klass = "btn btn-#{recommendable_status(rec)} btn-sm text-white"
       id = "#{rec.class.name.demodulize.downcase}#{action.capitalize}-#{rec.id}"
       params = { recommendable: {
           recommendable_id: rec.id, recommendable_class: rec.class.name.to_s } }
@@ -36,7 +31,7 @@ module CloakPolicy
       when 'activate'
         path = recommendables_activate_path( params: params )
       end
-      link_to action, path, id: id, class: "", method: :patch, remote: true
+      link_to action, path, id: id, method: :patch, remote: true
     end
   end
 end

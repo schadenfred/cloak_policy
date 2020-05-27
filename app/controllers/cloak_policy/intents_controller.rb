@@ -12,26 +12,28 @@ module CloakPolicy
     end
 
     def new
-      @intent = Intent.new
+      @vector = Vector.find(params[:vector_id])      
+      @intent = @vector.intents.new
     end
 
     def edit
     end
 
     def create
+      byebug
       @intent = Intent.new(intent_params)
       respond_to do |format|
         if @intent.save
-          format.js { redirect_back fallback_location: @intent.vector, notice:  'Intent was successfully created.' }
+          format.js { redirect_to @intent.vector, notice:  'Intent was successfully created.' }
         end 
       end
     end
 
     def update
-
+      
       respond_to do |format|
         if @intent.update(intent_params)
-          format.js { render :edit, notice: 'Platform was successfully created.' }
+          format.html { redirect_to @intent.vector, notice: 'Intent successfully updated.' }
         else
           render :edit
         end

@@ -6,7 +6,7 @@
       %ul
         - @intent.errors.full_messages.each do |message|
           %li= message
-
+  = f.hidden_field :vector_id, value: @intent.vector_id
   .form-group 
     = f.label :name 
     = f.text_field :name, class: 'form-control'
