@@ -43,7 +43,7 @@ module CloakPolicy
         when child.class.name.eql?('CloakPolicy::Setting')
           array << { name: child.name, description: child.we_say, children: descendants(child.choices) }
         when 
-          array << { name: child.name, weight: child.weight, child_type: 'intent',  size: 100, selected: false }
+          array << { name: child.name, weight: child.weight, child_type: 'choice',  size: 100, selected: false }
         end
       end
       array
