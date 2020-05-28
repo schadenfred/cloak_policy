@@ -35,7 +35,7 @@ module CloakPolicy
         when child.class.name.eql?('CloakPolicy::Vector')
           intents = []
           child.intents.each do |intent| 
-            intents << { name: intent.name, description: intent.description, child_type: "intent", size: ring_size, selected: false }
+            intents << { name: intent.name, weight: intent.weight, description: intent.description, child_type: "intent", size: ring_size, selected: false }
           end    
           intents << { name: child.name, description: child.description, children: descendants(child.subvectors) }         
           array << { name: child.name, description: child.description, children: intents }
