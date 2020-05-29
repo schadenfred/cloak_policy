@@ -4,6 +4,7 @@ class CreateCloakPolicyChoices < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :value
       t.integer :setting_id
+      t.integer :weight
       t.string :we_say
       t.string :they_say
       t.boolean :recommendable

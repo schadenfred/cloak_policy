@@ -39,11 +39,10 @@ module CloakPolicy
           end    
           intents << { name: child.name, description: child.description, children: descendants(child.subvectors) }         
           array << { name: child.name, description: child.description, children: intents }
-          # array << { name: child.name, child_type: 'vector', children: intents }
         when child.class.name.eql?('CloakPolicy::Setting')
           array << { name: child.name, description: child.we_say, children: descendants(child.choices) }
-        when 
-          array << { name: child.name, weight: child.weight, child_type: 'choice',  size: 100, selected: false }
+        when child.class.name.eql?('CloakPolicy::Choice')
+          array << { name: child.name, weight: child.weight, child_type: 'intent',  size: 100, selected: false }
         end
       end
       array
