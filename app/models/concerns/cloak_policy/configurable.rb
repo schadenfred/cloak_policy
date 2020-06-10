@@ -12,7 +12,7 @@ module CloakPolicy
 
     def flare 
       {
-        name: 'Cloak', 
+        name: 'Cloaking Spindle', 
         children: descendants(@children)
       }
     end
