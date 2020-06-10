@@ -16,7 +16,6 @@
 //= require jquery-ui/widgets/sortable
 //= require popper
 //= require bootstrap
-//= require Chart.min
 //= require cloak_policy/application/settings
 //= require cloak_policy/application/utils
 //= require turbolinks
