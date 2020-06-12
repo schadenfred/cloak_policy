@@ -4,6 +4,7 @@ require "sass-rails"
 require "bootstrap"
 require "jquery-rails"
 require "jquery-ui-rails"
+require "fast_jsonapi"
 require "ranked-model"
 require "turbolinks"
 

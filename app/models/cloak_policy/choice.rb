@@ -28,14 +28,6 @@ module CloakPolicy
       score.impact unless score.nil?
     end
 
-    # def weight
-    #   hash = { }
-    #   Vector.all.each do |v|
-    #     hash[v.name.downcase] = weight_for(v)
-    #   end
-    #   hash
-    # end
-
     def impacts
       hash = { }
       Vector.all.each do |v|
