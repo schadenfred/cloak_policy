@@ -18,6 +18,10 @@ module CloakPolicy
       recommendation.choices.where(:setting => recommendables)
     end
 
+    def vectors 
+      CloakPolicy::Vector.top_level
+    end
+
     def weights_for(vector)
       array = []
       settings.each { |s| array << (s.weight_for(vector) || "null")}
