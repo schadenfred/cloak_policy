@@ -4,8 +4,6 @@ module CloakPolicy
     attributes :name, :fqdn, :description, :icon, :platform_type, :they_say, :we_say
 
     has_many :settings
-    # has_many :subvectors
-    # has_many :ve
 
   end
 end

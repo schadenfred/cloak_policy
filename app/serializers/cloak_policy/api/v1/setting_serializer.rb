@@ -6,5 +6,9 @@ module CloakPolicy
     belongs_to :platform
 
     has_many :choices
+
+    attribute :description do |object|
+      object.we_say 
+    end
   end
 end
