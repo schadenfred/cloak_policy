@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_015705) do
+ActiveRecord::Schema.define(version: 2020_06_25_232948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_015705) do
     t.string "name"
     t.string "value"
     t.integer "setting_id"
+    t.integer "weight"
     t.string "we_say"
     t.string "they_say"
     t.boolean "recommendable"
@@ -34,6 +35,16 @@ ActiveRecord::Schema.define(version: 2020_05_21_015705) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["choice_id"], name: "index_cloak_policy_chosens_on_choice_id"
     t.index ["recommendation_id"], name: "index_cloak_policy_chosens_on_recommendation_id"
+  end
+
+  create_table "cloak_policy_intentions", force: :cascade do |t|
+    t.string "intendable_type", null: false
+    t.integer "intendable_id", null: false
+    t.integer "intent_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["intendable_type", "intendable_id"], name: "index_cloak_policy_intendable"
+    t.index ["intent_id"], name: "index_cloak_policy_intentions_on_intent_id"
   end
 
   create_table "cloak_policy_intents", force: :cascade do |t|

@@ -1,8 +1,9 @@
 CloakPolicy::Engine.routes.draw do
 
+  resources :intentions
   namespace :api do
     namespace :v1 do
-      resources :intents, :vectors, :settings, :platforms, 
+      resources :intents, :vectors, :settings, :platforms, :recommendations, 
                 :choices, :configurations, only: [:index, :show]
     end
   end
