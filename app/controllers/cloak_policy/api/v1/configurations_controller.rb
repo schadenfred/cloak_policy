@@ -13,6 +13,7 @@ module CloakPolicy
           type: 'vector',
           attributes: { 
             name: spindle_title, 
+            description: 'come on in it is warm',
             icon: ""
           },
           relationships: {
@@ -28,6 +29,7 @@ module CloakPolicy
           type: 'vector',
           attributes: { 
             name: spindle_title, 
+            description: "Click your favorite service to fix",
             icon: ""
           },
           relationships: {
